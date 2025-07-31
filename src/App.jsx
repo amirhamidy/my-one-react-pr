@@ -18,19 +18,19 @@ function App() {
     if (TrueSub === false) {
       SetTrueSub(true)
       Swal.fire({
-        title: 'موفقیت!',
-        text: 'اطلاعات شما با موفقیت ثبت شد.',
+        title: 'success',
+        text: 'Your information was successfully registered.',
         icon: 'success',
-        confirmButtonText: 'متوجه شدم',
+        confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6'
       });
     }
     else {
       SetTrueSub(false)
       Swal.fire({
-        text: 'شما قبلا این مورد را وارد کار های انجام شده کرده اید!',
+        text: 'You have already successfully registered this item.',
         icon: 'warning',
-        confirmButtonText: 'متوجه شدم',
+        confirmButtonText: 'OK',
         confirmButtonColor: 'red'
       });
     }
@@ -40,10 +40,10 @@ function App() {
     if (DeleteFaq === false) {
       SetTrueSub(true)
       Swal.fire({
-        title: 'حذف شد!',
-        text: 'این کار از لیست انجام شده ها حذف شد',
+        title: 'deleted!',
+        text: 'This task has been removed from the to-do list!',
         icon: 'danger',
-        confirmButtonText: 'متوجه شدم',
+        confirmButtonText: 'OK',
         confirmButtonColor: 'red'
       });
     }
@@ -53,7 +53,7 @@ function App() {
       <div className='top-header-form'>
         <form className='row container mb-3'>
           <div className='col-md-10  py-3'>
-            <input className='form-control' type="text" placeholder='کار خود را وارد کنید' />
+            <input className='form-control' type="text" placeholder='insert your work' />
           </div>
           <div className='col-md-2 text-center py-3'>
             <button className='bg-success btn text-light' type='submit'>
@@ -64,7 +64,7 @@ function App() {
 
         <div className='d-flex justify-content-center flex-column container mt-3'>
           <div className='w-100 d-flex justify-content-between my-2'>
-            <span className='w-50 text-end px-3'>رفتن به محل کار </span>
+            <span className='w-50 text-end px-3'>going to work</span>
             <span className='w-50 text-start px-3'>
               <span className='tick-icon mx-2'>
                 <svg onClick={TugTrueSub} className='text-success'
@@ -111,11 +111,12 @@ function App() {
               </span>
             </span>
           </div>
+
           <div className='w-100 d-flex justify-content-between my-2'>
-            <span className='w-50 text-end px-3'>رفتن به محل کار </span>
+            <span className='w-50 text-end px-3'>going to work</span>
             <span className='w-50 text-start px-3'>
               <span className='tick-icon mx-2'>
-                <svg className='text-success'
+                <svg onClick={TugTrueSub} className='text-success'
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
                   width="2em"
@@ -132,7 +133,7 @@ function App() {
                 </svg>
               </span>
               <span className='tick-icon mx-2'>
-                <svg className='text-warning'
+                <svg onClick={FuncDeleteFaq} className='text-warning'
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 15 15"
                   width="2em"
@@ -159,11 +160,12 @@ function App() {
               </span>
             </span>
           </div>
+
           <div className='w-100 d-flex justify-content-between my-2'>
-            <span className='w-50 text-end px-3'>رفتن به محل کار </span>
+            <span className='w-50 text-end px-3'>going to work</span>
             <span className='w-50 text-start px-3'>
               <span className='tick-icon mx-2'>
-                <svg className='text-success'
+                <svg onClick={TugTrueSub} className='text-success'
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
                   width="2em"
@@ -180,7 +182,7 @@ function App() {
                 </svg>
               </span>
               <span className='tick-icon mx-2'>
-                <svg className='text-warning'
+                <svg onClick={FuncDeleteFaq} className='text-warning'
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 15 15"
                   width="2em"
