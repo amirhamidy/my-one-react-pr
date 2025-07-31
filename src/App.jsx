@@ -48,6 +48,25 @@ function App() {
       });
     }
   };
+  const RemoveWork = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, I am sure!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Confirmed!',
+          'Your action has been confirmed.',
+          'success'
+        )
+      }
+    });
+  }
   return (
     <>
       <div className='top-header-form'>
@@ -97,7 +116,7 @@ function App() {
                 </svg>
               </span>
               <span className='tick-icon mx-2'>
-                <svg className='text-danger'
+                <svg onClick={RemoveWork} className='text-danger'
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   width="2em"
@@ -145,7 +164,7 @@ function App() {
                 </svg>
               </span>
               <span className='tick-icon mx-2'>
-                <svg className='text-danger'
+                <svg onClick={RemoveWork} className='text-danger'
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   width="2em"
@@ -193,7 +212,7 @@ function App() {
                 </svg>
               </span>
               <span className='tick-icon mx-2'>
-                <svg className='text-danger'
+                <svg onClick={RemoveWork} className='text-danger'
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   width="2em"
