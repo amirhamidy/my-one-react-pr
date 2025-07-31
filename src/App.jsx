@@ -63,7 +63,7 @@ function App() {
         </form>
 
         <div className='d-flex justify-content-center flex-column container mt-3'>
-          <div className='w-100 d-flex justify-content-between my-2'>
+          <div className='w-100 d-flex justify-content-between  true-work my-1 py-2'>
             <span className='w-50 text-end px-3'>going to work</span>
             <span className='w-50 text-start px-3'>
               <span className='tick-icon mx-2'>
@@ -111,8 +111,7 @@ function App() {
               </span>
             </span>
           </div>
-
-          <div className='w-100 d-flex justify-content-between my-2'>
+          <div className='w-100 d-flex justify-content-between  false-work my-1 py-2'>
             <span className='w-50 text-end px-3'>going to work</span>
             <span className='w-50 text-start px-3'>
               <span className='tick-icon mx-2'>
@@ -160,8 +159,7 @@ function App() {
               </span>
             </span>
           </div>
-
-          <div className='w-100 d-flex justify-content-between my-2'>
+          <div className='w-100 d-flex justify-content-between  true-work my-1 py-2'>
             <span className='w-50 text-end px-3'>going to work</span>
             <span className='w-50 text-start px-3'>
               <span className='tick-icon mx-2'>
