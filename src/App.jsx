@@ -4,12 +4,40 @@ import viteLogo from '/vite.svg'
 import './index.css'
 import AllWork from './all'
 import WorkForm from './form'
-import MyContext from './myContext'
+import Mycont from './myContext'
 
 
 function App() {
   const [TrueSub, SetTrueSub] = useState(false)
   const [DeleteFaq, SetDeleteFaq] = useState(false)
+  const [Works, SetWorks] = useState([
+    {
+      id: 1,
+      WorksString: "رفتن آو بیرن ",
+      IsDone: true
+    },
+    {
+      id: 2,
+      WorksString: "رفتن آو میرن ",
+      IsDone: false
+    },
+    {
+      id: 3,
+      WorksString: "بورررر",
+      IsDone: true
+    },
+    {
+      id: 4,
+      WorksString: "بوگذه",
+      IsDone: false
+    }
+    ,
+    {
+      id: 5,
+      WorksString: "بد دگه ",
+      IsDone: true
+    }
+  ])
 
 
   const TugTrueSub = () => {
@@ -69,14 +97,14 @@ function App() {
   return (
     <>
       <div className='top-header-form'>
-        <MyContext.Provider value={{
-          TrueSub, SetTrueSub, DeleteFaq, SetDeleteFaq , TugTrueSub , FuncDeleteFaq , RemoveWork
+        <Mycont.Provider value={{
+          TrueSub, SetTrueSub, DeleteFaq, SetDeleteFaq, TugTrueSub, FuncDeleteFaq, RemoveWork, Works, SetWorks
         }}>
           <WorkForm>
           </WorkForm>
           <AllWork>
           </AllWork>
-        </MyContext.Provider>
+        </Mycont.Provider>
       </div>
     </>
   )

@@ -1,11 +1,11 @@
 import { createContext } from "react";
 
 
- const myContext = createContext({
+const Mycont = createContext({
     TrueSub : Boolean,
-    SetTrueSub : ()=>{} ,
-    DeleteFaq : Boolean,
-    SetDeleteFaq : ()=>{}
-})    
+    SetTrueSub : ()=>{} , 
+    Works : {}
+    
+})
 
-export default myContext
+export default Mycont
