@@ -14,8 +14,7 @@ function App() {
     {
       id: 1,
       WorksString: "کار شماره ",
-      IsDone: true,
-      display: true
+      IsDone: true
     },
     {
       id: 2,
@@ -25,21 +24,18 @@ function App() {
     {
       id: 3,
       WorksString: "کار شماره ",
-      IsDone: true,
-      display: true
+      IsDone: true
     },
     {
       id: 4,
       WorksString: "کار شماره ",
-      IsDone: false,
-      display: true
+      IsDone: false
     }
     ,
     {
       id: 5,
       WorksString: "کار شماره ",
-      IsDone: true,
-      display: true
+      IsDone: true
     }
   ])
 
