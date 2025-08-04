@@ -4,7 +4,7 @@ import Mycont from './myContext'
 const AllWork = () => {
     const MYcc = useContext(Mycont)
     const { Works, SetWorks } = useContext(Mycont);
-        
+
     return (
         <div className='d-flex justify-content-center flex-column container mt-3'>
             {
@@ -14,7 +14,7 @@ const AllWork = () => {
                             <span className='w-50 text-end px-3'>{c.WorksString}{c.id}</span>
                             <span className='w-50 text-start px-3'>
                                 <span className={` ${!c.IsDone ? "mx-2 tick-icon" : "d-none mx-0"}`}>
-                                <svg key={Math.random()} onClick={() => MYcc.TugBgForTickIcon(c.id)} className={'text-success '}
+                                    <svg key={Math.random()} onClick={() => MYcc.TugBgForTickIcon(c.id)} className={'text-success '}
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 16 16"
                                         width="2em"
