@@ -51,6 +51,12 @@ function App() {
         work.id === id ? { ...work, IsDone: false } : work
       )
     );
+    Swal.fire({
+      title: 'تایید شد!',
+      text: "از کار های انجام شده حذف شد",
+      icon: 'error',
+      confirmButtonText: 'باشه'
+    });
   };
 
   const TugBgForTickIcon = (id) => {
@@ -59,13 +65,19 @@ function App() {
         work.id === id ? { ...work, IsDone: true } : work
       )
     );
+    Swal.fire({
+      title: 'تایید شد!',
+      text: "به کار های انجام شده اضاف شد",
+      icon: 'success',
+      confirmButtonText: 'باشه'
+    });
   };
 
   return (
     <>
       <div className='top-header-form'>
         <Mycont.Provider value={{
-          TrueSub, SetTrueSub, SetWorks, Works, TugBgForCloseIcon, TugBgForTickIcon 
+          TrueSub, SetTrueSub, SetWorks, Works, TugBgForCloseIcon, TugBgForTickIcon
         }}>
           <WorkForm>
           </WorkForm>
