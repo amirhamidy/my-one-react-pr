@@ -9,96 +9,63 @@ import Mycont from './myContext'
 
 function App() {
   const [TrueSub, SetTrueSub] = useState(false)
-  const [DeleteFaq, SetDeleteFaq] = useState(false)
+
   const [Works, SetWorks] = useState([
     {
       id: 1,
-      WorksString: "رفتن آو بیرن ",
-      IsDone: true
+      WorksString: "کار شماره ",
+      IsDone: true,
+      display: true
     },
     {
       id: 2,
-      WorksString: "رفتن آو میرن ",
+      WorksString: "کار شماره ",
       IsDone: false
     },
     {
       id: 3,
-      WorksString: "بورررر",
-      IsDone: true
+      WorksString: "کار شماره ",
+      IsDone: true,
+      display: true
     },
     {
       id: 4,
-      WorksString: "بوگذه",
-      IsDone: false
+      WorksString: "کار شماره ",
+      IsDone: false,
+      display: true
     }
     ,
     {
       id: 5,
-      WorksString: "بد دگه ",
-      IsDone: true
+      WorksString: "کار شماره ",
+      IsDone: true,
+      display: true
     }
   ])
 
 
-  const TugTrueSub = () => {
 
-    if (TrueSub === false) {
-      SetTrueSub(true)
-      Swal.fire({
-        title: 'success',
-        text: 'Your information was successfully registered.',
-        icon: 'success',
-        confirmButtonText: 'OK',
-        confirmButtonColor: '#3085d6'
-      });
-    }
-    else {
-      SetTrueSub(false)
-      Swal.fire({
-        text: 'You have already successfully registered this item.',
-        icon: 'warning',
-        confirmButtonText: 'OK',
-        confirmButtonColor: 'red'
-      });
-    }
+  const TugBgForCloseIcon = (id) => {
+    SetWorks(prevWorks =>
+      prevWorks.map(work =>
+        work.id === id ? { ...work, IsDone: false } : work
+      )
+    );
   };
-  const FuncDeleteFaq = () => {
 
-    if (DeleteFaq === false) {
-      SetTrueSub(true)
-      Swal.fire({
-        title: 'deleted!',
-        text: 'This task has been removed from the to-do list!',
-        icon: 'danger',
-        confirmButtonText: 'OK',
-        confirmButtonColor: 'red'
-      });
-    }
+  const TugBgForTickIcon = (id) => {
+    SetWorks(prevWorks =>
+      prevWorks.map(work =>
+        work.id === id ? { ...work, IsDone: true } : work
+      )
+    );
   };
-  const RemoveWork = () => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, I am sure!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Confirmed!',
-          'Your action has been confirmed.',
-          'success'
-        )
-      }
-    });
-  }
+
   return (
     <>
       <div className='top-header-form'>
         <Mycont.Provider value={{
-          TrueSub, SetTrueSub, DeleteFaq, SetDeleteFaq, TugTrueSub, FuncDeleteFaq, RemoveWork, Works, SetWorks
+          TrueSub, SetTrueSub, SetWorks, Works, TugBgForCloseIcon, TugBgForTickIcon 
         }}>
           <WorkForm>
           </WorkForm>

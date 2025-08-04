@@ -4,20 +4,17 @@ import Mycont from './myContext'
 const AllWork = () => {
     const MYcc = useContext(Mycont)
     const { Works, SetWorks } = useContext(Mycont);
-    
-
-
-
+        
     return (
         <div className='d-flex justify-content-center flex-column container mt-3'>
             {
                 Works.map((c) => {
                     return (
                         <div key={c.id} className={`w-100 d-flex justify-content-between my-1 py-2 ${c.IsDone ? "true-work" : "false-work"} `}>
-                            <span className='w-50 text-end px-3'>{c.WorksString}</span>
+                            <span className='w-50 text-end px-3'>{c.WorksString}{c.id}</span>
                             <span className='w-50 text-start px-3'>
-                                <span className='tick-icon mx-2'>
-                                    <svg onClick={MYcc.TugTrueSub} className='text-success'
+                                <span className={` ${!c.IsDone ? "mx-2 tick-icon" : "d-none mx-0"}`}>
+                                <svg key={Math.random()} onClick={() => MYcc.TugBgForTickIcon(c.id)} className={'text-success '}
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 16 16"
                                         width="2em"
@@ -33,8 +30,8 @@ const AllWork = () => {
                                         ></path>
                                     </svg>
                                 </span>
-                                <span className='tick-icon mx-2'>
-                                    <svg onClick={MYcc.FuncDeleteFaq} className='text-warning'
+                                <span className={`${!c.IsDone ? "d-none mx-0" : "mx-2 tick-icon"}`}>
+                                    <svg key={Math.random()} onClick={() => MYcc.TugBgForCloseIcon(c.id)} className={'text-warning'}
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 15 15"
                                         width="2em"
@@ -47,7 +44,7 @@ const AllWork = () => {
                                     </svg>
                                 </span>
                                 <span className='tick-icon mx-2'>
-                                    <svg onClick={MYcc.RemoveWork} className='text-danger'
+                                    <svg key={Math.random()} className='text-danger'
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
                                         width="2em"
