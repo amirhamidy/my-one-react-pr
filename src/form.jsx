@@ -1,5 +1,8 @@
-import { StrictMode } from 'react'
+import { StrictMode, useContext } from 'react'
 import { createRoot } from 'react-dom/client'
+
+
+
 
 
 const WorkForm = () => {
@@ -9,9 +12,9 @@ const WorkForm = () => {
                 <input className='form-control' type="text" placeholder='INSERT YOUR WORK' />
             </div>
             <div className='col-md-2 text-center py-3'>
-                <button className='bg-success btn text-light' type='submit'>
+                <span className='bg-success btn text-light'>
                     SUBMIT
-                </button>
+                </span>
             </div>
         </form>
     )
