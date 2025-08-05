@@ -11,7 +11,7 @@ const AllWork = () => {
                 Works.map((c) => {
                     return (
                         <div key={c.id} className={`w-100 d-flex justify-content-between my-1 py-2 ${c.IsDone ? "true-work" : "false-work"} `}>
-                            <span className='w-50 text-end px-3'>{c.WorksString}{c.id}</span>
+                            <span className='w-50 text-end px-3'>{c.WorksString} - {c.id} </span>
                             <span className='w-50 text-start px-3'>
                                 <span className={` ${!c.IsDone ? "mx-2 tick-icon" : "d-none mx-0"}`}>
                                     <svg key={Math.random()} onClick={() => MYcc.TugBgForTickIcon(c.id)} className={'text-success '}
