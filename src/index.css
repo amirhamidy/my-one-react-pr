@@ -1,29 +1,59 @@
 body {
   overflow-x: hidden;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.tick-icon svg {
-  cursor: pointer;
-  transition: 0.2s;
-  padding: 7px 7px; 
-  border-radius: 50%;
+.theme-color {
+  color: #ff4f29 !important;
 }
 
-.tick-icon svg:hover {
-box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-background-color: white;
+.w-center{
+  text-align: -webkit-center;
 }
 
-.top-header-form {
-  text-align: -webkit-center !important;
+.theme-bg-color {
+  background-color: #ff4f29 !important;
 }
 
-
-.true-work{
-  background-color: rgba(0, 255, 0, 0.422);
-  transition: 0.5s;
+.cs-fs-13 {
+  font-size: 13px !important;
 }
-.false-work{
-  background-color: rgba(255, 0, 0, 0.434);
-  transition: 0.5s;
+
+.cs-fs-14 {
+  font-size: 14px !important;
+}
+
+.cs-fs-15 {
+  font-size: 15px !important;
+}
+
+.list-box-sidebar {
+  height: 78%;
+  overflow-y: scroll;
+}
+
+.main-box-sidebar {
+  border: 1px ridge #eeeeee;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.sidebar-list {
+  border-bottom: 1px ridge #eeeeee;
+  border-radius: 3px;
+}
+
+.sidebar-list:last-child{
+  border-bottom: none !important;
+}
+
+.active-sidebar-list {
+  background-color: #ff4f29;
+  border-radius: 3px;
+  color: white;
+}
+
+.list-box-sidebar::-webkit-scrollbar {
+  display: none;
 }
