@@ -3,11 +3,20 @@ body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+
+a{
+  text-decoration: none !important;
+}
+
+a:hover{
+  color: black;
+}
+
 .theme-color {
   color: #ff4f29 !important;
 }
 
-.w-center{
+.w-center {
   text-align: -webkit-center;
 }
 
@@ -40,20 +49,42 @@ body {
 }
 
 .sidebar-list {
+  color: black ;
   border-bottom: 1px ridge #eeeeee;
   border-radius: 3px;
 }
 
-.sidebar-list:last-child{
+.sidebar-list:last-child {
   border-bottom: none !important;
 }
 
 .active-sidebar-list {
-  background-color: #ff4f29;
+  background-color: #ff4f29 !important;
   border-radius: 3px;
-  color: white;
+  color: white !important;
 }
 
 .list-box-sidebar::-webkit-scrollbar {
   display: none;
+}
+
+.header-sec {
+  border-bottom: 1px ridge rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.box-pr-user {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ff4f29 ;
+  padding: 3% 3%;
+}
+
+.cs-li-color {
+  color: gray;
+}
+
+.w-right {
+  text-align: -webkit-right !important;
 }
