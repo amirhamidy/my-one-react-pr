@@ -88,3 +88,7 @@ a:hover{
 .w-right {
   text-align: -webkit-right !important;
 }
+
+.cs-bg{
+  background-color: #eeeeee;
+}

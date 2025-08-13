@@ -6,6 +6,7 @@ import Sotry from "./pages/storys"
 import Product from "./pages/product"
 import Chats from "./pages/chats"
 import Users from "./pages/users"
+import MainPage from "./pages/mainPage"
 
 
 
@@ -76,17 +77,13 @@ const Navbar = () => {
                 </div>
             </div>
             <Routes>
-                <Route path='/' element={<main></main>} />
+                <Route path='/' element={<MainPage></MainPage>} />
                 <Route path='/security' element={<Security></Security>} />
                 <Route path='/Sotry' element={<Sotry></Sotry>} />
                 <Route path='/chats' element={<Chats></Chats>} />
                 <Route path='/product' element={<Product></Product>} />
                 <Route path='/users' element={<Users></Users>} />
-
-
-
             </Routes>
-
         </section>
     )
 
