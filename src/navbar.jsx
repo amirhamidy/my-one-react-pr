@@ -86,9 +86,6 @@ const Navbar = () => {
             </Routes>
         </section>
     )
-
-
-
 }
 
 export default Navbar

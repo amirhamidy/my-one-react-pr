@@ -1,6 +1,13 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+
 body {
   overflow-x: hidden;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 :root {
@@ -9,7 +16,6 @@ body {
   --primary-accent: #ffffff;
 
 }
-
 
 a {
   text-decoration: none !important;
@@ -65,6 +71,8 @@ a:hover {
   border-bottom: none !important;
 }
 
+
+
 .active-sidebar-list {
   background-color: #ff4f29 !important;
   border-radius: 3px;
@@ -72,6 +80,19 @@ a:hover {
   margin-right: 0.2rem;
   transition: 0.3s;
 }
+
+.bg-trtr {
+  background-color: transparent !important;
+  border: 1px ridge #ffffff4b;
+}
+
+.bg-trtr:focus {
+  background-color: rgb(255, 255, 255) !important;
+  border: 1px ridge #ffffff4b !important;
+  color: black !important;
+  box-shadow: none !important;
+}
+
 
 .list-box-sidebar::-webkit-scrollbar {
   display: none;
@@ -99,7 +120,7 @@ a:hover {
 }
 
 .cs-bg {
-  background: linear-gradient(to left, #ff5d28c0, #fc53538b);
+  background: linear-gradient(to left, #ff5c25c0, #dc00009d);
 }
 
 .cs-b-1 {
