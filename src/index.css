@@ -191,6 +191,7 @@ a:hover {
   min-height: 180px;
   display: flex;
   width: 35%;
+  cursor: pointer !important;
 }
 
 .product-card:hover {
@@ -241,25 +242,23 @@ a:hover {
 
 .product-actions {
   position: absolute;
-  left: -6.5rem;
+  left: -9.2rem;
   top: 0;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: 6rem;
   z-index: 10;
   animation: slideIn 0.3s ease-out;
+  transition: 0.3s !important;
 }
 
 .action-btn {
-  width: 100%;
-  padding: 0.6rem;
+  padding: 0.7rem 0.4rem;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.8rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 0.3rem;
   cursor: pointer;
@@ -268,28 +267,60 @@ a:hover {
 }
 
 .edit-btn {
-  background-color: #e60023;
+  background-color: #ff4f29;
   color: white;
+  transition: 0.3s;
+  height: 3.2rem;
+  font-size: 13px;
 }
 
+.edit-btn:hover {
+  background-color: white;
+  color: black;
+
+}
+
+
 .view-btn {
-  background-color: #f8f9fa;
-  color: #495057;
-  border: 1px solid #dee2e6;
+  background-color: #ff4f29;
+  color: white;
+  transition: 0.3s;
+  height: 3.2rem;
+  font-size: 13px;
+}
+
+.view-btn:hover {
+  background-color: white;
+  color: black;
 }
 
 .delete-btn {
-  background-color: #dc3545;
+  background-color: #ff4f29;
   color: white;
+  transition: 0.3s;
+  height: 3.2rem;
+  font-size: 13px;
+}
+
+.delete-btn:hover {
+  background-color: white;
+  color: black;
 }
 
 .share-btn {
-  background-color: #17a2b8;
+  background-color: #ff4f29;
   color: white;
+  transition: 0.3s;
+  height: 3.2rem;
+  font-size: 13px;
+}
+
+.share-btn:hover {
+  background-color: white;
+  color: black;
 }
 
 .action-btn:hover {
-  transform: translateX(3px);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
