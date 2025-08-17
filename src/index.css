@@ -9,6 +9,10 @@ body {
   overflow-x: hidden;
 }
 
+body::-webkit-scrollbar {
+  display: none !important;
+}
+
 :root {
   --primary-color: #ff4f29;
   --neutral-bg: #ffffff;
@@ -150,7 +154,7 @@ a:hover {
 
 
 .cs-h-for-pr {
-  height: 70vh !important;
+  height: 78vh !important;
   overflow-y: scroll;
 }
 
@@ -365,4 +369,78 @@ a:hover {
     flex-direction: row;
     justify-content: center;
   }
+}
+
+
+li,
+ul {
+  list-style: none !important;
+}
+
+.fill-titr {
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+}
+
+.fill-list {
+  top: 100%;
+  right: 0;
+  position: absolute;
+  background-color: #eeeeee;
+  color: black;
+  z-index: 9;
+  padding: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  padding: 0;
+  font-size: 14px;
+  height: 200px;
+  overflow-y: scroll;
+  transition: 0.3s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.fill-list li {
+  padding: 15px 8px;
+  transition: 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.fill-list li:hover {
+  background-color: #ff4f29;
+  color: white;
+}
+
+
+.fill-list::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+  margin: auto 10px;
+}
+
+.fill-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.fill-list::-webkit-scrollbar-thumb {
+  background: #aeaeae;
+  border-radius: 3px;
+}
+
+.fill-list::-webkit-scrollbar-thumb:hover {
+  background: #aeaeae;
+}
+
+
+.fill-list::-webkit-scrollbar:horizontal {
+  height: 6px;
+}
+
+.fill-titr:hover .fill-list {
+  opacity: 1;
+  visibility: visible;
 }
