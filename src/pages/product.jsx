@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 
 const productsData = [
     { code: "P001", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P002", name: "گوشی موبایل جی ال ایکس مدل شاهین 4 دو سیم‌کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت", category: "موبایل", status: "unpublished" },
+    { code: "P002", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "unpublished" },
     { code: "P003", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
     { code: "P004", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
     { code: "P005", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "unpublished" },
@@ -35,10 +35,22 @@ export default function ProductsGrid() {
     return (
 
         <>
-            <div className="w-100 my-5 py-4">
+            <div className="w-100 mb-3">
+                <form className="w-100 d-flex justify-content-center align-items-center text-center flex-wrap px-3 py-3 mb-2 mt-5 container cs-bg rounded-1">
+                    <div className="px-2 my-2 w-right text-light cs-fs-14  text-right w-50">
+                        جستجوی محصول
+                        <input className="form-control-custom my-2 rounded-1" type="text" placeholder="کد محصول یا نام محصول و .... " />
+                    </div>
+                    <div className="px-2 my-2 w-right text-light cs-fs-14 d-flex justify-content-around  text-right w-100">
 
-                sdkj
+                        <span>........</span>
+                        <span>........</span>
+                        <span>........</span>
+                        <span>........</span>
+                        <span>........</span>
 
+                    </div>
+                </form>
             </div>
             <div className="d-flex justify-content-center flex-wrap cs-h-for-pr">
                 {productsData.map((product, index) => (
