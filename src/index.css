@@ -184,7 +184,6 @@ a:hover {
 
 
 
-
 .product-card {
   background: white;
   border-radius: 12px;
@@ -252,7 +251,6 @@ a:hover {
   gap: 0.5rem;
   z-index: 10;
   animation: slideIn 0.3s ease-out;
-  transition: 0.3s !important;
 }
 
 .action-btn {
@@ -283,6 +281,11 @@ a:hover {
 
 }
 
+
+
+.add-pr-mr{
+  background-color: #ff5c25c0;
+}
 
 .view-btn {
   background-color: #ff4f29;
