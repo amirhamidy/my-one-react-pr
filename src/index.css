@@ -70,7 +70,15 @@ a:hover {
   border-bottom: 1px solid var(--border-color);
   border-radius: 3px;
   padding: 0.75rem 1rem;
+  margin-right: 0.2rem;
   cursor: pointer;
+  transition: 0.2s;
+  border-radius: 7px !important;
+}
+
+
+.sidebar-list:hover {
+  background-color: rgba(211, 211, 211, 0.789);
 }
 
 .sidebar-list:last-child {
@@ -83,6 +91,15 @@ a:hover {
   color: #fff !important;
   margin-right: 0.2rem;
   transition: background-color 0.3s ease;
+  border-radius: 7px !important;
+  padding: 0.75rem 1rem;
+}
+
+.active-sidebar-list:hover {
+  background-color: var(--primary-color) !important;
+  border-radius: 3px;
+  color: #fff !important;
+  margin-right: 0.2rem;
 }
 
 .bg-trtr {
@@ -283,7 +300,7 @@ a:hover {
 
 
 
-.add-pr-mr{
+.add-pr-mr {
   background-color: #ff5c25c0;
 }
 

@@ -21,7 +21,7 @@ const Navbar = () => {
     console.log(ChangeProfile)
 
     return (
-        <section className="col-md-10 m-0 p-0 d-flex justify-content-start align-items-start flex-column px-3">
+        <section className="col-md-10 m-0 p-0 d-flex justify-content-start align-items-start flex-column px-3 effect-for-sec">
             <Routes>
                 <Route path='/' element={<MainPage></MainPage>} />
                 <Route path='/security' element={<Security></Security>} />
