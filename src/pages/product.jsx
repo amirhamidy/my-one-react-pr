@@ -146,7 +146,7 @@ export default function ProductsGrid() {
                     </div>
                 </form>
 
-                <Link to='' className="text-light btn add-pr-mr">
+                <Link to='Addproduct' className="text-light btn add-pr-mr">
                     محصول جدید
                     <svg className="mx-1"
                         xmlns="http://www.w3.org/2000/svg"
