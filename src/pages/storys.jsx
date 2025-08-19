@@ -3,15 +3,13 @@
 const Sotry = () => {
 
 
-    const StoryDeta = () => {
-        [
+    const StoryDeta = [
             { StoryCode: '1', StorySrcImg: 'src/assets/react.svg', StoryTitle: 'این یک نمونه تست هست', StoryBolPul: false, StoryDate: '2025/12/4' },
             { StoryCode: '2', StorySrcImg: 'src/assets/react.svg', StoryTitle: 'این یک نمونه تست هست', StoryBolPul: true, StoryDate: '2025/12/4' },
             { StoryCode: '3', StorySrcImg: 'src/assets/react.svg', StoryTitle: 'این یک نمونه تست هست', StoryBolPul: false, StoryDate: '2025/12/4' },
             { StoryCode: '4', StorySrcImg: 'src/assets/react.svg', StoryTitle: 'این یک نمونه تست هست', StoryBolPul: true, StoryDate: '2025/12/4' },
             { StoryCode: '5', StorySrcImg: 'src/assets/react.svg', StoryTitle: 'این یک نمونه تست هست', StoryBolPul: false, StoryDate: '2025/12/4' },
         ]
-    }
     return (
         <>
             <form className="w-100 d-flex justify-content-around align-items-baseline  text-center flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
@@ -70,10 +68,15 @@ const Sotry = () => {
                     </ul>
                 </div>
             </form>
-
-
-            
-                
+            <div className="d-flex justify-content-start flex-column text-right list-box-sidebar mx-1 px-1 mt-4">
+                {StoryDeta.map((itemsS) =>{
+                    <div className="d-flex justify-content-start flex-column text-right list-box-sidebar mx-1 px-1 mt-4">
+                        <span>
+                            {itemsS.StoryCode}
+                        </span>
+                    </div>
+                })}
+            </div>
 
 
 
