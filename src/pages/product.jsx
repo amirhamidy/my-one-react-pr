@@ -38,9 +38,6 @@ export default function ProductsGrid() {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
-    const HandleStActiveDS = ()=>{
-        
-    }
 
     return (
         <>
