@@ -38,6 +38,10 @@ export default function ProductsGrid() {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
+    const HandleStActiveDS = ()=>{
+        
+    }
+
     return (
         <>
             <div className="w-100 pb-3">
@@ -145,8 +149,7 @@ export default function ProductsGrid() {
                         </ul>
                     </div>
                 </form>
-
-                <Link to='Addproduct' className="text-light btn add-pr-mr">
+                <Link to='/Addproduct' className="text-light btn add-pr-mr">
                     محصول جدید
                     <svg className="mx-1"
                         xmlns="http://www.w3.org/2000/svg"
