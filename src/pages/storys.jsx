@@ -6,6 +6,14 @@ const Story = () => {
         { StoryCode: "2", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: true, StoryDate: "2025/12/4" },
         { StoryCode: "3", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: false, StoryDate: "2025/12/4" },
         { StoryCode: "4", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: true, StoryDate: "2025/12/4" },
+        { StoryCode: "5", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: false, StoryDate: "2025/12/4" },
+        { StoryCode: "6", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: true, StoryDate: "2025/12/4" },
+        { StoryCode: "7", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: false, StoryDate: "2025/12/4" },
+        { StoryCode: "8", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: true, StoryDate: "2025/12/4" },
+        { StoryCode: "9", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: false, StoryDate: "2025/12/4" },
+        { StoryCode: "10", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: true, StoryDate: "2025/12/4" },
+        { StoryCode: "11", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: false, StoryDate: "2025/12/4" },
+        { StoryCode: "12", StorySrcImg: "../vite.svg", StoryTitle: "این یک نمونه تست هست", StoryBolPul: true, StoryDate: "2025/12/4" },
     ];
 
     const [openMenu, setOpenMenu] = useState(null);
@@ -28,12 +36,12 @@ const Story = () => {
                 </div>
             </form>
 
-            <div className="d-flex justify-content-center flex-wrap text-right mx-1 px-1 mt-2 cs-h-for-pr">
+            <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
                 {StoryData.map((item) => (
 
                     <>
 
-                        <div key={item.StoryCode} className="d-flex align-items-center product-card mx-2 my-2">
+                        <div key={item.StoryCode} className="d-flex align-items-center product-card mx-2 px-3 py-5 my-2">
                             <div className="story-more-menu">
                                 <button className="btn-more" onClick={() => toggleMenu(item.StoryCode)}>
                                     &#x22EE;
