@@ -8,6 +8,7 @@ import Chats from "./pages/chats"
 import Users from "./pages/users"
 import MainPage from "./pages/mainPage"
 import Addproduct from "./pages/AddProduct"
+import Addstory from "./pages/AddStory"
 
 
 
@@ -27,9 +28,11 @@ const Navbar = () => {
                 <Route path='/security' element={<Security></Security>} />
                 <Route path='/Sotry' element={<Sotry></Sotry>} />
                 <Route path='/chats' element={<Chats></Chats>} />
-                <Route path='/product' element={<Product></Product>}/>
+                <Route path='/product' element={<Product></Product>} />
                 <Route path='/users' element={<Users></Users>} />
-                <Route path='/Addproduct' element={<Addproduct></Addproduct>}/>
+                <Route path='/Addproduct' element={<Addproduct></Addproduct>} />
+                <Route path='/Addstory' element={<Addstory></Addstory>} />
+
             </Routes>
         </section>
     )
