@@ -466,13 +466,13 @@ ul {
 
 .img-story {
   object-fit: cover;
-  width: 40px;
+
 }
 
 .box-img-story {
   border-radius: 50%;
-  border: 3px ridge #eeeeee;
-  padding: 10px 10px;
+  border: 2px solid lightgray;
+  overflow: hidden;
 }
 
 .product-card-s {
@@ -596,4 +596,57 @@ ul {
   background-color: #fff;
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
+}
+
+.chats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.chat-card {
+  background: var(--neutral-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+}
+
+.chat-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.chat-info span {
+  display: block;
+}
+
+.chat-actions {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.chat-actions.show {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.action-btn {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  background-color: #fff;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
