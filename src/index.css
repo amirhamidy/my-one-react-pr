@@ -651,6 +651,10 @@ ul {
   cursor: pointer;
 }
 
-
+.box-btn-p{
+  position: absolute;
+  top: 70%;
+  right: 10px;
+}
 
 

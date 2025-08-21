@@ -50,7 +50,7 @@ const Chats = () => {
         </div>
       </form>
 
-      <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
+      <div className="d-flex justify-content-center flex-wrap w-100 cs-h-for-pr py-4">
         {chatsData.map((chat) => (
           <div
             key={chat.id}
@@ -80,7 +80,7 @@ const Chats = () => {
             </div>
 
             <div
-              className={`chat-actions d-flex flex-wrap gap-2 mt-3 ${
+              className={`chat-actions d-flex flex-wrap gap-2 mt-3  box-btn-p ${
                 activeChat === chat.id ? "show" : "hide"
               }`}
             >
