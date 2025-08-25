@@ -51,6 +51,25 @@ const ColorList = () => {
                     <input className="form-control-custom rounded-1" type="text" placeholder="عنوان رنگ ....." />
                 </div>
             </form>
+
+            <Link to='/Addstory' className="text-light btn add-pr-mr">
+                رنگ جدید
+                <svg className="mx-1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    height="1em"
+                >
+                    <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    ></path>
+                </svg>
+            </Link>
             <div className="d-flex justify-content-center flex-wrap w-100 cs-h-for-pr py-4">
                 {colorsData.map((color, index) => (
                     <div
