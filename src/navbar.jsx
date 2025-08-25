@@ -11,6 +11,7 @@ import Addproduct from "./pages/AddProduct"
 import Addstory from "./pages/AddStory"
 import AddCta from "./pages/addCategory"
 import Brands from "./pages/AddAndCoBrand"
+import ColorList from "./pages/ColorList"
 
 
 
@@ -35,6 +36,7 @@ const Navbar = () => {
                 <Route path='/Addstory' element={<Addstory></Addstory>} />
                 <Route path='/AddCategory' element={<AddCta></AddCta>} />
                 <Route path='/add-brand' element={<Brands></Brands>} />
+                <Route path='/price-color' element={<ColorList></ColorList>} />
             </Routes>
         </section>
     )
