@@ -9,13 +9,13 @@ import Users from "./pages/users"
 import MainPage from "./pages/mainPage"
 import Addproduct from "./pages/AddProduct"
 import Addstory from "./pages/AddStory"
+import AddCta from "./pages/addCategory"
 
 
 
 
 
 const Navbar = () => {
-
 
     const { ChangeProfile, SetChangeProfile } = useContext(NavContax);
 
@@ -32,7 +32,7 @@ const Navbar = () => {
                 <Route path='/users' element={<Users></Users>} />
                 <Route path='/Addproduct' element={<Addproduct></Addproduct>} />
                 <Route path='/Addstory' element={<Addstory></Addstory>} />
-
+                <Route path='/AddCategory' element={<AddCta></AddCta>} />
             </Routes>
         </section>
     )
