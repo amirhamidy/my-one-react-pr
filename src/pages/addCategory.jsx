@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect  } from "react";
+import { Link } from "react-router-dom";
 
 const categories = [
     { id: 1, name: "الکترونیک", img: "../vite.svg" },
@@ -56,6 +57,25 @@ const AddCta = () => {
                     <input className="form-control-custom rounded-1" type="text" placeholder="عنوان دسته بندی ....." />
                 </div>
             </form>
+
+            <Link to='/Addstory' className="text-light btn add-pr-mr">
+                دسته بندی جدید
+                <svg className="mx-1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    height="1em"
+                >
+                    <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    ></path>
+                </svg>
+            </Link>
             <div className="d-flex justify-content-center flex-wrap w-100 cs-h-for-pr py-4">
                 {categories.map((cat, index) => (
                     <div
