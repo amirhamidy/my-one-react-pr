@@ -47,10 +47,7 @@ const AddCta = () => {
     };
 
     return (
-
-
         <>
-
             <form className="w-100 d-flex justify-content-start align-items-baseline  text-center flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
                 <div className="px-2 w-right text-light cs-fs-14  text-right w-25">
                     <input className="form-control-custom rounded-1" type="text" placeholder="عنوان دسته بندی ....." />
@@ -97,7 +94,7 @@ const AddCta = () => {
                                 <button className="edit-btn action-btn cs-fs-13 hover-scale">
                                     ویرایش
                                 </button>
-                                <button className="delete-btn action-btn cs-fs-13 hover-scale bg-danger text-white">
+                                <button className="edit-btn action-btn cs-fs-13 hover-scale">
                                     حذف
                                 </button>
                             </div>
@@ -106,7 +103,6 @@ const AddCta = () => {
                 ))}
             </div>
         </>
-
     );
 };
 

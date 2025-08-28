@@ -433,7 +433,6 @@ ul {
   color: white;
 }
 
-
 .fill-list::-webkit-scrollbar {
   width: 4px;
   height: 6px;
@@ -641,11 +640,7 @@ ul {
   cursor: pointer;
 }
 
-.action-btn:hover {
-  background-color: #fff;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-}
+
 
 .cursor-pointer {
   cursor: pointer;
@@ -663,51 +658,40 @@ ul {
 
 .action-buttons {
   position: absolute;
-  top: 25%;
-  left: -20%;
-  transform: translate(-20px, -50%);
+  top: -7%;
+  left: -17%;
+  transform: translate(-50%, 10px);
   opacity: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  z-index: 10;
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: fadeOut 0.3s ease forwards;
+  z-index: 10;
 }
 
 .product-card.active .action-buttons {
-  opacity: 1;
-  transform: translate(0, -50%);
+  animation: fadeIn 0.3s ease forwards;
   pointer-events: auto;
 }
 
-.action-btn {
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: #ff4f29;
-  color: #fff;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
-.action-buttons button:nth-child(1) {
-  transition-delay: 0s;
-}
-.action-buttons button:nth-child(2) {
-  transition-delay: 0.05s;
-}
-.action-buttons button:nth-child(3) {
-  transition-delay: 0.1s;
-}
-.action-buttons button:nth-child(4) {
-  transition-delay: 0.15s;
-}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 
-
+  to {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+}
