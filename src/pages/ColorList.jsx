@@ -15,7 +15,7 @@ const colorsData = [
     { id: 9, name: "صورتی", hex: "pink" },
     { id: 10, name: "خاکستری", hex: "gray" },
     { id: 11, name: "کرم", hex: "wormy" },
-    { id: 12, name: "سبز تیره", hex: "drakgreen" },
+    { id: 12, name: "سبز تیره", hex: "darkgreen" },
     { id: 13, name: "آبی تیره", hex: "darkblue" },
     { id: 14, name: "بژ", hex: "beige" },
     { id: 15, name: "ارغوانی", hex: "darkpurple" },
