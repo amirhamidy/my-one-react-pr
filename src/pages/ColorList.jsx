@@ -4,21 +4,21 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const colorsData = [
-    { id: 1, name: "قرمز", hex: "#ff4f29" },
-    { id: 2, name: "آبی", hex: "#007bff" },
-    { id: 3, name: "سبز", hex: "#28a745" },
-    { id: 4, name: "زرد", hex: "#ffc107" },
-    { id: 5, name: "بنفش", hex: "#6f42c1" },
-    { id: 6, name: "مشکی", hex: "#212529" },
-    { id: 7, name: "نارنجی", hex: "#fd7e14" },
-    { id: 8, name: "فیروزه‌ای", hex: "#20c997" },
-    { id: 9, name: "صورتی", hex: "#e83e8c" },
-    { id: 10, name: "خاکستری", hex: "#6c757d" },
-    { id: 11, name: "کرم", hex: "#f8f9fa" },
-    { id: 12, name: "سبز تیره", hex: "#155724" },
-    { id: 13, name: "آبی تیره", hex: "#004085" },
-    { id: 14, name: "بژ", hex: "#e0a96d" },
-    { id: 15, name: "ارغوانی", hex: "#800080" },
+    { id: 1, name: "قرمز", hex: "red" },
+    { id: 2, name: "آبی", hex: "blue" },
+    { id: 3, name: "سبز", hex: "green" },
+    { id: 4, name: "زرد", hex: "yellow" },
+    { id: 5, name: "بنفش", hex: "purple" },
+    { id: 6, name: "مشکی", hex: "black" },
+    { id: 7, name: "نارنجی", hex: "orange" },
+    { id: 8, name: "فیروزه‌ای", hex: "turquoise" },
+    { id: 9, name: "صورتی", hex: "pink" },
+    { id: 10, name: "خاکستری", hex: "gray" },
+    { id: 11, name: "کرم", hex: "wormy" },
+    { id: 12, name: "سبز تیره", hex: "drakgreen" },
+    { id: 13, name: "آبی تیره", hex: "darkblue" },
+    { id: 14, name: "بژ", hex: "beige" },
+    { id: 15, name: "ارغوانی", hex: "darkpurple" },
 ];
 
 const ColorList = () => {
