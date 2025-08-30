@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import React from "react";
 
 const chatsData = [
   {
@@ -33,10 +34,24 @@ const chatsData = [
 
 const Chats = () => {
   const [activeChat, setActiveChat] = useState(null);
+  const chatRefs = useRef([]);
 
   const toggleActiveChat = (id) => {
     setActiveChat((prev) => (prev === id ? null : id));
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (activeChat !== null) {
+        const activeChatRef = chatRefs.current[chatsData.findIndex(chat => chat.id === activeChat)];
+        if (activeChatRef && !activeChatRef.contains(event.target)) {
+          setActiveChat(null);
+        }
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [activeChat]);
 
   return (
     <>
@@ -51,12 +66,12 @@ const Chats = () => {
       </form>
 
       <div className="d-flex justify-content-center flex-wrap w-100 cs-h-for-pr py-4">
-        {chatsData.map((chat) => (
+        {chatsData.map((chat, index) => (
           <div
             key={chat.id}
-            className={`d-flex flex-wrap justify-content-center align-items-center product-card  mx-2 px-3 py-3 my-2 ${
-              activeChat === chat.id ? "active" : ""
-            }`}
+            ref={(el) => (chatRefs.current[index] = el)}
+            className={`d-flex flex-wrap justify-content-center align-items-center product-card mx-2 px-3 py-3 my-2 ${activeChat === chat.id ? "active" : ""
+              }`}
             onClick={() => toggleActiveChat(chat.id)}
           >
             <div className="chat-info d-flex flex-column gap-1">
@@ -64,36 +79,37 @@ const Chats = () => {
                 شماره چت: {chat.id}
               </span>
               <span className="chat-name cs-fs-15">{chat.name}</span>
-              <span className="chat-email cs-fs-13 cs-li-color">{chat.email}</span>
-              <span className="chat-date cs-fs-13 cs-li-color">{chat.date}</span>
+              <span className="chat-email cs-fs-13 cs-li-color">
+                {chat.email}
+              </span>
+              <span className="chat-date cs-fs-13 cs-li-color">
+                {chat.date}
+              </span>
               <span
-                className={`chat-type cs-fs-13 ${
-                  chat.userType === "ادمین"
+                className={`chat-type cs-fs-13 ${chat.userType === "ادمین"
                     ? "theme-color"
                     : chat.userType === "سوپر یوزر"
-                    ? "cs-fs-14 theme-color"
-                    : "cs-li-color"
-                }`}
+                      ? "cs-fs-14 theme-color"
+                      : "cs-li-color"
+                  }`}
               >
                 نوع کاربر: {chat.userType}
               </span>
             </div>
 
-            <div
-              className={`chat-actions d-flex flex-wrap gap-2 mt-3  box-btn-p ${
-                activeChat === chat.id ? "show" : "hide"
-              }`}
-            >
-              <button className="view-user-btn action-btn cs-fs-13">
-                جزئیات کاربر
-              </button>
-              <button className="view-chat-btn action-btn cs-fs-13">
-                مشاهده گفتگو
-              </button>
-              <button className="reply-chat-btn action-btn cs-fs-13">
-                جواب دادن
-              </button>
-            </div>
+            {activeChat === chat.id && (
+              <div style={{ msFlexDirection: "column", position: "absolute", top: "15%", left: "15%", flexDirection: "column", display: "flex", gap: "0.1rem", transition: "0.3s", animation: "fadeIn 0.3s ease forwards", }} >
+                <button className="edit-btn rounded-2 px-3 py-2 edit-btn">
+                  جزئیات کاربر
+                </button>
+                <button className="edit-btn rounded-2 px-3 py-2 edit-btn">
+                  مشاهده گفتگو
+                </button>
+                <button className="edit-btn rounded-2 px-3 py-2 edit-btn">
+                  جواب دادن
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
