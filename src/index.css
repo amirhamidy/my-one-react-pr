@@ -260,24 +260,23 @@ a:hover {
 
 .product-actions {
   position: absolute;
-  left: -9.2rem;
-  top: 0;
+  left: 0;
+  top: -5%;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.1rem;
   z-index: 10;
   animation: slideIn 0.3s ease-out;
 }
 
 .action-btn {
-  padding: 0.7rem 0.4rem;
+  padding: 0.2rem 0.2rem !important;
   border: none;
   border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 13px;
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  /* gap: 0.1rem; */
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -289,6 +288,7 @@ a:hover {
   transition: 0.3s;
   height: 2.8rem;
   font-size: 13px;
+  border: none;
 }
 
 .edit-btn:hover {
@@ -640,8 +640,6 @@ ul {
   cursor: pointer;
 }
 
-
-
 .cursor-pointer {
   cursor: pointer;
 }
@@ -658,8 +656,8 @@ ul {
 
 .action-buttons {
   position: absolute;
-  top: -7%;
-  left: -17%;
+  top: 13%;
+  left: 15%;
   transform: translate(-50%, 10px);
   opacity: 0;
   pointer-events: none;
@@ -695,8 +693,3 @@ ul {
     transform: translate(-50%, 20px);
   }
 }
-
-
-
-
-

@@ -4,21 +4,21 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const colorsData = [
-    { id: 1, name: "قرمز", hex: "red" },
-    { id: 2, name: "آبی", hex: "blue" },
-    { id: 3, name: "سبز", hex: "green" },
-    { id: 4, name: "زرد", hex: "yellow" },
-    { id: 5, name: "بنفش", hex: "purple" },
-    { id: 6, name: "مشکی", hex: "black" },
-    { id: 7, name: "نارنجی", hex: "orange" },
-    { id: 8, name: "فیروزه‌ای", hex: "turquoise" },
-    { id: 9, name: "صورتی", hex: "pink" },
-    { id: 10, name: "خاکستری", hex: "gray" },
-    { id: 11, name: "کرم", hex: "wormy" },
-    { id: 12, name: "سبز تیره", hex: "darkgreen" },
-    { id: 13, name: "آبی تیره", hex: "darkblue" },
-    { id: 14, name: "بژ", hex: "beige" },
-    { id: 15, name: "ارغوانی", hex: "darkpurple" },
+    { id: 1, name: "قرمز", hex: "#FF0000" },
+    { id: 2, name: "آبی", hex: "#0000FF" },
+    { id: 3, name: "سبز", hex: "#008000" },
+    { id: 4, name: "زرد", hex: "#FFFF00" },
+    { id: 5, name: "بنفش", hex: "#800080" },
+    { id: 6, name: "مشکی", hex: "#000000" },
+    { id: 7, name: "نارنجی", hex: "#FFA500" },
+    { id: 8, name: "فیروزه‌ای", hex: "#40E0D0" },
+    { id: 9, name: "صورتی", hex: "#FFC0CB" },
+    { id: 10, name: "خاکستری", hex: "#808080" },
+    { id: 11, name: "کرم", hex: "#FFFDD0" },
+    { id: 12, name: "سبز تیره", hex: "#006400" },
+    { id: 13, name: "آبی تیره", hex: "#00008B" },
+    { id: 14, name: "بژ", hex: "#F5F5DC" },
+    { id: 15, name: "ارغوانی", hex: "#4B0082" },
 ];
 
 const ColorList = () => {
@@ -45,14 +45,11 @@ const ColorList = () => {
     return (
 
         <>
-
-
             <form className="w-100 d-flex justify-content-start align-items-baseline  text-center flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
                 <div className="px-2 w-right text-light cs-fs-14  text-right w-25">
                     <input className="form-control-custom rounded-1" type="text" placeholder="عنوان رنگ ....." />
                 </div>
             </form>
-
             <Link to='/Addstory' className="text-light btn add-pr-mr">
                 رنگ جدید
                 <svg className="mx-1"
@@ -104,7 +101,6 @@ const ColorList = () => {
                 ))}
             </div>
         </>
-
     );
 };
 

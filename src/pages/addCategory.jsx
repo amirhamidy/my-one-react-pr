@@ -87,14 +87,14 @@ const AddCta = () => {
                         </div>
 
                         {activeBox === index && (
-                            <div
+                            <div style={{top:" 0%" , left: "18%"}}
                                 className="d-flex gap-2 mt-3 action-buttons"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <button className="edit-btn action-btn cs-fs-13 hover-scale">
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-3 py-2 hover-scale">
                                     ویرایش
                                 </button>
-                                <button className="edit-btn action-btn cs-fs-13 hover-scale">
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-3 py-2 hover-scale">
                                     حذف
                                 </button>
                             </div>
