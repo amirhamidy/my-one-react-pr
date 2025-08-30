@@ -92,9 +92,9 @@ const ColorList = () => {
                         </div>
 
                         {activeColor === index && (
-                            <div className="action-buttons">
-                                <button className="action-btn edit-btn">ویرایش</button>
-                                <button className="action-btn delete-btn">حذف</button>
+                            <div style={{msFlexDirection:"column" , position:"absolute" , top:"15%" , left:"10%" , flexDirection:"column" , display:"flex" , gap:"0.1rem" , transition:"0.3s" , animation: "fadeIn 0.3s ease forwards"}}>
+                                <button className="edit-btn rounded-2 px-3 py-2 edit-btn">ویرایش</button>
+                                <button className="edit-btn rounded-2 px-3 py-2 edit-btn">حذف</button>
                             </div>
                         )}
                     </div>

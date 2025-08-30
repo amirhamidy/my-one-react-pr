@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Story = () => {
@@ -18,9 +18,41 @@ const Story = () => {
     ];
 
     const [openMenu, setOpenMenu] = useState(null);
+    const storyRefs = useRef([]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const activeStoryIndex = StoryData.findIndex(item => item.StoryCode === openMenu);
+            if (
+                openMenu !== null &&
+                storyRefs.current[activeStoryIndex] &&
+                !storyRefs.current[activeStoryIndex].contains(event.target)
+            ) {
+                setOpenMenu(null);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [openMenu]);
 
     const toggleMenu = (code) => {
         setOpenMenu(openMenu === code ? null : code);
+    };
+
+    const menuStyles = {
+        position: "absolute",
+        top: "15%",
+        left: "10%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.1rem",
+        transition: "0.3s",
+        animation: "fadeIn 0.3s ease forwards"
+    };
+
+    const buttonStyles = {
+        borderRadius: "0.5rem",
+        padding: "0.5rem 0.75rem"
     };
 
     return (
@@ -33,13 +65,13 @@ const Story = () => {
                         placeholder=" جستجو ی استوری.... "
                     />
                 </div>
-                <div className="px-2 my-2 w-right text-light cs-fs-14 d-flex justify-content-around text-right w-75">
-                </div>
+                <div className="px-2 my-2 w-right text-light cs-fs-14 d-flex justify-content-around text-right w-75"></div>
             </form>
 
-            <Link to='/Addstory' className="text-light btn add-pr-mr">
+            <Link to="/Addstory" className="text-light btn add-pr-mr">
                 استوری جدید
-                <svg className="mx-1"
+                <svg
+                    className="mx-1"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     width="1em"
@@ -57,43 +89,38 @@ const Story = () => {
             </Link>
 
             <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
-                {StoryData.map((item) => (
-
-                    <>
-
-                        <div key={item.StoryCode} className="d-flex align-items-center product-card mx-2 px-3 py-5 my-2">
-                            <div className="story-more-menu">
-                                <button className="btn-more" onClick={() => toggleMenu(item.StoryCode)}>
-                                    &#x22EE;
-                                </button>
-                                {openMenu === item.StoryCode && (
-                                    <ul className="menu-options">
-                                        <li>ویرایش</li>
-                                        <li>حذف</li>
-                                        <li>اشتراک گذاری</li>
-                                    </ul>
-                                )}
-                            </div>
-                            <div className="mx-3 box-img-story">
-                                <img
-                                    src={item.StorySrcImg}
-                                    alt={item.StoryTitle}
-                                    className="img-story"
-                                />
-                            </div>
-                            <div className="story-m-info mx-2 position-relative">
-                                <p className="product-name mb-0">{item.StoryTitle}</p>
-                                <small className="cs-li-color">{item.StoryDate}</small>
-                                <p
-                                    className={`product-status mb-0 ${item.StoryBolPul ? "published" : "unpublished"
-                                        }`}
-                                >
-                                    {item.StoryBolPul ? "نمایش" : "عدم نمایش"}
-                                </p>
-                            </div>
+                {StoryData.map((item, index) => (
+                    <div
+                        key={item.StoryCode}
+                        ref={(el) => (storyRefs.current[index] = el)}
+                        className={`d-flex align-items-center product-card mx-2 px-3 py-5 my-2 ${openMenu === item.StoryCode ? "active" : ""}`}
+                        onClick={() => toggleMenu(item.StoryCode)}
+                    >
+                        <div style={{msFlexDirection:"column" , position:"absolute" , top:"15%" , left:"10%" , flexDirection:"column" , display:"flex" , gap:"0.1rem" , transition:"0.3s" , animation: "fadeIn 0.3s ease forwards"}}>
+                            {openMenu === item.StoryCode && (
+                                <div style={menuStyles}>
+                                    <button className="edit-btn rounded-2 px-3 py-2 edit-btn" style={buttonStyles}>ویرایش</button>
+                                    <button className="edit-btn rounded-2 px-3 py-2 edit-btn" style={buttonStyles}>حذف</button>
+                                </div>
+                            )}
                         </div>
-                    </>
-
+                        <div className="mx-3 box-img-story">
+                            <img
+                                src={item.StorySrcImg}
+                                alt={item.StoryTitle}
+                                className="img-story"
+                            />
+                        </div>
+                        <div className="story-m-info mx-2 position-relative">
+                            <p className="product-name mb-0">{item.StoryTitle}</p>
+                            <small className="cs-li-color">{item.StoryDate}</small>
+                            <p
+                                className={`product-status mb-0 ${item.StoryBolPul ? "published" : "unpublished"}`}
+                            >
+                                {item.StoryBolPul ? "نمایش" : "عدم نمایش"}
+                            </p>
+                        </div>
+                    </div>
                 ))}
             </div>
         </>
