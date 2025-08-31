@@ -83,8 +83,8 @@ const Brands = () => {
 
                         {activeBrand === index && (
                             <div style={{msFlexDirection:"column" , position:"absolute" , top:"15%" , left:"10%" , flexDirection:"column" , display:"flex" , gap:"0.1rem" , transition:"0.3s" , animation: "fadeIn 0.3s ease forwards"}}>
-                                <button className="edit-btn rounded-2 px-3 py-2 edit-btn">ویرایش</button>
-                                <button className="edit-btn rounded-2 px-3 py-2 delete-btn">حذف</button>
+                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">ویرایش</button>
+                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">حذف</button>
                             </div>
                         )}
                     </div>

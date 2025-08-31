@@ -99,13 +99,13 @@ const Chats = () => {
 
             {activeChat === chat.id && (
               <div style={{ msFlexDirection: "column", position: "absolute", top: "15%", left: "15%", flexDirection: "column", display: "flex", gap: "0.1rem", transition: "0.3s", animation: "fadeIn 0.3s ease forwards", }} >
-                <button className="edit-btn rounded-2 px-3 py-2 edit-btn">
+                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                   جزئیات کاربر
                 </button>
-                <button className="edit-btn rounded-2 px-3 py-2 edit-btn">
+                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                   مشاهده گفتگو
                 </button>
-                <button className="edit-btn rounded-2 px-3 py-2 edit-btn">
+                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                   جواب دادن
                 </button>
               </div>

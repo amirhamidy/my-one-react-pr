@@ -185,54 +185,16 @@ export default function ProductsGrid() {
 
                         {activeIndex === index && (
                             <div className="product-actions" onClick={(e) => e.stopPropagation()}>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-3 py-2">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        width="1.5em"
-                                        height="1.5em"
-                                    >
-                                        <path
-                                            fill="currentColor"
-                                            d="M3 10h11v2H3zm0-2h11V6H3zm0 8h7v-2H3zm15.01-3.13l.71-.71a.996.996 0 0 1 1.41 0l.71.71c.39.39.39 1.02 0 1.41l-.71.71zm-.71.71l-5.3 5.3V21h2.12l5.3-5.3z"
-                                        ></path>
-                                    </svg>
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
                                     ویرایش
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-3 py-2">
-                                    <svg className="mx-1"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 16 16"
-                                        width="1.2em"
-                                        height="1.2em"
-                                    >
-                                        <path
-                                            fill="currentColor"
-                                            d="M8 3C4.511 3 1.486 5.032 0 8c1.486 2.968 4.511 5 8 5s6.514-2.032 8-5c-1.486-2.968-4.511-5-8-5m3.945 2.652c.94.6 1.737 1.403 2.335 2.348a7.6 7.6 0 0 1-2.335 2.348a7.33 7.33 0 0 1-7.889 0A7.6 7.6 0 0 1 1.721 8a7.6 7.6 0 0 1 2.52-2.462a4 4 0 1 0 7.518 0q.093.056.185.114zM8 6.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 8 6.5"
-                                        ></path>
-                                    </svg>
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
                                     مشاهده
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-3 py-2">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 512 512"
-                                        width="1.5em"
-                                        height="1.5em"
-                                    >
-                                        <path
-                                            fill="currentColor"
-                                            fillRule="evenodd"
-                                            d="M490.667 448v42.667H384V448zm-128 0v42.667H320V448zm128-64v42.667H384V384zm-128 0v42.667H320V384zm-64 0v42.667H64V384zm192-64v42.667H384V320zm-128 0v42.667H320V320zM256 42.667v210.56l93.013-77.653l27.307 32.853L234.667 326.4L93.013 208.427l27.307-32.853l93.013 77.653V42.667z"
-                                        ></path>
-                                    </svg>
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
                                     گرفتن مشخصات
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-3 py-2">
-                                    <svg className="mx-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1.2em" height="1.2em">
-                                        <path fill="currentColor" d="M8 .5C3.58.5 0 3.86 0 8s3.58 7.5 8 7.5c4.69 0 1.04-2.83 2.79-4.55c.76-.75 1.63-.87 2.44-.87c.37 0 .73.03 1.06.03c.99 0 1.72-.23 1.72-2.1C16 3.86 12.42.5 8 .5m6.65 8.32c-.05.01-.16.02-.37.02c-.14 0-.29 0-.45-.01c-.19 0-.39-.01-.61-.01c-.89 0-2.19.13-3.32 1.23c-1.17 1.16-.9 2.6-.74 3.47c.03.18.08.44.09.6c-.16.05-.52.13-1.26.13c-3.72 0-6.75-2.8-6.75-6.25S4.28 1.75 8 1.75s6.75 2.8 6.75 6.25c0 .5-.06.74-.1.82"></path>
-                                        <path fill="currentColor" d="M5.9 9.47c-1.03 0-1.86.8-1.86 1.79s.84 1.79 1.86 1.79s1.86-.8 1.86-1.79s-.84-1.79-1.86-1.79m0 2.35c-.35 0-.64-.25-.64-.56s.29-.56.64-.56s.64.25.64.56s-.29.56-.64.56m-.2-4.59c0-.99-.84-1.79-1.86-1.79s-1.86.8-1.86 1.79s.84 1.79 1.86 1.79s1.86-.8 1.86-1.79m-1.86.56c-.35 0-.64-.25-.64-.56s.29-.56.64-.56s.64.25.64.56s-.29.56-.64.56M7.37 2.5c-1.03 0-1.86.8-1.86 1.79s.84 1.79 1.86 1.79s1.86-.8 1.86-1.79S8.39 2.5 7.37 2.5m0 2.35c-.35 0-.64-.25-.64-.56s.29-.56.64-.56s.64.25.64.56s-.29.56-.64.56m2.47 1.31c0 .99.84 1.79 1.86 1.79s1.86-.8 1.86-1.79s-.84-1.79-1.86-1.79s-1.86.8-1.86 1.79m2.5 0c0 .31-.29.56-.64.56s-.64-.25-.64-.56s.29-.56.64-.56s.64.25.64.56"></path>
-                                    </svg>
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
                                     گرفتن رنگ و قیمت
                                 </button>
                             </div>

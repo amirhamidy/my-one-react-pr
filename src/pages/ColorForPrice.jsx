@@ -160,16 +160,16 @@ export default function ColoForProduct({ products = sampleProducts }) {
 
                         {activeIndex === index && (
                             <div className="product-actions" onClick={(e) => e.stopPropagation()}>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-1 py-2">
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
                                     ویرایش
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-1 py-2">
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
                                     رفتن به رنگ
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-1 py-2">
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
                                     نمایش در سایت
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-1 py-2">
+                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
                                     نمایش برای ادمین
                                 </button>
                             </div>
