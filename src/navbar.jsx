@@ -13,6 +13,7 @@ import AddCta from "./pages/addCategory"
 import Brands from "./pages/AddAndCoBrand"
 import ColorList from "./pages/ColorList"
 import Registrationdetails from "./pages/Registrationdetails"
+import DefaultPage from "./pages/default"
 
 
 
@@ -27,7 +28,8 @@ const Navbar = () => {
     return (
         <section className="col-md-10 m-0 p-0 d-flex justify-content-start align-items-start flex-column px-3 effect-for-sec">
             <Routes>
-                <Route path='/' element={<MainPage></MainPage>} />
+                <Route path='*' element={<DefaultPage></DefaultPage>} />
+                <Route path='/profile' element={<MainPage></MainPage>} />
                 <Route path='/security' element={<Security></Security>} />
                 <Route path='/Sotry' element={<Sotry></Sotry>} />
                 <Route path='/chats' element={<Chats></Chats>} />
@@ -38,7 +40,7 @@ const Navbar = () => {
                 <Route path='/AddCategory' element={<AddCta></AddCta>} />
                 <Route path='/add-brand' element={<Brands></Brands>} />
                 <Route path='/price-color' element={<ColorList></ColorList>} />
-                <Route path="/product-specs" element={<Registrationdetails></Registrationdetails>}/>
+                <Route path="/product-specs" element={<Registrationdetails></Registrationdetails>} />
             </Routes>
         </section>
     )
