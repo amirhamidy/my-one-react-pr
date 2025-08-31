@@ -23,7 +23,6 @@ const Navbar = () => {
 
     const { ChangeProfile, SetChangeProfile } = useContext(NavContax);
 
-    console.log(ChangeProfile)
 
     return (
         <section className="col-md-10 m-0 p-0 d-flex justify-content-start align-items-start flex-column px-3 effect-for-sec">

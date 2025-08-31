@@ -8,7 +8,9 @@ const DefaultPage = () => {
     return (
         <>
             <div className="box-d-img">
-                <img className="d-img-one" src="src/assets/img/admin.png" />
+                <h6 className="fw-bold ">
+                    فعلا چیزی موجود نیست 
+                </h6>
             </div>
         </>
     )
