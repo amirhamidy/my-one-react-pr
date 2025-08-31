@@ -128,7 +128,7 @@ const SideBarMenu = () => {
             )
         },
         {
-            path: '/price-c',
+            path: '/color-for-product',
             name: 'ثبت رنگ برای قیمت',
             icon: (
                 <svg className="mx-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.4em" height="1.4em"

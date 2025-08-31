@@ -14,15 +14,13 @@ import Brands from "./pages/AddAndCoBrand"
 import ColorList from "./pages/ColorList"
 import Registrationdetails from "./pages/Registrationdetails"
 import DefaultPage from "./pages/default"
+import ColoForProduct from "./pages/ColorForPrice"
 
 
 
 
 
 const Navbar = () => {
-
-    const { ChangeProfile, SetChangeProfile } = useContext(NavContax);
-
 
     return (
         <section className="col-md-10 m-0 p-0 d-flex justify-content-start align-items-start flex-column px-3 effect-for-sec">
@@ -40,6 +38,7 @@ const Navbar = () => {
                 <Route path='/add-brand' element={<Brands></Brands>} />
                 <Route path='/price-color' element={<ColorList></ColorList>} />
                 <Route path="/product-specs" element={<Registrationdetails></Registrationdetails>} />
+                <Route path="/color-for-product" element={<ColoForProduct></ColoForProduct>} />
             </Routes>
         </section>
     )
