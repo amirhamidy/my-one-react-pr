@@ -185,16 +185,16 @@ export default function ProductsGrid() {
 
                         {activeIndex === index && (
                             <div className="product-actions" onClick={(e) => e.stopPropagation()}>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
+                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                                     ویرایش
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
+                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                                     مشاهده
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
+                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                                     گرفتن مشخصات
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-2 py-2">
+                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                                     گرفتن رنگ و قیمت
                                 </button>
                             </div>

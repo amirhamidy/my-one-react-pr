@@ -40,7 +40,7 @@ const Users = () => {
                             <p className="my-2  one-line "><strong>شماره:</strong> {user.UserPhone}</p>
                             <p className="mb-0 user-level one-line ">{user.UserLevel}</p>
                         </div>
-                        <button className="btn add-pr-mr text-light rounded-3 my-2">مشاهده تمام جزئیات</button>
+                        <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 mt-3">مشاهده تمام جزئیات</button>
                     </div>
                 ))}
             </div>

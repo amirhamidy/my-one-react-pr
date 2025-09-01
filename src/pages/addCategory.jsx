@@ -91,10 +91,10 @@ const AddCta = () => {
                                 className="d-flex gap-2 mt-3 action-buttons"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-3 py-2 hover-scale">
+                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                                     ویرایش
                                 </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-13 px-3 py-2 hover-scale">
+                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                                     حذف
                                 </button>
                             </div>
