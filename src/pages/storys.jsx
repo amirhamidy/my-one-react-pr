@@ -96,7 +96,7 @@ const Story = () => {
                         className={`d-flex align-items-center product-card mx-2 px-3 py-5 my-2 ${openMenu === item.StoryCode ? "active" : ""}`}
                         onClick={() => toggleMenu(item.StoryCode)}
                     >
-                        <div style={{msFlexDirection:"column" , position:"absolute" , top:"15%" , left:"10%" , flexDirection:"column" , display:"flex" , gap:"0.1rem" , transition:"0.3s" , animation: "fadeIn 0.3s ease forwards"}}>
+                        <div className="product-actions" style={{msFlexDirection:"column" , position:"absolute" , top:"15%" , left:"10%" , flexDirection:"column" , display:"flex" , gap:"0.1rem" , transition:"0.3s" , animation: "fadeIn 0.3s ease forwards"}}>
                             {openMenu === item.StoryCode && (
                                 <div style={menuStyles}>
                                     <button className="edit-btn rounded-2 px-3 py-2 edit-btn" style={buttonStyles}>ویرایش</button>
