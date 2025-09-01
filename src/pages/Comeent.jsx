@@ -12,6 +12,24 @@ const commentsData = [
     status: "approved",
     text: "خیلی گوشی خوبیه، از خریدش راضی‌ام فقط باتری میتونست بهتر باشه.",
   },
+    {
+    id: 4,
+    productTitle: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G",
+    userName: "علی رضایی",
+    rating: 4,
+    date: "1402/12/10",
+    status: "approved",
+    text: "خیلی گوشی خوبیه، از خریدش راضی‌ام فقط باتری میتونست بهتر باشه.",
+  },
+    {
+    id: 5,
+    productTitle: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G",
+    userName: "علی رضایی",
+    rating: 4,
+    date: "1402/12/10",
+    status: "approved",
+    text: "خیلی گوشی خوبیه، از خریدش راضی‌ام فقط باتری میتونست بهتر باشه.",
+  },
   {
     id: 2,
     productTitle: "لپ تاپ ایسوس ROG",
@@ -56,7 +74,15 @@ export default function CommentsGrid() {
   };
 
   return (
-    <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
+
+    <>
+
+     <form className="w-100 d-flex justify-content-start align-items-baseline  text-center flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
+                <div className="px-2 w-right text-light cs-fs-14  text-right w-25">
+                    <input className="form-control-custom rounded-1" type="text" placeholder="جستجوی کالا ...." />
+                </div>
+            </form>
+     <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
       {commentsData.map((comment, index) => (
         <div
           key={comment.id}
@@ -96,5 +122,7 @@ export default function CommentsGrid() {
         </div>
       ))}
     </div>
+    </>
+   
   );
 }

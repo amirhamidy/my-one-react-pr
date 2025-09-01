@@ -15,6 +15,7 @@ import ColorList from "./pages/ColorList"
 import Registrationdetails from "./pages/Registrationdetails"
 import DefaultPage from "./pages/default"
 import ColoForProduct from "./pages/ColorForPrice"
+import CommentsGrid from "./pages/Comeent"
 
 
 
@@ -39,6 +40,7 @@ const Navbar = () => {
                 <Route path='/price-color' element={<ColorList></ColorList>} />
                 <Route path="/product-specs" element={<Registrationdetails></Registrationdetails>} />
                 <Route path="/color-for-product" element={<ColoForProduct></ColoForProduct>} />
+                <Route path="/comments" element={<CommentsGrid></CommentsGrid>} />
             </Routes>
         </section>
     )
