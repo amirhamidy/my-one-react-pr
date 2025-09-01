@@ -67,7 +67,7 @@ export default function Registrationdetails() {
                         </div>
 
                         {activeIndex === index && (
-                            <div className="product-actions" style={{ msFlexDirection: "column", position: "absolute", top: "15%", left: "20%", flexDirection: "column", display: "flex", gap: "0.1rem", transition: "0.3s", animation: "fadeIn 0.3s ease forwards", }} onClick={(e) => e.stopPropagation()}>
+                            <div className="product-actions" style={{ msFlexDirection: "column", position: "absolute", top: "20%", left: "15%", flexDirection: "column", display: "flex", gap: "0.1rem", transition: "0.3s", animation: "fadeIn 0.3s ease forwards", }} onClick={(e) => e.stopPropagation()}>
                                 <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                                     ویرایش
                                 </button>
