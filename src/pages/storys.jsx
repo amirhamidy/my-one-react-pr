@@ -99,8 +99,8 @@ const Story = () => {
                         <div className="product-actions" style={{msFlexDirection:"column" , position:"absolute" , top:"15%" , left:"10%" , flexDirection:"column" , display:"flex" , gap:"0.1rem" , transition:"0.3s" , animation: "fadeIn 0.3s ease forwards"}}>
                             {openMenu === item.StoryCode && (
                                 <div style={menuStyles}>
-                                    <button className="edit-btn rounded-2 px-3 py-2 edit-btn" style={buttonStyles}>ویرایش</button>
-                                    <button className="edit-btn rounded-2 px-3 py-2 edit-btn" style={buttonStyles}>حذف</button>
+                                    <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2" style={buttonStyles}>ویرایش</button>
+                                    <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2" style={buttonStyles}>حذف</button>
                                 </div>
                             )}
                         </div>
