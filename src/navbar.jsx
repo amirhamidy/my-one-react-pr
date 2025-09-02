@@ -15,6 +15,8 @@ import DefaultPage from "./pages/default"
 import ColoForProduct from "./pages/ColorForPrice"
 import CommentsGrid from "./pages/Comeent"
 import BlogsGrid from "./pages/blog"
+import BlogCategory from "./pages/blogCTA"
+import ContactGrid from "./pages/contact"
 
 
 
@@ -41,6 +43,8 @@ const Navbar = () => {
                 <Route path="/color-for-product" element={<ColoForProduct></ColoForProduct>} />
                 <Route path="/comments" element={<CommentsGrid></CommentsGrid>} />
                 <Route path="/blogs" element={<BlogsGrid></BlogsGrid>} />
+                <Route path="/blog-category" element={<BlogCategory></BlogCategory>} />
+                <Route path="/contact-us" element={<ContactGrid></ContactGrid>} />
             </Routes>
         </section>
     )
