@@ -1,7 +1,5 @@
-import { useState, useContext, createContext } from "react"
-import NavContax from "./myContaxt/contaxt"
 import Security from "./pages/security"
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom'
 import Sotry from "./pages/storys"
 import Product from "./pages/product"
 import Chats from "./pages/chats"
@@ -16,6 +14,7 @@ import Registrationdetails from "./pages/Registrationdetails"
 import DefaultPage from "./pages/default"
 import ColoForProduct from "./pages/ColorForPrice"
 import CommentsGrid from "./pages/Comeent"
+import BlogsGrid from "./pages/blog"
 
 
 
@@ -41,6 +40,7 @@ const Navbar = () => {
                 <Route path="/product-specs" element={<Registrationdetails></Registrationdetails>} />
                 <Route path="/color-for-product" element={<ColoForProduct></ColoForProduct>} />
                 <Route path="/comments" element={<CommentsGrid></CommentsGrid>} />
+                <Route path="/blogs" element={<BlogsGrid></BlogsGrid>} />
             </Routes>
         </section>
     )

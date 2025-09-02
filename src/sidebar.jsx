@@ -148,7 +148,7 @@ const SideBarMenu = () => {
             )
         },
         {
-            path: '/blog',
+            path: '/blogs',
             name: 'بلاگ',
             icon: (
                 <svg className="mx-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="1.2em" height="1.2em">
