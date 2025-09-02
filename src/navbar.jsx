@@ -1,5 +1,5 @@
 import Security from "./pages/security"
-import {Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Sotry from "./pages/storys"
 import Product from "./pages/product"
 import Chats from "./pages/chats"
@@ -34,7 +34,7 @@ const Navbar = () => {
                 <Route path='/chats' element={<Chats></Chats>} />
                 <Route path='/product' element={<Product></Product>} />
                 <Route path='/users' element={<Users></Users>} />
-                <Route path='/Addproduct' element={<Addproduct></Addproduct>} />
+                <Route path="/Addproduct" element={<Addproduct></Addproduct>} />
                 <Route path='/Addstory' element={<Addstory></Addstory>} />
                 <Route path='/AddCategory' element={<AddCta></AddCta>} />
                 <Route path='/add-brand' element={<Brands></Brands>} />
