@@ -81,9 +81,7 @@ a:hover {
   background-color: rgba(211, 211, 211, 0.789);
 }
 
-.sidebar-list:last-child {
-  border-bottom: none;
-}
+
 
 .active-sidebar-list {
   background-color: var(--primary-color);
