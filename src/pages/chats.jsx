@@ -30,6 +30,34 @@ const chatsData = [
     date: "2025-08-18 18:50",
     userType: "کاربر عادی",
   },
+    {
+    id: 5,
+    name: "علی رضایی",
+    email: "ali@example.com",
+    date: "2025-08-21 14:35",
+    userType: "کاربر عادی",
+  },
+  {
+    id: 6,
+    name: "سارا محمدی",
+    email: "sara@example.com",
+    date: "2025-08-20 09:20",
+    userType: "سوپر یوزر",
+  },
+  {
+    id: 7,
+    name: "محمد احمدی",
+    email: "mohammad@example.com",
+    date: "2025-08-19 12:10",
+    userType: "ادمین",
+  },
+  {
+    id: 8,
+    name: "فاطمه نادری",
+    email: "fateme@example.com",
+    date: "2025-08-18 18:50",
+    userType: "کاربر عادی",
+  },
 ];
 
 const Chats = () => {

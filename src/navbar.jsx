@@ -34,7 +34,7 @@ const Navbar = () => {
                 <Route path='/chats' element={<Chats></Chats>} />
                 <Route path='/product' element={<Product></Product>} />
                 <Route path='/users' element={<Users></Users>} />
-                <Route path="/Addproduct" element={<Addproduct></Addproduct>} />
+                <Route path="/product/Addproduct" element={<Addproduct></Addproduct>} />
                 <Route path='/Addstory' element={<Addstory></Addstory>} />
                 <Route path='/AddCategory' element={<AddCta></AddCta>} />
                 <Route path='/add-brand' element={<Brands></Brands>} />

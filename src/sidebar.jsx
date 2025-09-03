@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const SideBarMenu = () => {
     const location = useLocation();
@@ -178,13 +178,16 @@ const SideBarMenu = () => {
             </span>
             <div className="d-flex justify-content-start flex-column text-right list-box-sidebar mx-1 px-1 mt-4">
                 {menuItems.map((item, index) => (
-                    <Link
+                    <NavLink
                         key={index}
+                        end={false}
                         to={item.path}
-                        className={`sidebar-list cs-fs-13 py-3 px-1 d-flex justify-content-start align-items-center ${location.pathname.startsWith(item.path) ? 'active-sidebar-list' : ''}`}                    >
+                          className={({ isActive }) =>
+    `sidebar-list cs-fs-13 py-3 px-1 d-flex justify-content-start align-items-center ${isActive ? 'active-sidebar-list' : ''}`
+  } >
                         {item.icon}
                         {item.name}
-                    </Link>
+                    </NavLink>
                 ))}
             </div>
             <button className="btn theme-bg-color w-100 mt-4 mx-1 text-light">

@@ -14,8 +14,8 @@ const productsData = [
     { code: "P0011", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "unpublished" },
     { code: "P0012", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
     { code: "P0013", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P014", name: "محصول دهم", category: "دسته A", status: "published" },
-    { code: "P015", name: "محصول دهم", category: "دسته A", status: "published" },
+    { code: "P0014", name: "محصول دهم", category: "دسته A", status: "published" },
+    { code: "P0015", name: "محصول دهم", category: "دسته A", status: "published" },
 
 ];
 
@@ -146,7 +146,7 @@ export default function ProductsGrid() {
                         </ul>
                     </div>
                 </form>
-                <Link to='/Addproduct' className="text-light btn add-pr-mr">
+                <Link to='/product/Addproduct' className="text-light btn add-pr-mr">
                     محصول جدید
                     <svg className="mx-1"
                         xmlns="http://www.w3.org/2000/svg"
