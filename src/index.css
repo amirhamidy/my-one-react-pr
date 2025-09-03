@@ -703,3 +703,73 @@ ul {
   object-fit: cover;
   opacity: 0.5;
 }
+
+
+.add-pr-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.add-pr-title {
+  color: #ff4f29;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.add-pr-input {
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.add-pr-row {
+  row-gap: 20px;
+}
+
+.add-pr-checkbox {
+  transform: scale(1.2);
+  margin-right: 10px;
+}
+
+.add-pr-btn {
+  background-color: #ff4f29;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+}
+
+.add-pr-autocomplete {
+  position: relative;
+}
+
+.add-pr-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+.add-pr-suggestions li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.add-pr-suggestions li:hover {
+  background-color: #ff4f29;
+  color: #fff;
+  border-radius: 8px;
+}

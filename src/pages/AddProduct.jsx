@@ -1,5 +1,21 @@
 import React, { useState } from "react";
 
+const categoriesMock = [
+  { id: 1, name: "لوازم خانگی" },
+  { id: 2, name: "گوشی موبایل" },
+  { id: 3, name: "کامپیوتر" },
+  { id: 4, name: "کتاب" },
+  { id: 5, name: "لباس" },
+];
+
+const brandsMock = [
+  { id: 1, name: "سامسونگ" },
+  { id: 2, name: "اپل" },
+  { id: 3, name: "شیائومی" },
+  { id: 4, name: "هوآوی" },
+  { id: 5, name: "دل" },
+];
+
 const AddProduct = () => {
   const [form, setForm] = useState({
     name: "",
@@ -13,12 +29,37 @@ const AddProduct = () => {
     metaTitle: "",
   });
 
+  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredBrands, setFilteredBrands] = useState([]);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setForm({
       ...form,
       [name]: type === "checkbox" ? checked : value,
     });
+
+    if (name === "category") {
+      const filtered = categoriesMock.filter((c) =>
+        c.name.includes(value)
+      );
+      setFilteredCategories(filtered);
+    }
+
+    if (name === "brand") {
+      const filtered = brandsMock.filter((b) => b.name.includes(value));
+      setFilteredBrands(filtered);
+    }
+  };
+
+  const handleSelectCategory = (name) => {
+    setForm({ ...form, category: name });
+    setFilteredCategories([]);
+  };
+
+  const handleSelectBrand = (name) => {
+    setForm({ ...form, brand: name });
+    setFilteredBrands([]);
   };
 
   const handleSubmit = (e) => {
@@ -28,14 +69,14 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container my-4">
-      <h3 className="mb-4" style={{ color: "#ff4f29" }}>افزودن محصول</h3>
+    <div className="add-pr-container">
+      <h3 className="add-pr-title">افزودن محصول</h3>
       <form onSubmit={handleSubmit}>
-        <div className="row g-3">
+        <div className="row add-pr-row">
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control shadow-sm rounded"
+              className="form-control add-pr-input"
               placeholder="نام محصول"
               name="name"
               value={form.name}
@@ -45,17 +86,18 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control shadow-sm rounded"
+              className="form-control add-pr-input"
               placeholder="اسلاگ"
               name="slug"
               value={form.slug}
               onChange={handleChange}
             />
           </div>
+
           <div className="col-md-6 d-flex align-items-center">
             <div className="form-check">
               <input
-                className="form-check-input"
+                className="form-check-input add-pr-checkbox"
                 type="checkbox"
                 name="status"
                 checked={form.status}
@@ -64,30 +106,54 @@ const AddProduct = () => {
               <label className="form-check-label">نمایش محصول</label>
             </div>
           </div>
-          <div className="col-md-6">
+
+          <div className="col-md-6 add-pr-autocomplete">
             <input
               type="text"
-              className="form-control shadow-sm rounded"
+              className="form-control add-pr-input"
               placeholder="دسته بندی"
               name="category"
               value={form.category}
               onChange={handleChange}
             />
+            {filteredCategories.length > 0 && (
+              <ul className="add-pr-suggestions">
+                {filteredCategories.map((c) => (
+                  <li
+                    key={c.id}
+                    onClick={() => handleSelectCategory(c.name)}
+                  >
+                    {c.name}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          <div className="col-md-6">
+
+          <div className="col-md-6 add-pr-autocomplete">
             <input
               type="text"
-              className="form-control shadow-sm rounded"
+              className="form-control add-pr-input"
               placeholder="برند"
               name="brand"
               value={form.brand}
               onChange={handleChange}
             />
+            {filteredBrands.length > 0 && (
+              <ul className="add-pr-suggestions">
+                {filteredBrands.map((b) => (
+                  <li key={b.id} onClick={() => handleSelectBrand(b.name)}>
+                    {b.name}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
+
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control shadow-sm rounded"
+              className="form-control add-pr-input"
               placeholder="تایتل انگلیسی"
               name="englishTitle"
               value={form.englishTitle}
@@ -97,7 +163,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control shadow-sm rounded"
+              className="form-control add-pr-input"
               placeholder="گارانتی"
               name="warranty"
               value={form.warranty}
@@ -107,7 +173,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control shadow-sm rounded"
+              className="form-control add-pr-input"
               placeholder="متا دیسکریپشن"
               name="metaDescription"
               value={form.metaDescription}
@@ -117,7 +183,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control shadow-sm rounded"
+              className="form-control add-pr-input"
               placeholder="متا تایتل"
               name="metaTitle"
               value={form.metaTitle}
@@ -125,11 +191,7 @@ const AddProduct = () => {
             />
           </div>
         </div>
-        <button
-          type="submit"
-          className="btn mt-4"
-          style={{ backgroundColor: "#ff4f29", color: "#fff" }}
-        >
+        <button type="submit" className="btn add-pr-btn">
           اضافه کردن محصول
         </button>
       </form>
