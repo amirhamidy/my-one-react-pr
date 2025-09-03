@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const categoriesMock = [
   { id: 1, name: "لوازم خانگی" },
@@ -6,6 +6,21 @@ const categoriesMock = [
   { id: 3, name: "کامپیوتر" },
   { id: 4, name: "کتاب" },
   { id: 5, name: "لباس" },
+  { id: 6, name: "کفش" },
+  { id: 7, name: "ساعت" },
+  { id: 8, name: "ورزشی" },
+  { id: 9, name: "غذا و نوشیدنی" },
+  { id: 10, name: "زیبایی و سلامت" },
+  { id: 11, name: "لپتاپ" },
+  { id: 12, name: "تبلت" },
+  { id: 13, name: "تلویزیون" },
+  { id: 14, name: "کنسول بازی" },
+  { id: 15, name: "لوازم آشپزخانه" },
+  { id: 16, name: "دوربین" },
+  { id: 17, name: "عطر" },
+  { id: 18, name: "موسیقی" },
+  { id: 19, name: "نوشت‌افزار" },
+  { id: 20, name: "بازی و سرگرمی" },
 ];
 
 const brandsMock = [
@@ -14,6 +29,21 @@ const brandsMock = [
   { id: 3, name: "شیائومی" },
   { id: 4, name: "هوآوی" },
   { id: 5, name: "دل" },
+  { id: 6, name: "اچ‌پی" },
+  { id: 7, name: "سونی" },
+  { id: 8, name: "ال‌جی" },
+  { id: 9, name: "ایسوس" },
+  { id: 10, name: "مایکروسافت" },
+  { id: 11, name: "نینتندو" },
+  { id: 12, name: "کاسیو" },
+  { id: 13, name: "آدیداس" },
+  { id: 14, name: "نایک" },
+  { id: 15, name: "پاناسونیک" },
+  { id: 16, name: "کنون" },
+  { id: 17, name: "نیکون" },
+  { id: 18, name: "فیلیپس" },
+  { id: 19, name: "شیندلر" },
+  { id: 20, name: "گروندیگ" },
 ];
 
 const AddProduct = () => {
@@ -31,35 +61,84 @@ const AddProduct = () => {
 
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [filteredBrands, setFilteredBrands] = useState([]);
+  const [categoryOpen, setCategoryOpen] = useState(false);
+  const [brandOpen, setBrandOpen] = useState(false);
+  const [categoryActiveIndex, setCategoryActiveIndex] = useState(-1);
+  const [brandActiveIndex, setBrandActiveIndex] = useState(-1);
+
+  const categoryRef = useRef(null);
+  const brandRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (categoryRef.current && !categoryRef.current.contains(event.target)) {
+        setCategoryOpen(false);
+      }
+      if (brandRef.current && !brandRef.current.contains(event.target)) {
+        setBrandOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm({
-      ...form,
-      [name]: type === "checkbox" ? checked : value,
-    });
+    setForm({ ...form, [name]: type === "checkbox" ? checked : value });
 
     if (name === "category") {
       const filtered = categoriesMock.filter((c) =>
-        c.name.includes(value)
+        c.name.startsWith(value)
       );
       setFilteredCategories(filtered);
+      setCategoryOpen(true);
+      setCategoryActiveIndex(-1);
     }
 
     if (name === "brand") {
-      const filtered = brandsMock.filter((b) => b.name.includes(value));
+      const filtered = brandsMock.filter((b) =>
+        b.name.startsWith(value)
+      );
       setFilteredBrands(filtered);
+      setBrandOpen(true);
+      setBrandActiveIndex(-1);
     }
   };
 
   const handleSelectCategory = (name) => {
     setForm({ ...form, category: name });
-    setFilteredCategories([]);
+    setCategoryOpen(false);
   };
 
   const handleSelectBrand = (name) => {
     setForm({ ...form, brand: name });
-    setFilteredBrands([]);
+    setBrandOpen(false);
+  };
+
+  const handleKeyDown = (e, type) => {
+    let list, activeIndexSetter, activeIndex;
+    if (type === "category") {
+      list = filteredCategories;
+      activeIndexSetter = setCategoryActiveIndex;
+      activeIndex = categoryActiveIndex;
+    } else {
+      list = filteredBrands;
+      activeIndexSetter = setBrandActiveIndex;
+      activeIndex = brandActiveIndex;
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      activeIndexSetter((prev) => (prev + 1) % list.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      activeIndexSetter((prev) => (prev - 1 + list.length) % list.length);
+    } else if (e.key === "Enter" && activeIndex >= 0) {
+      e.preventDefault();
+      type === "category"
+        ? handleSelectCategory(list[activeIndex].name)
+        : handleSelectBrand(list[activeIndex].name);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -76,7 +155,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control add-pr-input"
+              className="form-control-custom rounded-1 add-pr-input"
               placeholder="نام محصول"
               name="name"
               value={form.name}
@@ -86,14 +165,13 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control add-pr-input"
+              className="form-control-custom rounded-1 add-pr-input"
               placeholder="اسلاگ"
               name="slug"
               value={form.slug}
               onChange={handleChange}
             />
           </div>
-
           <div className="col-md-6 d-flex align-items-center">
             <div className="form-check">
               <input
@@ -107,21 +185,23 @@ const AddProduct = () => {
             </div>
           </div>
 
-          <div className="col-md-6 add-pr-autocomplete">
+          <div className="col-md-6 add-pr-autocomplete" ref={categoryRef}>
             <input
               type="text"
-              className="form-control add-pr-input"
+              className="form-control-custom rounded-1 add-pr-input"
               placeholder="دسته بندی"
               name="category"
               value={form.category}
               onChange={handleChange}
+              onKeyDown={(e) => handleKeyDown(e, "category")}
             />
-            {filteredCategories.length > 0 && (
+            {categoryOpen && filteredCategories.length > 0 && (
               <ul className="add-pr-suggestions">
-                {filteredCategories.map((c) => (
+                {filteredCategories.map((c, idx) => (
                   <li
                     key={c.id}
-                    onClick={() => handleSelectCategory(c.name)}
+                    className={categoryActiveIndex === idx ? "active" : ""}
+                    onMouseDown={() => handleSelectCategory(c.name)}
                   >
                     {c.name}
                   </li>
@@ -130,19 +210,24 @@ const AddProduct = () => {
             )}
           </div>
 
-          <div className="col-md-6 add-pr-autocomplete">
+          <div className="col-md-6 add-pr-autocomplete" ref={brandRef}>
             <input
               type="text"
-              className="form-control add-pr-input"
+              className="form-control-custom rounded-1 add-pr-input"
               placeholder="برند"
               name="brand"
               value={form.brand}
               onChange={handleChange}
+              onKeyDown={(e) => handleKeyDown(e, "brand")}
             />
-            {filteredBrands.length > 0 && (
+            {brandOpen && filteredBrands.length > 0 && (
               <ul className="add-pr-suggestions">
-                {filteredBrands.map((b) => (
-                  <li key={b.id} onClick={() => handleSelectBrand(b.name)}>
+                {filteredBrands.map((b, idx) => (
+                  <li
+                    key={b.id}
+                    className={brandActiveIndex === idx ? "active" : ""}
+                    onMouseDown={() => handleSelectBrand(b.name)}
+                  >
                     {b.name}
                   </li>
                 ))}
@@ -153,7 +238,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control add-pr-input"
+              className="form-control-custom rounded-1 add-pr-input"
               placeholder="تایتل انگلیسی"
               name="englishTitle"
               value={form.englishTitle}
@@ -163,7 +248,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control add-pr-input"
+              className="form-control-custom rounded-1 add-pr-input"
               placeholder="گارانتی"
               name="warranty"
               value={form.warranty}
@@ -173,7 +258,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control add-pr-input"
+              className="form-control-custom rounded-1 add-pr-input"
               placeholder="متا دیسکریپشن"
               name="metaDescription"
               value={form.metaDescription}
@@ -183,7 +268,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control add-pr-input"
+              className="form-control-custom rounded-1 add-pr-input"
               placeholder="متا تایتل"
               name="metaTitle"
               value={form.metaTitle}
