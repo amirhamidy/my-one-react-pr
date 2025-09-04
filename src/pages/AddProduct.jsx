@@ -149,13 +149,13 @@ const AddProduct = () => {
 
   return (
     <div className="add-pr-container">
-      <h3 className="add-pr-title">افزودن محصول</h3>
+      <h3 className="text-right py-4 cs-fs-15 fw-bold">افزودن محصول</h3>
       <form onSubmit={handleSubmit}>
         <div className="row add-pr-row">
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control-custom rounded-1 add-pr-input"
+              className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr"
               placeholder="نام محصول"
               name="name"
               value={form.name}
@@ -165,7 +165,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control-custom rounded-1 add-pr-input"
+              className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr"
               placeholder="اسلاگ"
               name="slug"
               value={form.slug}
@@ -181,14 +181,14 @@ const AddProduct = () => {
                 checked={form.status}
                 onChange={handleChange}
               />
-              <label className="form-check-label">نمایش محصول</label>
+              <label className="form-check-label cs-fs-13">نمایش محصول</label>
             </div>
           </div>
 
           <div className="col-md-6 add-pr-autocomplete" ref={categoryRef}>
             <input
               type="text"
-              className="form-control-custom rounded-1 add-pr-input"
+              className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr"
               placeholder="دسته بندی"
               name="category"
               value={form.category}
@@ -213,7 +213,7 @@ const AddProduct = () => {
           <div className="col-md-6 add-pr-autocomplete" ref={brandRef}>
             <input
               type="text"
-              className="form-control-custom rounded-1 add-pr-input"
+              className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr"
               placeholder="برند"
               name="brand"
               value={form.brand}
@@ -238,7 +238,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control-custom rounded-1 add-pr-input"
+              className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr"
               placeholder="تایتل انگلیسی"
               name="englishTitle"
               value={form.englishTitle}
@@ -248,7 +248,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control-custom rounded-1 add-pr-input"
+              className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr"
               placeholder="گارانتی"
               name="warranty"
               value={form.warranty}
@@ -258,7 +258,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control-custom rounded-1 add-pr-input"
+              className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr"
               placeholder="متا دیسکریپشن"
               name="metaDescription"
               value={form.metaDescription}
@@ -268,7 +268,7 @@ const AddProduct = () => {
           <div className="col-md-6">
             <input
               type="text"
-              className="form-control-custom rounded-1 add-pr-input"
+              className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr"
               placeholder="متا تایتل"
               name="metaTitle"
               value={form.metaTitle}
@@ -276,7 +276,7 @@ const AddProduct = () => {
             />
           </div>
         </div>
-        <button type="submit" className="btn add-pr-btn">
+        <button type="submit" className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3">
           اضافه کردن محصول
         </button>
       </form>

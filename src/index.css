@@ -706,13 +706,40 @@ ul {
 
 
 .add-pr-container {
-  max-width: 900px;
+  height: 93vh;
+  max-height: 93vh;
   margin: 20px auto;
   padding: 25px;
-  background: #fff;
+  overflow-y: scroll;
   border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  border: 1px solid #eeeeee;
 }
+
+
+.add-pr-container::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.add-pr-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.add-pr-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.add-pr-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.add-pr-container::-webkit-scrollbar:horizontal {
+  height: 6px;
+}
+
 
 .add-pr-title {
   color: #ff4f29;
@@ -728,11 +755,28 @@ ul {
   border: 1px solid #ddd;
   transition: all 0.2s;
 }
+.add-pr-input::placeholder {
+    font-size: 13px;
+    opacity: 1;
+}
+
+.add-pr-input::-webkit-input-placeholder { 
+    font-size: 13px;
+}
+.add-pr-input::-moz-placeholder {
+    font-size: 13px;
+    opacity: 1;
+}
+.add-pr-input:-ms-input-placeholder { 
+    font-size: 13px;
+}
+.add-pr-input:-moz-placeholder { 
+    font-size: 13px;
+}
 
 .add-pr-input:focus {
-  border-color: #ff4f29;
   outline: none;
-  box-shadow: 0 0 5px rgba(255,79,41,0.3);
+  box-shadow: 0 0 5px rgba(255, 79, 41, 0.3);
 }
 
 .add-pr-row {
@@ -776,18 +820,43 @@ ul {
   margin-top: 5px;
   padding: 0;
   list-style: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .add-pr-suggestions li {
-  padding: 10px 15px;
+  padding: 8px 12px;
   cursor: pointer;
   transition: all 0.2s;
+  font-size: 13px;
+
 }
 
 .add-pr-suggestions li:hover,
 .add-pr-suggestions li.active {
-  background-color: #ff4f29;
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0.08);
   border-radius: 4px;
+}
+
+.add-pr-suggestions::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.add-pr-suggestions::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.add-pr-suggestions::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.add-pr-suggestions::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.add-pr-suggestions::-webkit-scrollbar:horizontal {
+  height: 4px;
 }
