@@ -190,7 +190,7 @@ const SideBarMenu = () => {
                     </NavLink>
                 ))}
             </div>
-            <button className="btn theme-bg-color w-100 mt-4 mx-1 text-light">
+            <button className="btn theme-bg-color w-75 mt-4 mx-1 text-light">
                 خروج
             </button>
         </div>

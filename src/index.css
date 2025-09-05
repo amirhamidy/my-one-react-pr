@@ -135,6 +135,10 @@ a:hover {
   color: gray;
 }
 
+.h-for-form{
+  height: 10vh;
+}
+
 .w-right {
   text-align: right;
 }
@@ -706,13 +710,11 @@ ul {
 
 
 .add-pr-container {
-  height: 93vh;
-  max-height: 93vh;
+  max-height: 72vh;
   margin: 20px auto;
-  padding: 25px;
+  padding: 15px;
   overflow-y: scroll;
   border-radius: 8px;
-  border: 1px solid #eeeeee;
 }
 
 
