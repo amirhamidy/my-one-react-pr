@@ -810,13 +810,14 @@ ul {
 
 .add-pr-suggestions {
   position: absolute;
-  top: 100%;
+  top: 80%;
   left: 0;
   right: 0;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 6px;
   max-height: 180px;
+  width: 70%;
   overflow-y: auto;
   z-index: 20;
   margin-top: 5px;
@@ -862,3 +863,6 @@ ul {
 .add-pr-suggestions::-webkit-scrollbar:horizontal {
   height: 4px;
 }
+
+
+

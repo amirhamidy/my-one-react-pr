@@ -48,7 +48,7 @@ const brandsMock = [
 ];
 
 const AddProduct = () => {
-  const navigate = useNavigate(); // ← تعریف navigate در بالای کامپوننت
+  const navigate = useNavigate(); 
 
   const [form, setForm] = useState({
     name: "",
@@ -68,6 +68,7 @@ const AddProduct = () => {
   const [brandOpen, setBrandOpen] = useState(false);
   const [categoryActiveIndex, setCategoryActiveIndex] = useState(-1);
   const [brandActiveIndex, setBrandActiveIndex] = useState(-1);
+  const [statusOpen, setStatusOpen] = useState(false);
 
   const categoryRef = useRef(null);
   const brandRef = useRef(null);
@@ -261,153 +262,161 @@ const AddProduct = () => {
         بازگشت
       </button>
 
-        <div className="add-pr-container container px-5">
-          <h3 className="text-right py-4 cs-fs-15 fw-bold">افزودن محصول</h3>
-          <form onSubmit={handleSubmit}>
-            <div className="row add-pr-row">
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  autoComplete="off"
-                  className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
-                  placeholder="نام محصول"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  autoComplete="off"
-                  className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
-                  placeholder="اسلاگ"
-                  name="slug"
-                  value={form.slug}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-md-6 d-flex align-items-center">
-                <div className="form-check">
-                  <input
-                    className="form-check-input add-pr-checkbox"
-                    type="checkbox"
-                    name="status"
-                    checked={form.status}
-                    onChange={handleChange}
-                  />
-                  <label className="form-check-label cs-fs-13">
+      <div className="add-pr-container container px-5">
+        <h3 className="text-right py-4 cs-fs-15 fw-bold">افزودن محصول</h3>
+        <form onSubmit={handleSubmit}>
+          <div className="row add-pr-row">
+            <div className="col-md-6">
+              <input
+                type="text"
+                autoComplete="off"
+                className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
+                placeholder="نام محصول"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                autoComplete="off"
+                className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
+                placeholder="اسلاگ"
+                name="slug"
+                value={form.slug}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-6 add-pr-autocomplete">
+              <input
+                type="text"
+                readOnly
+                className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
+                placeholder="وضعیت نمایش"
+                name="status"
+                value={form.status ? "نمایش محصول" : "عدم نمایش"}
+                onClick={() => setStatusOpen(!statusOpen)}
+              />
+              {statusOpen && (
+                <ul className="add-pr-suggestions">
+                  <li onMouseDown={() => { setForm({ ...form, status: true }); setStatusOpen(false); }}>
                     نمایش محصول
-                  </label>
-                </div>
-              </div>
-
-              <div className="col-md-6 add-pr-autocomplete" ref={categoryRef}>
-                <input
-                  type="text"
-                  autoComplete="off"
-                  className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
-                  placeholder="دسته بندی"
-                  name="category"
-                  value={form.category}
-                  onChange={handleChange}
-                  onKeyDown={(e) => handleKeyDown(e, "category")}
-                />
-                {categoryOpen && filteredCategories.length > 0 && (
-                  <ul className="add-pr-suggestions">
-                    {filteredCategories.map((c, idx) => (
-                      <li
-                        key={c.id}
-                        className={categoryActiveIndex === idx ? "active" : ""}
-                        onMouseDown={() => handleSelectCategory(c.name)}
-                      >
-                        {c.name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              <div className="col-md-6 add-pr-autocomplete" ref={brandRef}>
-                <input
-                  type="text"
-                  className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
-                  placeholder="برند"
-                  name="brand"
-                  value={form.brand}
-                  onChange={handleChange}
-                  onKeyDown={(e) => handleKeyDown(e, "brand")}
-                />
-                {brandOpen && filteredBrands.length > 0 && (
-                  <ul className="add-pr-suggestions">
-                    {filteredBrands.map((b, idx) => (
-                      <li
-                        key={b.id}
-                        className={brandActiveIndex === idx ? "active" : ""}
-                        onMouseDown={() => handleSelectBrand(b.name)}
-                      >
-                        {b.name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  autoComplete="off"
-                  className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
-                  placeholder="تایتل انگلیسی"
-                  name="englishTitle"
-                  value={form.englishTitle}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  autoComplete="off"
-                  className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
-                  placeholder="گارانتی"
-                  name="warranty"
-                  value={form.warranty}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
-                  placeholder="متا دیسکریپشن"
-                  name="metaDescription"
-                  value={form.metaDescription}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  autoComplete="off"
-                  className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
-                  placeholder="متا تایتل"
-                  name="metaTitle"
-                  value={form.metaTitle}
-                  onChange={handleChange}
-                />
-              </div>
+                  </li>
+                  <li onMouseDown={() => { setForm({ ...form, status: false }); setStatusOpen(false); }}>
+                    عدم نمایش
+                  </li>
+                </ul>
+              )}
             </div>
 
-            <button
-              type="submit"
-              className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
-            >
-              اضافه کردن محصول
-            </button>
-          </form>
-        </div>
-    
 
+            <div className="col-md-6 add-pr-autocomplete" ref={categoryRef}>
+              <input
+                type="text"
+                autoComplete="off"
+                className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
+                placeholder="دسته بندی"
+                name="category"
+                value={form.category}
+                onChange={handleChange}
+                onKeyDown={(e) => handleKeyDown(e, "category")}
+              />
+              {categoryOpen && filteredCategories.length > 0 && (
+                <ul className="add-pr-suggestions">
+                  {filteredCategories.map((c, idx) => (
+                    <li
+                      key={c.id}
+                      className={categoryActiveIndex === idx ? "active" : ""}
+                      onMouseDown={() => handleSelectCategory(c.name)}
+                    >
+                      {c.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <div className="col-md-6 add-pr-autocomplete" ref={brandRef}>
+              <input
+                type="text"
+                className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
+                placeholder="برند"
+                name="brand"
+                value={form.brand}
+                onChange={handleChange}
+                onKeyDown={(e) => handleKeyDown(e, "brand")}
+              />
+              {brandOpen && filteredBrands.length > 0 && (
+                <ul className="add-pr-suggestions">
+                  {filteredBrands.map((b, idx) => (
+                    <li
+                      key={b.id}
+                      className={brandActiveIndex === idx ? "active" : ""}
+                      onMouseDown={() => handleSelectBrand(b.name)}
+                    >
+                      {b.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <div className="col-md-6">
+              <input
+                type="text"
+                autoComplete="off"
+                className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
+                placeholder="تایتل انگلیسی"
+                name="englishTitle"
+                value={form.englishTitle}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                autoComplete="off"
+                className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
+                placeholder="گارانتی"
+                name="warranty"
+                value={form.warranty}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
+                placeholder="متا دیسکریپشن"
+                name="metaDescription"
+                value={form.metaDescription}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                autoComplete="off"
+                className="form-control-custom rounded-2 add-pr-input cs-fs-14 px-2 py-cs-for-pr w-75"
+                placeholder="متا تایتل"
+                name="metaTitle"
+                value={form.metaTitle}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+          >
+            اضافه کردن محصول
+          </button>
+        </form>
+
+
+      </div>
     </>
   );
 };
