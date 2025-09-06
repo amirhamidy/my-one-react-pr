@@ -1,150 +1,161 @@
-import React, { useRef } from "react"
-import { useEditor, EditorContent } from "@tiptap/react"
-import StarterKit from "@tiptap/starter-kit"
-import Underline from "@tiptap/extension-underline"
-import { TextStyle } from "@tiptap/extension-text-style"
-import Image from "@tiptap/extension-image"
-import ResizeImage from "tiptap-extension-resize-image"
-import { TextAlign } from "@tiptap/extension-text-align"
-import Link from "@tiptap/extension-link"
-import Swal from "sweetalert2"
+import React from "react";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import { TextStyle } from "@tiptap/extension-text-style"; 
+import Placeholder from "@tiptap/extension-placeholder";
+import Underline from "@tiptap/extension-underline";
+import Link from "@tiptap/extension-link";
+import Image from "@tiptap/extension-image";
+import { TextAlign } from "@tiptap/extension-text-align";
 import {
   Bold,
   Italic,
   Underline as UnderlineIcon,
   Image as ImageIcon,
   Link as LinkIcon,
-  X,
   AlignLeft,
   AlignCenter,
   AlignRight,
-} from "lucide-react"
+  X,
+} from "lucide-react";
+import Swal from "sweetalert2";
 
 const FontSize = TextStyle.extend({
   addAttributes() {
     return {
       fontSize: {
-        default: "16px",
-        parseHTML: el => el.style.fontSize,
-        renderHTML: attrs => (attrs.fontSize ? { style: `font-size: ${attrs.fontSize}` } : {}),
+        default: null,
+        parseHTML: (element) => element.style.fontSize,
+        renderHTML: (attributes) => {
+          if (!attributes.fontSize) return {};
+          return { style: `font-size: ${attributes.fontSize}` };
+        },
       },
-    }
+    };
   },
-})
+});
 
 export default function Editor() {
-  const fileInputRef = useRef(null)
-
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({ underline: false, link: false }),
+      StarterKit,
       Underline,
       FontSize,
+      Link.configure({ openOnClick: false }),
       Image,
-      ResizeImage,
-      Link.configure({ openOnClick: true, autolink: true, linkOnPaste: true }),
-      TextAlign.configure({ types: ["paragraph", "heading"] }),
+      TextAlign.configure({ types: ["heading", "paragraph"] }),
+      Placeholder.configure({
+        placeholder: "شروع به تایپ کنید...",
+      }),
     ],
-    content: "<p>شروع کنید 🚀</p>",
-  })
+    content: "",
+  });
 
-  if (!editor) return null
+  if (!editor) return null;
 
-  const handleFileChange = e => {
-    const file = e.target.files[0]
-    if (!file) return
-    const reader = new FileReader()
-    reader.onload = () => editor.chain().focus().setImage({ src: reader.result }).run()
-    reader.readAsDataURL(file)
-  }
-
-  const addImage = () => fileInputRef.current.click()
-
-  const resizeImage = percent => {
-    const { state } = editor
-    const { selection } = state
-    const node = state.doc.nodeAt(selection.from)
-    if (!node || node.type.name !== "image") return
-    editor.chain().focus().updateAttributes("image", { width: `${percent}%` }).run()
-  }
-
-  const addLink = async () => {
+  const setLink = async () => {
     const { value: url } = await Swal.fire({
-      title: "لینک را وارد کنید",
+      title: "افزودن لینک",
       input: "url",
-      inputPlaceholder: "https://example.com",
+      inputPlaceholder: "آدرس لینک را وارد کنید",
       showCancelButton: true,
-      confirmButtonText: "اضافه کن",
+      confirmButtonText: "ثبت",
       cancelButtonText: "لغو",
-      inputValidator: value => !value && "لینک نمی‌تواند خالی باشد",
-    })
-    if (url) editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run()
-  }
+    });
+    if (url) editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
+  };
 
-  const removeLink = () => editor.chain().focus().unsetLink().run()
+  const unsetLink = () => {
+    editor.chain().focus().unsetLink().run();
+  };
 
-  const setAlignGlobal = align => {
-    if (!editor.view) return
-    editor.chain().focus().command(({ tr, state }) => {
-      state.doc.descendants((node, pos) => {
-        if (node.type.name === "paragraph" || node.type.name === "heading") {
-          tr.setNodeMarkup(pos, undefined, { ...node.attrs, textAlign: align })
-        }
-      })
-      editor.view.dispatch(tr)
-      return true
-    }).run()
-  }
+  const addImage = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.onchange = (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        editor.chain().focus().setImage({ src: reader.result }).run();
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  };
+
+  const resizeImage = (percentage) => {
+    const { state, dispatch } = editor.view;
+    const { selection } = state;
+    const node = selection.node;
+    if (node && node.type.name === "image") {
+      const tr = state.tr.setNodeMarkup(selection.from, undefined, {
+        ...node.attrs,
+        style: `width: ${percentage}%`,
+      });
+      dispatch(tr);
+    }
+  };
 
   return (
-    <>
+    <div>
       <div className="editor-toolbar">
-        <button onClick={() => editor.chain().focus().toggleBold().run()} className={`editor-btn ${editor.isActive("bold") ? "active" : ""}`}>
+        <button
+          className={`editor-btn ${editor.isActive("bold") ? "active" : ""}`}
+          onClick={() => editor.chain().focus().toggleBold().run()}
+        >
           <Bold size={16} />
         </button>
-
-        <button onClick={() => editor.chain().focus().toggleItalic().run()} className={`editor-btn ${editor.isActive("italic") ? "active" : ""}`}>
+        <button
+          className={`editor-btn ${editor.isActive("italic") ? "active" : ""}`}
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+        >
           <Italic size={16} />
         </button>
-
-        <button onClick={() => editor.chain().focus().toggleUnderline().run()} className={`editor-btn ${editor.isActive("underline") ? "active" : ""}`}>
+        <button
+          className={`editor-btn ${editor.isActive("underline") ? "active" : ""}`}
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+        >
           <UnderlineIcon size={16} />
         </button>
-
-        <button onClick={addImage} className="editor-btn">
-          <ImageIcon size={16} />
-        </button>
-        <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange} className="file-input-hidden" />
-
-        <select onChange={e => editor.chain().focus().setMark("textStyle", { fontSize: e.target.value }).run()} defaultValue="16px" className="editor-select">
-          {["12px", "14px", "16px", "20px", "24px", "32px"].map(sz => (<option key={sz} value={sz}>{sz}</option>))}
-        </select>
-
-        <button onClick={addLink} className="editor-btn">
+        <button className="editor-btn" onClick={setLink}>
           <LinkIcon size={16} />
         </button>
-        <button onClick={removeLink} className="editor-btn">
+        <button className="editor-btn" onClick={unsetLink}>
           <X size={16} />
         </button>
-
-        <button onClick={() => setAlignGlobal("left")} className="editor-btn">
+        <button className="editor-btn" onClick={addImage}>
+          <ImageIcon size={16} />
+        </button>
+        <button className="editor-btn" onClick={() => editor.chain().focus().setTextAlign("left").run()}>
           <AlignLeft size={16} />
         </button>
-        <button onClick={() => setAlignGlobal("center")} className="editor-btn">
+        <button className="editor-btn" onClick={() => editor.chain().focus().setTextAlign("center").run()}>
           <AlignCenter size={16} />
         </button>
-        <button onClick={() => setAlignGlobal("right")} className="editor-btn">
+        <button className="editor-btn" onClick={() => editor.chain().focus().setTextAlign("right").run()}>
           <AlignRight size={16} />
         </button>
-
+        <select
+          className="editor-select"
+          onChange={(e) => editor.chain().focus().setMark("textStyle", { fontSize: e.target.value }).run()}
+          defaultValue="16px"
+        >
+          <option value="12px">12px</option>
+          <option value="14px">14px</option>
+          <option value="16px">16px</option>
+          <option value="18px">18px</option>
+          <option value="20px">20px</option>
+        </select>
         <div className="image-resize-buttons">
-          {[25, 50, 75, 100].map(p => (
-            <button key={p} onClick={() => resizeImage(p)} className="editor-btn">{p}%</button>
-          ))}
+          <button className="editor-btn" onClick={() => resizeImage(25)}>25%</button>
+          <button className="editor-btn" onClick={() => resizeImage(50)}>50%</button>
+          <button className="editor-btn" onClick={() => resizeImage(75)}>75%</button>
+          <button className="editor-btn" onClick={() => resizeImage(100)}>100%</button>
         </div>
       </div>
-
       <EditorContent editor={editor} className="editor-content" />
-    </>
-  )
+    </div>
+  );
 }
