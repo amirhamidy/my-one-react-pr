@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Editor from "./Editor";
 
 const categoriesMock = [
   { id: 1, name: "لوازم خانگی" },
@@ -414,8 +415,7 @@ const AddProduct = () => {
             اضافه کردن محصول
           </button>
         </form>
-
-
+        <Editor></Editor>
       </div>
     </>
   );
