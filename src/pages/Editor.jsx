@@ -1,28 +1,28 @@
-import React from "react"
+import React, { useRef } from "react"
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import Underline from "@tiptap/extension-underline"
 import { TextStyle } from "@tiptap/extension-text-style"
 import Image from "@tiptap/extension-image"
-import { TextAlign } from "@tiptap/extension-text-align"
 import ResizeImage from "tiptap-extension-resize-image"
+import { TextAlign } from "@tiptap/extension-text-align"
+import Link from "@tiptap/extension-link"
 
 const FontSize = TextStyle.extend({
   addAttributes() {
     return {
       fontSize: {
         default: "16px",
-        parseHTML: element => element.style.fontSize,
-        renderHTML: attributes => {
-          if (!attributes.fontSize) return {}
-          return { style: `font-size: ${attributes.fontSize}` }
-        },
+        parseHTML: el => el.style.fontSize,
+        renderHTML: attrs => (attrs.fontSize ? { style: `font-size: ${attrs.fontSize}` } : {}),
       },
     }
   },
 })
 
 export default function Editor() {
+  const fileInputRef = useRef(null)
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -31,58 +31,68 @@ export default function Editor() {
       FontSize,
       Image,
       ResizeImage,
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
+      Link.configure({ openOnClick: true, autolink: true, linkOnPaste: true }),
+      TextAlign.configure({ types: ["heading", "paragraph"] }),
     ],
-    content: "<p>داداش این اولین تست ادیتور ماست 🚀</p>",
+    content: "<p>شروع کنید 🚀</p>",
   })
 
   if (!editor) return null
 
-  const addImage = () => {
-    const url = window.prompt("لینک عکس رو بده:")
-    if (url) editor.chain().focus().setImage({ src: url }).run()
+  const handleFileChange = e => {
+    const file = e.target.files[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = () => editor.chain().focus().setImage({ src: reader.result }).run()
+    reader.readAsDataURL(file)
   }
 
-  return (
-    <div className="p-4 bg-gray-100 rounded-xl shadow-md">
-      <div className="flex gap-2 mb-4 flex-wrap">
-        <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`px-3 py-1 rounded-lg ${editor.isActive("bold") ? "bg-blue-500 text-white" : "bg-white"}`}
-        >
-          B
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`px-3 py-1 rounded-lg ${editor.isActive("italic") ? "bg-blue-500 text-white" : "bg-white"}`}
-        >
-          I
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className={`px-3 py-1 rounded-lg ${editor.isActive("underline") ? "bg-blue-500 text-white" : "bg-white"}`}
-        >
-          U
-        </button>
-        <button onClick={addImage} className="px-3 py-1 rounded-lg bg-green-500 text-white">
-          درج عکس
-        </button>
-        <select
-          onChange={(e) => editor.chain().focus().setMark("textStyle", { fontSize: e.target.value }).run()}
-          className="px-2 py-1 rounded-lg"
-        >
-          <option value="12px">12</option>
-          <option value="14px">14</option>
-          <option value="16px" selected>16</option>
-          <option value="20px">20</option>
-          <option value="24px">24</option>
-          <option value="32px">32</option>
-        </select>
-      </div>
+  const addImage = () => fileInputRef.current.click()
+  const addLink = () => {
+    const url = window.prompt("لینک رو وارد کن:")
+    if (url) editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run()
+  }
+  const removeLink = () => editor.chain().focus().unsetLink().run()
 
-      <EditorContent editor={editor} className="bg-white p-4 rounded-lg shadow-inner min-h-[200px]" />
+  return (
+    <div className="editor-wrapper">
+      <div className="editor-toolbar">
+        {[
+          { cmd: "toggleBold", label: "B" },
+          { cmd: "toggleItalic", label: "I" },
+          { cmd: "toggleUnderline", label: "U" },
+        ].map(btn => (
+          <button
+            key={btn.cmd}
+            onClick={() => editor.chain().focus()[btn.cmd]().run()}
+            className={`editor-btn ${
+              editor.isActive(btn.cmd.replace("toggle", "").toLowerCase()) ? "active" : ""
+            }`}
+          >
+            {btn.label}
+          </button>
+        ))}
+        <button onClick={addImage} className="editor-btn image-btn">
+          📷
+        </button>
+        <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange} className="hidden" />
+        <select
+          onChange={e => editor.chain().focus().setMark("textStyle", { fontSize: e.target.value }).run()}
+          defaultValue="16px"
+          className="editor-select"
+        >
+          {["12px","14px","16px","20px","24px","32px"].map(sz => (
+            <option key={sz} value={sz}>{sz}</option>
+          ))}
+        </select>
+        <button onClick={addLink} className="editor-btn link-btn">
+          🔗
+        </button>
+        <button onClick={removeLink} className="editor-btn remove-link-btn">
+          ❌
+        </button>
+      </div>
+      <EditorContent editor={editor} className="editor-content" />
     </div>
   )
 }

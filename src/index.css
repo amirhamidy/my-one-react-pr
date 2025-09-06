@@ -864,5 +864,104 @@ ul {
   height: 4px;
 }
 
+.editor-wrapper {
+  background: #fefefe;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.editor-btn {
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: none;
+  background: #fff;
+  color: #555;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.editor-btn:hover {
+  background: #ff5c25c0;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.editor-btn.active {
+  background: #ff4f29;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.image-btn {
+  background: #ffe6dc;
+  color: #ff4f29;
+}
+
+.link-btn {
+  background: #f3e5ff;
+  color: #9c27b0;
+}
+
+.remove-link-btn {
+  background: #ffdada;
+  color: #f44336;
+}
+
+.editor-select {
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editor-select:hover {
+  border-color: #ff4f29;
+}
+
+.editor-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  min-height: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.editor-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.editor-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.editor-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.editor-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
 
