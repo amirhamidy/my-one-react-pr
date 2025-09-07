@@ -49,7 +49,7 @@ const brandsMock = [
 ];
 
 const AddProduct = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     name: "",
@@ -63,6 +63,7 @@ const AddProduct = () => {
     metaTitle: "",
   });
 
+  const [imagePreview, setImagePreview] = useState(null);
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [filteredBrands, setFilteredBrands] = useState([]);
   const [categoryOpen, setCategoryOpen] = useState(false);
@@ -86,6 +87,19 @@ const AddProduct = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setImagePreview(null);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -416,6 +430,32 @@ const AddProduct = () => {
           </button>
         </form>
         <Editor></Editor>
+
+
+        <div className="col-md-6 add-pr-autocomplete d-flex align-items-center gap-3">
+          <label
+            htmlFor="productImage"
+            className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+            style={{ cursor: "pointer" }}
+          >
+            تصویر اصلی محصول
+          </label>
+          <input
+            className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+            type="file"
+            id="productImage"
+            accept="image/*"
+            onChange={handleImageChange}
+            style={{ display: "none" }}
+          />
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="preview"
+              className="editor-image size-25 align-left"
+            />
+          )}
+        </div>
       </div>
     </>
   );
