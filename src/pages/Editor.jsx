@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState, useEffect } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { TextStyle } from "@tiptap/extension-text-style";
@@ -24,8 +24,6 @@ const FontSize = TextStyle.extend({
 });
 
 export default function Editor() {
-  const [selectionCoords, setSelectionCoords] = useState(null);
-
   const extensions = useMemo(() => [
     StarterKit.configure({ underline: false }),
     Underline,
@@ -33,10 +31,7 @@ export default function Editor() {
     Link.configure({ openOnClick: false }),
     Image.extend({
       addAttributes() {
-        return {
-          ...this.parent?.(),
-          class: { default: "editor-image size-100 align-left" }
-        };
+        return { ...this.parent?.(), class: { default: "editor-image size-100 align-left" } };
       }
     }),
     Color,
@@ -46,19 +41,6 @@ export default function Editor() {
 
   const editor = useEditor({ extensions, content: "" });
 
-  useEffect(() => {
-    if (!editor) return;
-    const update = () => {
-      const sel = editor.view?.state.selection;
-      if (!sel || sel.empty) return setSelectionCoords(null);
-      const dom = editor.view.domAtPos(sel.from).node;
-      const rect = dom.getBoundingClientRect();
-      setSelectionCoords({ top: rect.top - 50, left: rect.left });
-    };
-    editor.on("selectionUpdate", update);
-    return () => editor.off("selectionUpdate", update);
-  }, [editor]);
-
   const setLink = useCallback(async () => {
     if (!editor) return;
     const { value: url } = await Swal.fire({ title: "افزودن لینک", input: "url", inputPlaceholder: "آدرس لینک را وارد کنید", showCancelButton: true, confirmButtonText: "ثبت", cancelButtonText: "لغو" });
@@ -66,6 +48,7 @@ export default function Editor() {
   }, [editor]);
 
   const unsetLink = useCallback(() => { if (editor) editor.chain().focus().unsetLink().run(); }, [editor]);
+
   const addImage = useCallback(() => {
     if (!editor) return;
     const input = document.createElement("input");
@@ -81,18 +64,6 @@ export default function Editor() {
       reader.readAsDataURL(file);
     };
     input.click();
-  }, [editor]);
-
-  const handleDrop = useCallback((e) => {
-    e.preventDefault();
-    if (!editor) return;
-    const file = e.dataTransfer.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      editor.chain().focus().setImage({ src: reader.result, class: "editor-image size-100 align-left" }).run();
-    };
-    reader.readAsDataURL(file);
   }, [editor]);
 
   const resizeImageClass = useCallback((sizeClass) => {
@@ -121,40 +92,40 @@ export default function Editor() {
   if (!editor) return null;
 
   return (
-    <div onDrop={handleDrop} onDragOver={e => e.preventDefault()} style={{ position: "relative" }}>
+    <div style={{ position: "relative" }}>
       <div className="editor-toolbar">
-        <button className={`editor-btn ${editor.isActive("bold") ? "active" : ""}`} title="Bold" onClick={() => editor.chain().focus().toggleBold().run()}><Bold size={16} /></button>
-        <button className={`editor-btn ${editor.isActive("italic") ? "active" : ""}`} title="Italic" onClick={() => editor.chain().focus().toggleItalic().run()}><Italic size={16} /></button>
-        <button className={`editor-btn ${editor.isActive("underline") ? "active" : ""}`} title="Underline" onClick={() => editor.chain().focus().toggleUnderline().run()}><UnderlineIcon size={16} /></button>
-        <button className="editor-btn" title="Add Link" onClick={setLink}><LinkIcon size={16} /></button>
-        <button className="editor-btn" title="Remove Link" onClick={unsetLink}><X size={16} /></button>
-        <button className="editor-btn" title="Add Image" onClick={addImage}><ImageIcon size={16} /></button>
-        <button className="editor-btn" title="Align Left" onClick={() => setAlignment("left")}><AlignLeft size={16} /></button>
-        <button className="editor-btn" title="Align Center" onClick={() => setAlignment("center")}><AlignCenter size={16} /></button>
-        <button className="editor-btn" title="Align Right" onClick={() => setAlignment("right")}><AlignRight size={16} /></button>
-        <select className="editor-select" title="Font Size" onChange={e => editor.chain().focus().setMark("textStyle", { fontSize: e.target.value }).run()} defaultValue="16px">
+        <button className={`editor-btn ${editor.isActive("bold") ? "active" : ""}`} onClick={() => editor.chain().focus().toggleBold().run()}><Bold size={16} /></button>
+        <button className={`editor-btn ${editor.isActive("italic") ? "active" : ""}`} onClick={() => editor.chain().focus().toggleItalic().run()}><Italic size={16} /></button>
+        <button className={`editor-btn ${editor.isActive("underline") ? "active" : ""}`} onClick={() => editor.chain().focus().toggleUnderline().run()}><UnderlineIcon size={16} /></button>
+        <button className="editor-btn" onClick={setLink}><LinkIcon size={16} /></button>
+        <button className="editor-btn" onClick={unsetLink}><X size={16} /></button>
+        <button className="editor-btn" onClick={addImage}><ImageIcon size={16} /></button>
+        <button className="editor-btn" onClick={() => setAlignment("left")}><AlignLeft size={16} /></button>
+        <button className="editor-btn" onClick={() => setAlignment("center")}><AlignCenter size={16} /></button>
+        <button className="editor-btn" onClick={() => setAlignment("right")}><AlignRight size={16} /></button>
+        <select className="editor-select" onChange={e => editor.chain().focus().setMark("textStyle", { fontSize: e.target.value }).run()} defaultValue="16px">
           <option value="12px">12px</option>
           <option value="14px">14px</option>
           <option value="16px">16px</option>
           <option value="18px">18px</option>
           <option value="20px">20px</option>
         </select>
-        <select className="editor-select" title="Text Color" onChange={e => setColor(e.target.value)} defaultValue="#000000">
+        <select className="editor-select" onChange={e => setColor(e.target.value)} defaultValue="#000000">
           <option value="#000000">سیاه</option>
           <option value="#ff0000">قرمز</option>
           <option value="#0000ff">آبی</option>
           <option value="#008000">سبز</option>
         </select>
-        <button className="editor-btn" title="Undo" onClick={undo}><RotateCcw size={16} /></button>
-        <button className="editor-btn" title="Redo" onClick={redo}><RotateCw size={16} /></button>
+        <button className="editor-btn" onClick={undo}><RotateCcw size={16} /></button>
+        <button className="editor-btn" onClick={redo}><RotateCw size={16} /></button>
         <div className="image-resize-buttons">
-          <button className="editor-btn" title="25%" onClick={() => resizeImageClass("size-25")}>25%</button>
-          <button className="editor-btn" title="50%" onClick={() => resizeImageClass("size-50")}>50%</button>
-          <button className="editor-btn" title="75%" onClick={() => resizeImageClass("size-75")}>75%</button>
-          <button className="editor-btn" title="100%" onClick={() => resizeImageClass("size-100")}>100%</button>
+          <button className="editor-btn" onClick={() => resizeImageClass("size-25")}>25%</button>
+          <button className="editor-btn" onClick={() => resizeImageClass("size-50")}>50%</button>
+          <button className="editor-btn" onClick={() => resizeImageClass("size-75")}>75%</button>
+          <button className="editor-btn" onClick={() => resizeImageClass("size-100")}>100%</button>
         </div>
       </div>
-      <EditorContent editor={editor} className="editor-content editor-block" />
+      <EditorContent editor={editor} className="editor-content" />
     </div>
   );
 }
