@@ -1078,3 +1078,13 @@ ul {
   height: 200px;
   object-fit: contain;
 }
+
+
+#nprogress .bar {
+  background: #fc8e75 !important;
+  height: 4px !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #ffb9a9, 0 0 5px #ff9c86;
+}
