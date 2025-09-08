@@ -1,41 +1,81 @@
+import { Space } from "lucide-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const chatData = {
-  productName: "کفش ورزشی نایک",
-  userName: "علی رضایی",
-  userEmail: "ali@example.com",
-  message: "سلام، می‌خواستم بدونم سایز ۴۲ موجود دارید؟",
-  date: "2025-08-21 14:35",
+    productName: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال",
+    userName: "علی رضایی",
+    userEmail: "ali@example.com",
+    message: "سلام، می‌خواستم بدونم سایز هنوز موجود دارید؟",
+    date: "2025-08-21",
 };
 
 const ChatDetail = ({ chat = chatData, onBack }) => {
-  return (
-    <div className="cs-bg p-4 rounded-1 shadow-lg w-100 max-w-2xl mx-auto">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="cs-fs-18 fw-bold theme-color">
-          پیام برای: {chat.productName}
-        </h2>
-        <button className="action-btn px-3 py-2" onClick={onBack}>
-          بازگشت
-        </button>
-      </div>
+    const navigate = useNavigate();
 
-      <div className="user-card mb-3 p-3 shadow-sm">
-        <p className="cs-fs-15 fw-bold">{chat.userName}</p>
-        <p className="cs-fs-13 cs-li-color">{chat.userEmail}</p>
-      </div>
+    return (
+        <>
+            <form className="w-100 d-flex justify-content-start align-items-baseline w-right flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
+                <div className="search-input w-25 px-2 w-right text-light cs-fs-14 text-right">
+                    <input
+                        className="form-control-custom rounded-1"
+                        type="text"
+                        placeholder="عنوان محصول یا نام کاربر را وارد کنید ..."
+                    />
+                </div>
+            </form>
 
-      <div className="user-card p-3 shadow-sm mb-3">
-        <p className="cs-fs-14">{chat.message}</p>
-        <p className="cs-fs-12 cs-li-color text-end">{chat.date}</p>
-      </div>
+            <button
+                onClick={() => navigate(-1)}
+                className="text-light py-2 px-3 border-0 rounded-2 add-pr-mr"
+            >
+                بازگشت
+            </button>
 
-      <div className="d-flex gap-2">
-        <button className="delete-btn action-btn px-3 py-2">حذف</button>
-        <button className="edit-btn action-btn px-3 py-2">پاسخ</button>
-      </div>
-    </div>
-  );
+
+            <div className="cs-h-for-pr w-100 px-3 py-3">
+                <div className=" px-3 py-3 rounded-1 w-100">
+                    <div className="d-flex justify-content-between align-items-center mb-4">
+                        <h5 className="fw-bold"> موضوع پیام:
+                            <span className="text-muted mx-1 ">
+                                {chat.productName}
+                            </span>
+                        </h5>
+                    </div>
+
+                    <div className="user-card mb-3 p-3 shadow-sm">
+                        <p className="cs-fs-12 text-end "> نام کاربر :
+                            <span className="text-muted mx-1 ">
+                                {chat.userName}
+                            </span>
+                        </p>
+                        <p className="cs-fs-12 text-end "> ایمیل کاربر :
+                            <span className="text-muted mx-1 ">
+                                {chat.userEmail}
+                            </span>
+                        </p>
+                        <p className="cs-fs-12 text-end "> پیام :
+                            <span className="text-muted mx-1 ">
+                                {chat.message}
+                            </span>
+                        </p>                        <p className="cs-fs-12 text-end "> تاریخ ارسال پیام :
+                            <span className="text-muted mx-1 ">
+                                {chat.date}
+                            </span>
+                        </p>
+                    </div>
+
+                    <div className="d-flex gap-2">
+                        <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">حذف</button>
+                        <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">پاسخ</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </>
+    );
 };
 
 export default ChatDetail;
