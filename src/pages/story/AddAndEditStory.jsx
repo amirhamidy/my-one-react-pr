@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import StoryForm from "./storyForm";
 
 const productsMock = [
   { id: 1, name: "سامسونگ" },
@@ -86,148 +87,149 @@ const AdmStoryPanel = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(form);
-    alert("استوری اضافه شد!");
-  };
 
   return (
-    <div className="add-pr-container container px-5">
-      <h3 className="add-pr-title">افزودن استوری</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="row add-pr-row">
-          <div className="col-md-6">
-            <input
-              type="text"
-              className="form-control-custom add-pr-input"
-              placeholder="عنوان استوری"
-              name="storyTitle"
-              value={form.storyTitle}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="col-md-6">
-            <input
-              type="text"
-              className="form-control-custom add-pr-input"
-              placeholder="عنوان محصول در کپشن"
-              name="captionTitle"
-              value={form.captionTitle}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="col-md-6">
-            <div
-              className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center justify-content-center"
-              style={{ height: "50px" }}
-              onClick={() => document.getElementById("videoInput").click()}
-            >
-              {form.video ? form.video.name : "آپلود ویدئو"}
-            </div>
-            <input
-              type="file"
-              id="videoInput"
-              accept="video/*"
-              name="video"
-              onChange={handleChange}
-              style={{ display: "none" }}
-            />
-            {videoPreview && (
-              <video
-                src={videoPreview}
-                controls
-                className="img-story mt-2"
+
+    <>
+
+    <StoryForm></StoryForm>
+      <div className="add-pr-container container px-5">
+        <h3 className="add-pr-title">افزودن استوری</h3>
+        <form>
+          <div className="row add-pr-row">
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="form-control-custom add-pr-input"
+                placeholder="عنوان استوری"
+                name="storyTitle"
+                value={form.storyTitle}
+                onChange={handleChange}
               />
-            )}
-          </div>
-          <div className="col-md-6">
-            <div
-              className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center justify-content-center"
-              style={{ height: "50px" }}
-              onClick={() => document.getElementById("bannerInput").click()}
-            >
-              {form.banner ? form.banner.name : "آپلود بنر قبل از پخش"}
             </div>
-            <input
-              type="file"
-              id="bannerInput"
-              accept="image/*"
-              name="banner"
-              onChange={handleChange}
-              style={{ display: "none" }}
-            />
-            {bannerPreview && (
-              <img
-                src={bannerPreview}
-                alt="بنر"
-                className="img-story mt-2"
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="form-control-custom add-pr-input"
+                placeholder="عنوان محصول در کپشن"
+                name="captionTitle"
+                value={form.captionTitle}
+                onChange={handleChange}
               />
-            )}
-          </div>
-          <div className="col-md-6 add-pr-autocomplete" ref={productRef}>
-            <input
-              type="text"
-              className="form-control-custom add-pr-input"
-              placeholder="انتخاب محصول"
-              name="product"
-              value={form.product}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-              autoComplete="off"
-            />
-            {productOpen && filteredProducts.length > 0 && (
-              <ul className="add-pr-suggestions">
-                {filteredProducts.map((p, idx) => (
+            </div>
+            <div className="col-md-6">
+              <div
+                className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center justify-content-center"
+                style={{ height: "50px" }}
+                onClick={() => document.getElementById("videoInput").click()}
+              >
+                {form.video ? form.video.name : "آپلود ویدئو"}
+              </div>
+              <input
+                type="file"
+                id="videoInput"
+                accept="video/*"
+                name="video"
+                onChange={handleChange}
+                style={{ display: "none" }}
+              />
+              {videoPreview && (
+                <video
+                  src={videoPreview}
+                  controls
+                  className="img-story-2 mt-2"
+                />
+              )}
+            </div>
+            <div className="col-md-6">
+              <div
+                className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center justify-content-center"
+                style={{ height: "50px" }}
+                onClick={() => document.getElementById("bannerInput").click()}
+              >
+                {form.banner ? form.banner.name : "آپلود بنر قبل از پخش"}
+              </div>
+              <input
+                type="file"
+                id="bannerInput"
+                accept="image/*"
+                name="banner"
+                onChange={handleChange}
+                style={{ display: "none" }}
+              />
+              {bannerPreview && (
+                <img
+                  src={bannerPreview}
+                  alt="بنر"
+                  className="img-story-2 mt-2"
+                />
+              )}
+            </div>
+            <div className="col-md-6 add-pr-autocomplete" ref={productRef}>
+              <input
+                type="text"
+                className="form-control-custom add-pr-input"
+                placeholder="انتخاب محصول"
+                name="product"
+                value={form.product}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                autoComplete="off"
+              />
+              {productOpen && filteredProducts.length > 0 && (
+                <ul className="add-pr-suggestions">
+                  {filteredProducts.map((p, idx) => (
+                    <li
+                      key={p.id}
+                      className={productActiveIndex === idx ? "active" : ""}
+                      onMouseDown={() => handleSelectProduct(p.name)}
+                    >
+                      {p.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div className="col-md-6 add-pr-autocomplete">
+              <input
+                type="text"
+                className="form-control-custom add-pr-input"
+                placeholder="وضعیت نمایش"
+                readOnly
+                value={form.status ? "نمایش استوری" : "عدم نمایش"}
+                onClick={() => setStatusOpen(!statusOpen)}
+              />
+              {statusOpen && (
+                <ul className="add-pr-suggestions">
                   <li
-                    key={p.id}
-                    className={productActiveIndex === idx ? "active" : ""}
-                    onMouseDown={() => handleSelectProduct(p.name)}
+                    onMouseDown={() => {
+                      setForm({ ...form, status: true });
+                      setStatusOpen(false);
+                    }}
                   >
-                    {p.name}
+                    نمایش استوری
                   </li>
-                ))}
-              </ul>
-            )}
+                  <li
+                    onMouseDown={() => {
+                      setForm({ ...form, status: false });
+                      setStatusOpen(false);
+                    }}
+                  >
+                    عدم نمایش
+                  </li>
+                </ul>
+              )}
+            </div>
+            <div className="col-12">
+              <button type="submit" className="add-pr-btn mt-3">
+                ثبت استوری
+              </button>
+            </div>
           </div>
-          <div className="col-md-6 add-pr-autocomplete">
-            <input
-              type="text"
-              className="form-control-custom add-pr-input"
-              placeholder="وضعیت نمایش"
-              readOnly
-              value={form.status ? "نمایش استوری" : "عدم نمایش"}
-              onClick={() => setStatusOpen(!statusOpen)}
-            />
-            {statusOpen && (
-              <ul className="add-pr-suggestions">
-                <li
-                  onMouseDown={() => {
-                    setForm({ ...form, status: true });
-                    setStatusOpen(false);
-                  }}
-                >
-                  نمایش استوری
-                </li>
-                <li
-                  onMouseDown={() => {
-                    setForm({ ...form, status: false });
-                    setStatusOpen(false);
-                  }}
-                >
-                  عدم نمایش
-                </li>
-              </ul>
-            )}
-          </div>
-          <div className="col-12">
-            <button type="submit" className="add-pr-btn mt-3">
-              ثبت استوری
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
+
   );
 };
 

@@ -472,6 +472,13 @@ ul {
   overflow: hidden;
 }
 
+.img-story-2 {
+  object-fit: cover;
+  width: 180px;
+  height: 180px;
+
+}
+
 .product-card-s {
   max-height: 35%;
 }
@@ -1072,7 +1079,7 @@ ul {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.editor-image{
+.editor-image {
   width: 200px;
   height: 200px;
   object-fit: contain;
@@ -1144,9 +1151,11 @@ ul {
 
   .adm-story-status {
     font-size: 13px;
+
     &.approved {
       color: #4caf50;
     }
+
     &.pending {
       color: #f44336;
     }
@@ -1204,4 +1213,3 @@ ul {
     }
   }
 }
-
