@@ -31,7 +31,7 @@ const chatsData = [
     date: "2025-08-18 18:50",
     userType: "کاربر عادی",
   },
-    {
+  {
     id: 5,
     name: "علی رضایی",
     email: "ali@example.com",
@@ -116,10 +116,10 @@ const Chats = () => {
               </span>
               <span
                 className={`chat-type cs-fs-13 ${chat.userType === "ادمین"
-                    ? "theme-color"
-                    : chat.userType === "سوپر یوزر"
-                      ? "cs-fs-14 theme-color"
-                      : "cs-li-color"
+                  ? "theme-color"
+                  : chat.userType === "سوپر یوزر"
+                    ? "cs-fs-14 theme-color"
+                    : "cs-li-color"
                   }`}
               >
                 نوع کاربر: {chat.userType}
@@ -131,12 +131,9 @@ const Chats = () => {
                 <Link to="singleChat" className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                   مشاهده گفتگو
                 </Link>
-                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                  جزئیات کاربر
-                </button>
-                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                  جواب دادن
-                </button>
+                <Link to="" className="edit-btn border-none rounded-2 text-center cs-fs-14 px-2 py-2">
+                  پاسخ
+                </Link>
               </div>
             )}
           </div>

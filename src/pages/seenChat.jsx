@@ -27,7 +27,7 @@ const ChatDetail = ({ chat = chatData, onBack }) => {
 
             <button
                 onClick={() => navigate(-1)}
-                className="text-light py-2 px-3 border-0 rounded-2 add-pr-mr"
+                className="text-light py-2 px-3 mt-2 border-0 rounded-2 add-pr-mr"
             >
                 بازگشت
             </button>
@@ -43,7 +43,7 @@ const ChatDetail = ({ chat = chatData, onBack }) => {
                         </h5>
                     </div>
 
-                    <div className="user-card mb-3 p-3 shadow-sm">
+                    <div className="user-card rounded-2 mb-3 p-3 shadow-sm">
                         <p className="cs-fs-12 text-end "> نام کاربر :
                             <span className="text-muted mx-1 ">
                                 {chat.userName}
