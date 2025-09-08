@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const chatsData = [
   {
@@ -127,11 +128,11 @@ const Chats = () => {
 
             {activeChat === chat.id && (
               <div className="product-actions" style={{ msFlexDirection: "column", position: "absolute", top: "15%", left: "15%", flexDirection: "column", display: "flex", gap: "0.1rem", transition: "0.3s", animation: "fadeIn 0.3s ease forwards", }} >
+                <Link to="singleChat" className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
+                  مشاهده گفتگو
+                </Link>
                 <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                   جزئیات کاربر
-                </button>
-                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                  مشاهده گفتگو
                 </button>
                 <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                   جواب دادن
