@@ -68,24 +68,8 @@ const Story = () => {
                 <div className="px-2 my-2 w-right text-light cs-fs-14 d-flex justify-content-around text-right w-75"></div>
             </form>
 
-            <Link to="/Addstory" className="text-light btn add-pr-mr">
+            <Link to="/Sotry/AddAndEditStory" className="text-light btn add-pr-mr">
                 استوری جدید
-                <svg
-                    className="mx-1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="1em"
-                    height="1em"
-                >
-                    <path
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                    ></path>
-                </svg>
             </Link>
 
             <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">

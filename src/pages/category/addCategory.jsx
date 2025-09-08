@@ -53,7 +53,7 @@ const AddCta = () => {
                     <input className="form-control-custom rounded-1" type="text" placeholder="عنوان دسته بندی ....." />
                 </div>
             </form>
-            <Link to='/Addstory' className="text-light btn add-pr-mr">
+            <Link to='/' className="text-light btn add-pr-mr">
                 دسته بندی جدید
                 <svg className="mx-1"
                     xmlns="http://www.w3.org/2000/svg"
