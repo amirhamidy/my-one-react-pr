@@ -1,0 +1,119 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import CTAForm from "./CTAForm";
+
+const AdmCategoryPanel = () => {
+    const [form, setForm] = useState({
+        title: "",
+        slug: "",
+        image: null,
+    });
+
+    const [imagePreview, setImagePreview] = useState(null);
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+        if (name === "image" && files[0]) {
+            setForm({ ...form, image: files[0] });
+            setImagePreview(URL.createObjectURL(files[0]));
+        } else {
+            setForm({ ...form, [name]: value });
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Category Data:", form);
+    };
+
+    return (
+        <>
+
+        <CTAForm></CTAForm>
+            <button
+                onClick={() => navigate(-1)}
+                className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr "
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1.2em"
+                    height="1.2em"
+                >
+                    <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        d="M6 12.4h12M12.6 7l5.4 5.4l-5.4 5.4"
+                    ></path>
+                </svg>
+                بازگشت
+            </button>
+            <div className="add-pr-container container px-5">
+                <h3 className="text-right py-4 cs-fs-15 fw-bold">افزودن دسته‌بندی</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className="row add-pr-row">
+                        <div className="col-md-6">
+                            <input
+                                type="text"
+                                className="form-control-custom add-pr-input"
+                                placeholder="عنوان دسته‌بندی"
+                                name="title"
+                                value={form.title}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="col-md-6">
+                            <input
+                                type="text"
+                                className="form-control-custom add-pr-input"
+                                placeholder="اسلاگ دسته‌بندی"
+                                name="slug"
+                                value={form.slug}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="col-md-6">
+                            <div
+                                className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center"
+                                style={{ height: "50px" }}
+                                onClick={() => document.getElementById("imageInput").click()}
+                            >
+                                {form.image ? form.image.name : "آپلود تصویر دسته‌بندی"}
+                            </div>
+                            <input
+                                type="file"
+                                id="imageInput"
+                                accept="image/*"
+                                name="image"
+                                onChange={handleChange}
+                                style={{ display: "none" }}
+                            />
+                            {imagePreview && (
+                                <img
+                                    src={imagePreview}
+                                    alt="دسته‌بندی"
+                                    className="img-story-2 mt-2"
+                                />
+                            )}
+                        </div>
+
+                        <div className="col-12">
+                            <button
+                                type="submit"
+                                className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+                            >
+                                اضافه کردن دسته‌بندی
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </>
+    );
+};
+
+export default AdmCategoryPanel;

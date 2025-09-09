@@ -23,8 +23,6 @@ const UserDetails = () => {
     };
 
     return (
-
-
         <>
             <UserForm>
             </UserForm>

@@ -19,6 +19,7 @@ import ContactGrid from "./pages/contact/contact"
 import ChatDetail from "./pages/chat/seenChat"
 import AddAndEditStory from "./pages/story/AddAndEditStory"
 import UserDetails from "./pages/users/userDetails"
+import AdmCategoryPanel from "./pages/category/CategoryAdd"
 
 
 
@@ -49,6 +50,7 @@ const Navbar = () => {
                 <Route path="/chats/singleChat" element={<ChatDetail></ChatDetail>} />
                 <Route path="/Sotry/AddAndEditStory" element={<AddAndEditStory></AddAndEditStory>} />
                 <Route path="/users/details" element={<UserDetails></UserDetails>} />
+                <Route path="/AddCategory/add" element={<AdmCategoryPanel></AdmCategoryPanel>} />
             </Routes>
         </section>
     )
