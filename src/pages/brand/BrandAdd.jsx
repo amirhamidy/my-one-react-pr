@@ -1,0 +1,120 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import BrandForm from "./brandForm";
+
+const AdmBrandPanel = () => {
+  const [form, setForm] = useState({
+    name: "",
+    slug: "",
+    logo: null,
+  });
+
+  const [logoPreview, setLogoPreview] = useState(null);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "logo" && files[0]) {
+      setForm({ ...form, logo: files[0] });
+      setLogoPreview(URL.createObjectURL(files[0]));
+    } else {
+      setForm({ ...form, [name]: value });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Brand Data:", form);
+  };
+
+  return (
+    <>
+
+    <BrandForm></BrandForm>
+      <button
+        onClick={() => navigate(-1)}
+        className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="1.2em"
+          height="1.2em"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            d="M6 12.4h12M12.6 7l5.4 5.4l-5.4 5.4"
+          ></path>
+        </svg>
+        بازگشت
+      </button>
+
+      <div className="add-pr-container container px-5">
+        <h3 className="text-right py-4 cs-fs-15 fw-bold">افزودن برند</h3>
+        <form onSubmit={handleSubmit}>
+          <div className="row add-pr-row">
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="form-control-custom add-pr-input"
+                placeholder="نام برند"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="form-control-custom add-pr-input"
+                placeholder="اسلاگ برند"
+                name="slug"
+                value={form.slug}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="col-md-6">
+              <div
+                className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center"
+                style={{ height: "50px" }}
+                onClick={() => document.getElementById("logoInput").click()}
+              >
+                {form.logo ? form.logo.name : "آپلود لوگو برند"}
+              </div>
+              <input
+                type="file"
+                id="logoInput"
+                accept="image/*"
+                name="logo"
+                onChange={handleChange}
+                style={{ display: "none" }}
+              />
+              {logoPreview && (
+                <img
+                  src={logoPreview}
+                  alt="لوگو برند"
+                  className="img-story-2 mt-2"
+                />
+              )}
+            </div>
+
+            <div className="col-12">
+              <button
+                type="submit"
+                className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+              >
+                اضافه کردن برند
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default AdmBrandPanel;

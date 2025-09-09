@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import CTAForm from "./CTAForm";
 
 const categories = [
     { id: 1, name: "الکترونیک", img: "../vite.svg" },
@@ -48,11 +49,7 @@ const AddCta = () => {
 
     return (
         <>
-            <form className="w-100 d-flex justify-content-start align-items-baseline  text-center flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
-                <div className="px-2 w-right text-light cs-fs-14  text-right w-25">
-                    <input className="form-control-custom rounded-1" type="text" placeholder="عنوان دسته بندی ....." />
-                </div>
-            </form>
+            <CTAForm></CTAForm>
             <Link to='/AddCategory/add' className="text-light py-2 cs-fs-14 px-2 border-0 rounded-2 add-pr-mr">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
