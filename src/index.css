@@ -1213,3 +1213,15 @@ ul {
     }
   }
 }
+
+
+
+.list-group-item {
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+.user-img-detail{
+  border: 1px ridge #eeeeee;
+}
