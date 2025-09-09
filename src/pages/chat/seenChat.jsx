@@ -1,6 +1,7 @@
 import { Space } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import ChatForm from "./ChatForm";
 
 const chatData = {
     productName: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال",
@@ -15,24 +16,13 @@ const ChatDetail = ({ chat = chatData, onBack }) => {
 
     return (
         <>
-            <form className="w-100 d-flex justify-content-start align-items-baseline w-right flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
-                <div className="search-input w-25 px-2 w-right text-light cs-fs-14 text-right">
-                    <input
-                        className="form-control-custom rounded-1"
-                        type="text"
-                        placeholder="عنوان محصول یا نام کاربر را وارد کنید ..."
-                    />
-                </div>
-            </form>
-
+          <ChatForm></ChatForm>
             <button
                 onClick={() => navigate(-1)}
                 className="text-light py-2 px-3 mt-2 border-0 rounded-2 add-pr-mr"
             >
                 بازگشت
             </button>
-
-
             <div className="cs-h-for-pr w-100 px-3 py-3">
                 <div className=" px-3 py-3 rounded-1 w-100">
                     <div className="d-flex justify-content-between align-items-center mb-4">
