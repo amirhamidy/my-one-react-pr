@@ -40,7 +40,7 @@ const Users = () => {
                             <p className="my-2  one-line "><strong>شماره:</strong> {user.UserPhone}</p>
                             <p className="mb-0 user-level one-line ">{user.UserLevel}</p>
                         </div>
-                        <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 mt-3">مشاهده تمام جزئیات</button>
+                        <Link to='/users/details' className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 mt-3">مشاهده تمام جزئیات</Link>
                     </div>
                 ))}
             </div>

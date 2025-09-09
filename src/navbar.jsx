@@ -18,6 +18,7 @@ import BlogCategory from "./pages/blog/blogCTA"
 import ContactGrid from "./pages/contact/contact"
 import ChatDetail from "./pages/chat/seenChat"
 import AddAndEditStory from "./pages/story/AddAndEditStory"
+import UserDetails from "./pages/users/userDetails"
 
 
 
@@ -47,6 +48,7 @@ const Navbar = () => {
                 <Route path="/contact-us" element={<ContactGrid></ContactGrid>} />
                 <Route path="/chats/singleChat" element={<ChatDetail></ChatDetail>} />
                 <Route path="/Sotry/AddAndEditStory" element={<AddAndEditStory></AddAndEditStory>} />
+                <Route path="/users/details" element={<UserDetails></UserDetails>} />
             </Routes>
         </section>
     )
