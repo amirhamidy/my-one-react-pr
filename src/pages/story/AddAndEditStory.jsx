@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import StoryForm from "./storyForm";
 
 const productsMock = [
@@ -32,6 +33,9 @@ const AdmStoryPanel = () => {
   const [statusOpen, setStatusOpen] = useState(false);
 
   const productRef = useRef(null);
+
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -92,9 +96,16 @@ const AdmStoryPanel = () => {
 
     <>
 
-    <StoryForm></StoryForm>
+      <StoryForm></StoryForm>
+
+      <button
+        onClick={() => navigate(-1)}
+        className="text-light py-2 px-3 border-0 cs-fs-14 rounded-2 add-pr-mr"
+      >
+        بازگشت
+      </button>
       <div className="add-pr-container container px-5">
-        <h3 className="add-pr-title">افزودن استوری</h3>
+        <h3 className="text-right py-4 cs-fs-15 fw-bold">افزودن استوری</h3>
         <form>
           <div className="row add-pr-row">
             <div className="col-md-6">
@@ -119,7 +130,7 @@ const AdmStoryPanel = () => {
             </div>
             <div className="col-md-6">
               <div
-                className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center justify-content-center"
+                className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center"
                 style={{ height: "50px" }}
                 onClick={() => document.getElementById("videoInput").click()}
               >
@@ -143,7 +154,7 @@ const AdmStoryPanel = () => {
             </div>
             <div className="col-md-6">
               <div
-                className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center justify-content-center"
+                className="form-control-custom add-pr-input cursor-pointer d-flex align-items-center "
                 style={{ height: "50px" }}
                 onClick={() => document.getElementById("bannerInput").click()}
               >
@@ -155,7 +166,7 @@ const AdmStoryPanel = () => {
                 accept="image/*"
                 name="banner"
                 onChange={handleChange}
-                style={{ display: "none" }}
+                style={{ display: "none", textAlign: "right" }}
               />
               {bannerPreview && (
                 <img
@@ -221,8 +232,11 @@ const AdmStoryPanel = () => {
               )}
             </div>
             <div className="col-12">
-              <button type="submit" className="add-pr-btn mt-3">
-                ثبت استوری
+              <button
+                type="submit"
+                className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+              >
+                اضافه کردن استوری
               </button>
             </div>
           </div>

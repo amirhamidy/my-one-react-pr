@@ -58,9 +58,9 @@ const Story = () => {
 
     return (
         <>
-           
-           <StoryForm></StoryForm>
-            <Link to="/Sotry/AddAndEditStory" className="text-light btn add-pr-mr">
+
+            <StoryForm></StoryForm>
+            <Link to='/Sotry/AddAndEditStory' className="text-light py-2 px-3 cs-fs-14 border-0 rounded-2 add-pr-mr">
                 استوری جدید
             </Link>
             <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
@@ -71,7 +71,7 @@ const Story = () => {
                         className={`d-flex align-items-center product-card mx-2 px-3 py-5 my-2 ${openMenu === item.StoryCode ? "active" : ""}`}
                         onClick={() => toggleMenu(item.StoryCode)}
                     >
-                        <div className="product-actions" style={{msFlexDirection:"column" , position:"absolute" , top:"15%" , left:"10%" , flexDirection:"column" , display:"flex" , gap:"0.1rem" , transition:"0.3s" , animation: "fadeIn 0.3s ease forwards"}}>
+                        <div className="product-actions" style={{ msFlexDirection: "column", position: "absolute", top: "15%", left: "10%", flexDirection: "column", display: "flex", gap: "0.1rem", transition: "0.3s", animation: "fadeIn 0.3s ease forwards" }}>
                             {openMenu === item.StoryCode && (
                                 <div style={menuStyles}>
                                     <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2" style={buttonStyles}>ویرایش</button>

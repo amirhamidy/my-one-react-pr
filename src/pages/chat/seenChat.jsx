@@ -19,7 +19,7 @@ const ChatDetail = ({ chat = chatData, onBack }) => {
           <ChatForm></ChatForm>
             <button
                 onClick={() => navigate(-1)}
-                className="text-light py-2 px-3 mt-2 border-0 rounded-2 add-pr-mr"
+                className="text-light py-2 px-3 mt-2 cs-fs-14 border-0 rounded-2 add-pr-mr"
             >
                 بازگشت
             </button>

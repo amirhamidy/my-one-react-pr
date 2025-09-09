@@ -163,15 +163,34 @@ const AddProduct = () => {
     alert("محصول اضافه شد!");
   };
 
+
+
+
+
+
   return (
     <>
 
       <ProductForm></ProductForm>
       <button
         onClick={() => navigate(-1)}
-        className="text-light py-2 px-3 border-0 rounded-2 add-pr-mr"
+        className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr "
       >
-        بازگشت
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="1.2em"
+            height="1.2em"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              d="M6 12.4h12M12.6 7l5.4 5.4l-5.4 5.4"
+            ></path>
+          </svg>
+
+          بازگشت
       </button>
       <div className="add-pr-container container px-5">
         <h3 className="text-right py-4 cs-fs-15 fw-bold">افزودن محصول</h3>
@@ -318,12 +337,6 @@ const AddProduct = () => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
-          >
-            اضافه کردن محصول
-          </button>
         </form>
         <Editor></Editor>
 
@@ -334,7 +347,7 @@ const AddProduct = () => {
             className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
             style={{ cursor: "pointer" }}
           >
-            تصویر اصلی محصول
+            اضافه کردن تصویر اصلی محصول
           </label>
           <input
             className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
@@ -352,8 +365,35 @@ const AddProduct = () => {
             />
           )}
         </div>
+
+        <button
+          type="submit"
+          className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+        >
+          ثبت محصول
+          <svg className="mx-1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            width="1.5em"
+            height="1.5em">
+            <g
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
+            >
+              <path d="M14.25 8.75c-.5 2.5-2.385 4.854-5.03 5.38A6.25 6.25 0 0 1 3.373 3.798C5.187 1.8 8.25 1.25 10.75 2.25"></path>
+              <path d="m5.75 7.75l2.5 2.5l6-6.5"></path>
+            </g>
+          </svg>
+        </button>
       </div>
+
+
     </>
+
+
   );
 };
 
