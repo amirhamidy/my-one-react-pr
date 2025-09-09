@@ -60,8 +60,21 @@ const Story = () => {
         <>
 
             <StoryForm></StoryForm>
-            <Link to='/Sotry/AddAndEditStory' className="text-light py-2 px-3 cs-fs-14 border-0 rounded-2 add-pr-mr">
-                استوری جدید
+            <Link to='/Sotry/AddAndEditStory' className="text-light py-2 cs-fs-14 px-2 border-0 rounded-2 add-pr-mr">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1.2em"
+                    height="1.2em"
+                >
+                    <path
+                        fill="currentColor"
+                        d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"
+                    ></path>
+                </svg>
+                <span className="mx-1">
+                    ثبت استوری جدید
+                </span>
             </Link>
             <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
                 {StoryData.map((item, index) => (

@@ -50,23 +50,21 @@ const Brands = () => {
                 </div>
             </form>
 
-            <Link to='/' className="text-light btn add-pr-mr">
-                برند جدید
-                <svg className="mx-1"
+            <Link to='/' className="text-light py-2 cs-fs-14 px-2 border-0 rounded-2 add-pr-mr">
+                <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    width="1em"
-                    height="1em"
+                    width="1.2em"
+                    height="1.2em"
                 >
                     <path
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        fill="currentColor"
+                        d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"
                     ></path>
                 </svg>
+                <span className="mx-1">
+                    ثبت برند جدید
+                </span>
             </Link>
             <div className="d-flex justify-content-center flex-wrap w-100 cs-h-for-pr py-4">
                 {brandsData.map((brand, index) => (
@@ -82,7 +80,7 @@ const Brands = () => {
                         </div>
 
                         {activeBrand === index && (
-                            <div className="product-actions" style={{msFlexDirection:"column" , position:"absolute" , top:"15%" , left:"10%" , flexDirection:"column" , display:"flex" , gap:"0.1rem" , transition:"0.3s" , animation: "fadeIn 0.3s ease forwards"}}>
+                            <div className="product-actions" style={{ msFlexDirection: "column", position: "absolute", top: "15%", left: "10%", flexDirection: "column", display: "flex", gap: "0.1rem", transition: "0.3s", animation: "fadeIn 0.3s ease forwards" }}>
                                 <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">ویرایش</button>
                                 <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">حذف</button>
                             </div>

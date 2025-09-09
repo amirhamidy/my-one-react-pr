@@ -374,8 +374,8 @@ const AddProduct = () => {
           <svg className="mx-1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
-            width="1.5em"
-            height="1.5em">
+            width="1.2em"
+            height="1.2em">
             <g
               fill="none"
               stroke="currentColor"
