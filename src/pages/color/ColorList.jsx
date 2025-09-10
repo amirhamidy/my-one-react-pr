@@ -61,7 +61,7 @@ const ColorList = () => {
 
     return (
 
-        <>
+        <div className="position-relative">
             <form className="w-100 d-flex justify-content-start align-items-baseline  text-center flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
                 <div className="px-2 w-right text-light cs-fs-14  text-right w-25">
                     <input className="form-control-custom rounded-1" type="text" placeholder="عنوان رنگ ....." />
@@ -84,9 +84,12 @@ const ColorList = () => {
                 </span>
             </button>
 
-            <form onClick={HandleNoneForm} className={`${PopUp ? 'form-for-color' : 'form-for-color-none'}`}>
-                یک نمونه تست برای کارکرد این دستور
-            </form>
+            <div className={`${PopUp ? 'overlay-for-color-form' : 'overlay-for-color-form-none'}`}>
+                
+                <form onClick={HandleNoneForm} className={`${PopUp ? 'form-for-color' : 'form-for-color-none'} cs-bg`}>
+                    یک نمونه تست برای کارکرد این دستور
+                </form>
+            </div>
 
             <div className="d-flex justify-content-center flex-wrap w-100 cs-h-for-pr py-4">
                 {colorsData.map((color, index) => (
@@ -120,7 +123,7 @@ const ColorList = () => {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 
