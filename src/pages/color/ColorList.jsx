@@ -25,6 +25,8 @@ const ColorList = () => {
     const [activeColor, setActiveColor] = useState(null);
     const colorRefs = useRef([]);
 
+    const [PopUp, SetPopUp] = useState(false)
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
@@ -42,6 +44,21 @@ const ColorList = () => {
         setActiveColor(activeColor === index ? null : index);
     };
 
+
+    const HandleShowForm = () => {
+        if (PopUp === false) {
+            SetPopUp(!PopUp)
+            console.log(PopUp)
+        }
+    }
+    const HandleNoneForm = () => {
+        if (PopUp === true) {
+            SetPopUp(!PopUp)
+            console.log(PopUp)
+        }
+    }
+
+
     return (
 
         <>
@@ -50,7 +67,7 @@ const ColorList = () => {
                     <input className="form-control-custom rounded-1" type="text" placeholder="عنوان رنگ ....." />
                 </div>
             </form>
-            <Link to='/' className="text-light py-2 cs-fs-14 px-2 border-0 rounded-2 add-pr-mr">
+            <button onClick={HandleShowForm} className="text-light py-2 cs-fs-14 px-2 border-0 rounded-2 add-pr-mr">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -65,7 +82,12 @@ const ColorList = () => {
                 <span className="mx-1">
                     ثبت رنگ جدید
                 </span>
-            </Link>
+            </button>
+
+            <form onClick={HandleNoneForm} className={`${PopUp ? 'form-for-color' : 'form-for-color-none'}`}>
+                یک نمونه تست برای کارکرد این دستور
+            </form>
+
             <div className="d-flex justify-content-center flex-wrap w-100 cs-h-for-pr py-4">
                 {colorsData.map((color, index) => (
                     <div

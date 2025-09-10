@@ -1222,6 +1222,19 @@ ul {
 }
 
 
-.user-img-detail{
+.user-img-detail {
   border: 1px ridge #eeeeee;
+}
+
+
+.form-for-color-none {
+  visibility: hidden;
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.form-for-color {
+  transition: 0.3s;
+  visibility: visible;
+  opacity: 1;
 }
