@@ -33,6 +33,7 @@ const Navbar = () => {
                 <Route path='/chats' element={<Chats />} />
                 <Route path='/product' element={<Product />} />
                 <Route path='/users' element={<Users />} />
+                <Route path="/users/:id" element={<UserDetails />} />
                 <Route path="/product/Addproduct" element={<Addproduct />} />
                 <Route path='/AddCategory' element={<AddCta />} />
                 <Route path='/add-brand' element={<Brands />} />
@@ -45,7 +46,6 @@ const Navbar = () => {
                 <Route path="/contact-us" element={<ContactGrid />} />
                 <Route path="/chats/singleChat" element={<ChatDetail />} />
                 <Route path="/Sotry/AddAndEditStory" element={<AddAndEditStory />} />
-                <Route path="/users/details" element={<UserDetails />} />
                 <Route path="/AddCategory/add" element={<AdmCategoryPanel />} />
                 <Route path="/add-brand/add" element={<AdmBrandPanel />} />
             </Routes>
