@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import UserForm from "./userForm";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Loader } from "lucide-react";
 
 
 const Users = () => {
@@ -20,7 +21,7 @@ const Users = () => {
 
             <UserForm></UserForm>
 
-            <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
+            <div className="d-flex justify-content-center flex-wrap align-items-center cs-h-for-pr py-4 w-for-e-100">
 
                 {UsersData.length ? (
                     
@@ -43,9 +44,7 @@ const Users = () => {
                             </div>
                         ))
                 ) : (
-
-                    <h4>لطفا کمی صبر کنید</h4>
-
+                    <Loader/>
                 )}
 
             </div>
