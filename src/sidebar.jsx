@@ -1,4 +1,7 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import ProfileIcon from './pages/icons/profileIcon';
+import SecurityIcon from './pages/icons/securityIcon';
+import ProdutIcon from './pages/icons/productIcon';
 
 const SideBarMenu = () => {
     const location = useLocation();
@@ -8,34 +11,23 @@ const SideBarMenu = () => {
             path: '/profile',
             name: 'پروفایل',
             icon: (
-                <svg className="mx-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.2em" height="1.2em">
-                    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
-                        <path d="M12 21.5a9.5 9.5 0 1 0 0-19a9.5 9.5 0 0 0 0 19"></path>
-                        <path d="M6.374 19.653a6.333 6.333 0 0 1 11.252 0M12 13.056a3.399 3.399 0 1 0 0-6.798a3.399 3.399 0 0 0 0 6.798"></path>
-                    </g>
-                </svg>
+                <ProfileIcon></ProfileIcon>
             )
         },
         {
             path: '/security',
             name: 'امنیت',
             icon: (
-                <svg className="mx-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="1.2em" height="1.2em">
-                    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-                        <rect width="10" height="8" x="2" y="5.5" rx="1"></rect>
-                        <path d="M10.5 5.5V4a3.5 3.5 0 0 0-7 0v1.5"></path>
-                        <circle cx="7" cy="9.5" r=".5"></circle>
-                    </g>
-                </svg>
+                <SecurityIcon></SecurityIcon>
             )
         },
         {
             path: '/product',
             name: 'محصولات',
             icon: (
-                <svg className="mx-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="1.2em" height="1.2em">
-                    <path fill="currentColor" d="m1344 2l704 352v785l-128-64V497l-512 256v258l-128 64V753L768 497v227l-128-64V354zm0 640l177-89l-463-265l-211 106zm315-157l182-91l-497-249l-149 75zm-507 654l-128 64v-1l-384 192v455l384-193v144l-448 224L0 1735v-676l576-288l576 288zm-640 710v-455l-384-192v454zm64-566l369-184l-369-185l-369 185zm576-1l448-224l448 224v527l-448 224l-448-224zm384 576v-305l-256-128v305zm384-128v-305l-256 128v305zm-320-288l241-121l-241-120l-241 120z"></path>
-                </svg>
+
+                <ProdutIcon></ProdutIcon>
+                
             )
         },
         {
@@ -182,9 +174,9 @@ const SideBarMenu = () => {
                         key={index}
                         end={false}
                         to={item.path}
-                          className={({ isActive }) =>
-    `sidebar-list cs-fs-13 py-3 px-1 d-flex justify-content-start align-items-center ${isActive ? 'active-sidebar-list' : ''}`
-  } >
+                        className={({ isActive }) =>
+                            `sidebar-list cs-fs-13 py-3 px-1 d-flex justify-content-start align-items-center ${isActive ? 'active-sidebar-list' : ''}`
+                        } >
                         {item.icon}
                         {item.name}
                     </NavLink>
