@@ -15,7 +15,7 @@ const Users = () => {
                 SetUsersData(res.data);
                 setLoading(false);
             })
-            .catch(err => { 
+            .catch(err => {
                 console.log(err);
                 setLoading(false);
             });
@@ -31,10 +31,10 @@ const Users = () => {
             <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4 w-for-e-100 align-items-center">
                 {loading ? (
                     skeletonArray.map((_, index) => (
-                        <div 
-                            key={index} 
+                        <div
+                            key={index}
                             className="user-card d-flex flex-wrap justify-content-center align-items-center product-card mx-2 px-3 py-3 my-2"
-                            style={{ 
+                            style={{
                                 background: colors[0],
                                 borderRadius: '8px',
                                 boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
@@ -42,12 +42,12 @@ const Users = () => {
                             }}
                         >
                             <div className="mx-3 box-img-story">
-                                <Skeleton 
-                                    circle 
-                                    height={80} 
-                                    width={80} 
-                                    baseColor={colors[0]} 
-                                    highlightColor={colors[1]} 
+                                <Skeleton
+                                    circle
+                                    height={80}
+                                    width={80}
+                                    baseColor={colors[0]}
+                                    highlightColor={colors[1]}
                                     duration={0.8}
                                 />
                             </div>
@@ -68,12 +68,12 @@ const Users = () => {
                             </div>
 
                             <div className="edit-btn mt-3">
-                                <Skeleton 
-                                    width={150} 
-                                    height={30} 
-                                    baseColor={colors[1]} 
-                                    highlightColor={colors[2]} 
-                                    duration={0.8} 
+                                <Skeleton
+                                    width={150}
+                                    height={30}
+                                    baseColor={colors[1]}
+                                    highlightColor={colors[2]}
+                                    duration={0.8}
                                 />
                             </div>
                         </div>
