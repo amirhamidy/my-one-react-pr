@@ -14,13 +14,14 @@ import ColorForPriceIcon from './pages/icons/colorForPriceIcon';
 import CommentsIcon from './pages/icons/commentsIcon';
 import BlogIcon from './pages/icons/blogIcon';
 import BlogCtaIcon from './pages/icons/blogCategoryIcon';
-import { ContactIcon } from 'lucide-react';
+import ContactIcon from './pages/icons/contactIcon';
 
 const SideBarMenu = () => {
     const location = useLocation();
 
     const menuItems = [
         {
+            id: 1,
             path: '/profile',
             name: 'پروفایل',
             icon: (
@@ -28,6 +29,7 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 2,
             path: '/security',
             name: 'امنیت',
             icon: (
@@ -35,15 +37,17 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 3,
             path: '/product',
             name: 'محصولات',
             icon: (
 
                 <ProdutIcon></ProdutIcon>
-                
+
             )
         },
         {
+            id: 4,
             path: '/chats',
             name: 'گفتگو ها',
             icon: (
@@ -51,6 +55,7 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 5,
             path: '/Sotry',
             name: 'استوری ها',
             icon: (
@@ -58,13 +63,15 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 6,
             path: '/users',
             name: 'کاربران',
             icon: (
-               <UsersIcon></UsersIcon>
+                <UsersIcon></UsersIcon>
             )
         },
         {
+            id: 7,
             path: '/orders',
             name: 'پیگیری سفارشات',
             icon: (
@@ -72,6 +79,7 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 8,
             path: '/AddCategory',
             name: 'افزودن دسته بندی',
             icon: (
@@ -79,6 +87,7 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 9,
             path: '/add-brand',
             name: 'افزودن برند',
             icon: (
@@ -87,6 +96,7 @@ const SideBarMenu = () => {
         },
 
         {
+            id: 10,
             path: '/price-color',
             name: 'لیست رنگ',
             icon: (
@@ -95,6 +105,7 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 11,
             path: '/product-specs',
             name: 'ثبت مشخصات محصول',
             icon: (
@@ -102,6 +113,7 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 12,
             path: '/color-for-product',
             name: 'ثبت رنگ برای قیمت',
             icon: (
@@ -109,13 +121,15 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 13,
             path: '/comments',
             name: 'نظرات',
             icon: (
-               <CommentsIcon></CommentsIcon>
+                <CommentsIcon></CommentsIcon>
             )
         },
         {
+            id: 14,
             path: '/blogs',
             name: 'بلاگ',
             icon: (
@@ -123,13 +137,15 @@ const SideBarMenu = () => {
             )
         },
         {
+            id: 15,
             path: '/blog-category',
             name: 'دسته بندی بلاگ',
             icon: (
-               <BlogCtaIcon></BlogCtaIcon>
+                <BlogCtaIcon></BlogCtaIcon>
             )
         },
         {
+            id: 16,
             path: '/contact-us',
             name: 'ارتباط با ما',
             icon: (
@@ -144,9 +160,9 @@ const SideBarMenu = () => {
                 <img alt="" className="w-25" src="../vite.svg" />
             </span>
             <div className="d-flex justify-content-start flex-column text-right list-box-sidebar mx-1 px-1 mt-4">
-                {menuItems.map((item, index) => (
+                {menuItems.map((item) => (
                     <NavLink
-                        key={index}
+                        key={item.id}
                         end={false}
                         to={item.path}
                         className={({ isActive }) =>
