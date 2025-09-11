@@ -6,6 +6,8 @@ import NavContax from './myContaxt/contaxt'
 import { BrowserRouter, useLocation } from 'react-router-dom'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import "react-loading-skeleton/dist/skeleton.css";
+
 
 NProgress.configure({ showSpinner: false, speed: 500, trickleSpeed: 200 })
 
