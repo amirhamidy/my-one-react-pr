@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ColorForm from "./colorForm";
+import PlusIcon from "../icons/PlusIcon";
 
 const colorsData = [
     { id: 1, name: "قرمز", hex: "#FF0000" },
@@ -25,7 +27,6 @@ const ColorList = () => {
     const [activeColor, setActiveColor] = useState(null);
     const colorRefs = useRef([]);
 
-    const [PopUp, SetPopUp] = useState(false)
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -44,52 +45,16 @@ const ColorList = () => {
         setActiveColor(activeColor === index ? null : index);
     };
 
-
-    const HandleShowForm = () => {
-        if (PopUp === false) {
-            SetPopUp(!PopUp)
-            console.log(PopUp)
-        }
-    }
-    const HandleNoneForm = () => {
-        if (PopUp === true) {
-            SetPopUp(!PopUp)
-            console.log(PopUp)
-        }
-    }
-
-
     return (
 
-        <div className="position-relative">
-            <form className="w-100 d-flex justify-content-start align-items-baseline  text-center flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
-                <div className="px-2 w-right text-light cs-fs-14  text-right w-25">
-                    <input className="form-control-custom rounded-1" type="text" placeholder="عنوان رنگ ....." />
-                </div>
-            </form>
-            <button onClick={HandleShowForm} className="text-light py-2 cs-fs-14 px-2 border-0 rounded-2 add-pr-mr">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="1.2em"
-                    height="1.2em"
-                >
-                    <path
-                        fill="currentColor"
-                        d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"
-                    ></path>
-                </svg>
+        <>
+            <ColorForm></ColorForm>
+            <button className="text-light py-2 cs-fs-14 px-2 border-0 rounded-2 add-pr-mr">
+                <PlusIcon></PlusIcon>
                 <span className="mx-1">
                     ثبت رنگ جدید
                 </span>
             </button>
-
-            <div className={`${PopUp ? 'overlay-for-color-form' : 'overlay-for-color-form-none'}`}>
-                
-                <form onClick={HandleNoneForm} className={`${PopUp ? 'form-for-color' : 'form-for-color-none'} cs-bg`}>
-                    یک نمونه تست برای کارکرد این دستور
-                </form>
-            </div>
 
             <div className="d-flex justify-content-center flex-wrap w-100 cs-h-for-pr py-4">
                 {colorsData.map((color, index) => (
@@ -123,7 +88,7 @@ const ColorList = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </>
     );
 };
 

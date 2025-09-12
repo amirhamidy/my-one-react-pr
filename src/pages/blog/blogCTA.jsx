@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import BlogForm from "./BlogForm";
+import PlusIcon from "../icons/PlusIcon";
 
 const blogCategories = [
     { id: 1, name: "موبایل و تبلت" },
@@ -40,29 +42,10 @@ const BlogCategory = () => {
         <>
 
 
-            <form className="w-100 d-flex justify-content-around align-items-baseline text-center flex-wrap px-3 py-4 mb-2 container cs-bg rounded-1">
-                <div className="px-2 w-right text-light cs-fs-14 text-right w-25">
-                    <input
-                        className="form-control-custom rounded-1"
-                        type="text"
-                        placeholder=" جستجوی دسته بندی.... "
-                    />
-                </div>
-                <div className="px-2 my-2 w-right text-light cs-fs-14 d-flex justify-content-around text-right w-75"></div>
-            </form>
+            <BlogForm></BlogForm>
 
             <Link to='/' className="text-light py-2 cs-fs-14 px-2 border-0 rounded-2 add-pr-mr">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="1.2em"
-                    height="1.2em"
-                >
-                    <path
-                        fill="currentColor"
-                        d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"
-                    ></path>
-                </svg>
+                <PlusIcon></PlusIcon>
                 <span className="mx-1">
                     ثبت دسته بندی بلاگ جدید
                 </span>

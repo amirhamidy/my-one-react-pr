@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProductForm from "./ProductForm";
+import PlusIcon from "../icons/PlusIcon";
 
 const productsData = [
     { code: "P001", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
@@ -44,17 +45,7 @@ export default function ProductsGrid() {
         <>
             <ProductForm></ProductForm>
             <Link to='/product/Addproduct' className="text-light py-2 cs-fs-14 px-2 border-0 rounded-2 add-pr-mr">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="1.2em"
-                    height="1.2em"
-                >
-                    <path
-                        fill="currentColor"
-                        d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"
-                    ></path>
-                </svg>
+                <PlusIcon></PlusIcon>
                 <span className="mx-1">
                     ثبت محصول جدید
                 </span>

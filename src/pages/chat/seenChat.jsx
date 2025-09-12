@@ -2,6 +2,7 @@ import { Space } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ChatForm from "./ChatForm";
+import BackIcon from "../icons/BackIcon";
 
 const chatData = {
     productName: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال",
@@ -21,20 +22,7 @@ const ChatDetail = ({ chat = chatData, onBack }) => {
                 onClick={() => navigate(-1)}
                 className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr "
             >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="1.2em"
-                    height="1.2em"
-                >
-                    <path
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        d="M6 12.4h12M12.6 7l5.4 5.4l-5.4 5.4"
-                    ></path>
-                </svg>
-
+                <BackIcon></BackIcon>
                 بازگشت
             </button>
             <div className="cs-h-for-pr w-100 px-3 py-3">
