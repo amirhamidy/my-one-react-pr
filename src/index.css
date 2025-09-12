@@ -226,6 +226,14 @@ a:hover {
   display: flex;
 }
 
+.product-info {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center;
+  gap: 5px;
+}
+
 .product-info p {
   margin: 0.4rem 0;
 }

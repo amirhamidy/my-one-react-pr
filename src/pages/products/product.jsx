@@ -1,31 +1,27 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import ProductForm from "./ProductForm";
 import PlusIcon from "../icons/PlusIcon";
 
-const productsData = [
-    { code: "P001", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P002", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "unpublished" },
-    { code: "P003", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P004", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P005", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "unpublished" },
-    { code: "P006", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P007", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P008", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "unpublished" },
-    { code: "P009", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P0011", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "unpublished" },
-    { code: "P0012", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P0013", name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", category: "موبایل", status: "published" },
-    { code: "P0014", name: "محصول دهم", category: "دسته A", status: "published" },
-    { code: "P0015", name: "محصول دهم", category: "دسته A", status: "published" },
-
-];
 
 export default function ProductsGrid() {
+
+    const [ProductsData, SetProductsData] = useState([]);
     const [activeIndex, setActiveIndex] = useState(null);
     const productRefs = useRef([]);
 
     useEffect(() => {
+
+
+        axios.get('https://manmarket.ir/product/api/v1/product/').then(res => {
+            SetProductsData(res.data.results)
+        }).catch(err => {
+            alert('ارور توی بخش محصولات')
+        })
+
+
+
         const handleClickOutside = (event) => {
             if (activeIndex !== null && !productRefs.current[activeIndex].contains(event.target)) {
                 setActiveIndex(null);
@@ -40,7 +36,6 @@ export default function ProductsGrid() {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
-
     return (
         <>
             <ProductForm></ProductForm>
@@ -51,18 +46,21 @@ export default function ProductsGrid() {
                 </span>
             </Link>
             <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
-                {productsData.map((product, index) => (
+                {ProductsData.map((product, index) => (
                     <div
-                        key={product.code}
+                        key={product.id}
                         ref={el => productRefs.current[index] = el}
                         className={`product-card mx-3 my-2 ${activeIndex === index ? "active" : ""}`}
                     >
                         <div className="product-content" onClick={() => handleClick(index)}>
                             <div className="product-info">
-                                <p className="product-code">کد: {product.code}</p>
-                                <p className="product-name">{product.name}</p>
-                                <p className="product-category">دسته بندی :  {product.category} </p>
-                                <p className={`product-status ${product.status}`}>
+                                <img className="w-25" src={product.image} />
+                                <p className="product-code">کد: {product.id}</p>
+                                <p className="product-name">{product.title}</p>
+                                <p className="product-category">
+                                    دسته بندی: {product.category.title}
+                                </p>
+                                <p className={`product-status ${product.status === "published" ? "text-success" : "text-danger"}`}>
                                     وضعیت: {product.status === "published" ? "نمایش " : "عدم نمایش"}
                                 </p>
                             </div>
