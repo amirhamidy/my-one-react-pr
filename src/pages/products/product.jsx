@@ -54,13 +54,13 @@ export default function ProductsGrid() {
                     >
                         <div className="product-content" onClick={() => handleClick(index)}>
                             <div className="product-info">
-                                <img className="w-25" src={product.image} />
-                                <p className="product-code">کد: {product.id}</p>
-                                <p className="product-name">{product.title}</p>
-                                <p className="product-category">
+                                <img className="width-for-main-product" src={product.image} />
+                                <p className="product-code cs-fs-14">کد: {product.id}</p>
+                                <p className="product-name cs-fs-14">{product.title}</p>
+                                <p className="product-category cs-fs-14">
                                     دسته بندی: {product.category.title}
                                 </p>
-                                <p className={`product-status ${product.status === "published" ? "text-success" : "text-danger"}`}>
+                                <p className={`product-status cs-fs-14 ${product.status === "published" ? "text-success" : "text-danger"}`}>
                                     وضعیت: {product.status === "published" ? "نمایش " : "عدم نمایش"}
                                 </p>
                             </div>

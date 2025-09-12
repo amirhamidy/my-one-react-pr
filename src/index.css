@@ -220,22 +220,23 @@ a:hover {
 
 .product-content {
   flex: 1;
-  padding: 0.8rem 1rem;
+  padding: 0.3rem 3rem;
   align-items: center;
   justify-content: start;
   display: flex;
 }
+
+
 
 .product-info {
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center;
-  gap: 5px;
 }
 
 .product-info p {
-  margin: 0.4rem 0;
+  margin: 0.2rem 0;
 }
 
 .product-code {
@@ -255,7 +256,6 @@ a:hover {
 
 .product-status {
   font-weight: 600;
-  font-size: 0.85rem;
 }
 
 .product-status.published {
@@ -500,9 +500,16 @@ ul {
 }
 
 .product-name {
-  font-weight: 500;
-  color: #333;
+  text-align: center;
 }
+
+
+.width-for-main-product{
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
 
 .product-status.published {
   color: #4caf50;
