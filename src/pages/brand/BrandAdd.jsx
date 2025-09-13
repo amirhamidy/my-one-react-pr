@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BrandForm from "./brandForm";
 import BackIcon from "../icons/BackIcon";
+import BrandForm from "./BrandForm";
 
 const AdmBrandPanel = () => {
   const [form, setForm] = useState({
