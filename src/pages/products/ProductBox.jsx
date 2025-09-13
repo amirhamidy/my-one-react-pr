@@ -1,4 +1,8 @@
 import { memo, forwardRef } from "react";
+import EditBtn from "../BTN/EdtiBtn";
+import SeenBtn from "../BTN/SeenBtn";
+import InfoBtn from "../BTN/InfoBtn";
+import ColorPriceBtn from "../BTN/ColorPriceBtn";
 
 const ProductBox = forwardRef(({ product, isActive, onClick, onActionClick }, ref) => {
     return (
@@ -31,10 +35,10 @@ const ProductBox = forwardRef(({ product, isActive, onClick, onActionClick }, re
 
             {isActive && (
                 <div className="product-actions" onClick={(e) => e.stopPropagation()}>
-                    <button type="button" className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2" onClick={() => onActionClick("edit", product)}>ویرایش</button>
-                    <button type="button" className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2" onClick={() => onActionClick("view", product)}>مشاهده</button>
-                    <button type="button" className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2" onClick={() => onActionClick("info", product)}>گرفتن مشخصات</button>
-                    <button type="button" className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2" onClick={() => onActionClick("color-price", product)}>گرفتن رنگ و قیمت</button>
+                    <EditBtn onClick={() => onActionClick("edit", product)}></EditBtn>
+                    <SeenBtn onClick={() => onActionClick("view", product)}></SeenBtn>
+                    <InfoBtn onClick={() => onActionClick("info", product)}></InfoBtn>
+                    <ColorPriceBtn onClick={() => onActionClick("color-price", product)}></ColorPriceBtn>
                 </div>
             )}
         </div>

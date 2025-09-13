@@ -5,6 +5,8 @@ import PlusIcon from "../icons/PlusIcon";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import DeleteBtn from "../BTN/DeleteBtn";
+import EditBtn from "../BTN/EdtiBtn";
 
 export default function CategoriesGrid() {
     const [categories, setCategories] = useState([]);
@@ -27,7 +29,6 @@ export default function CategoriesGrid() {
             });
     }, []);
 
-    // Close active box on outside click
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
@@ -50,6 +51,8 @@ export default function CategoriesGrid() {
 
     return (
         <>
+
+
             <CTAForm />
             <Link
                 to="/AddCategory/add"
@@ -93,12 +96,8 @@ export default function CategoriesGrid() {
                                     className="d-flex gap-2 mt-3 action-buttons"
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                                        ویرایش
-                                    </button>
-                                    <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                                        حذف
-                                    </button>
+                                    <EditBtn></EditBtn>
+                                    <DeleteBtn></DeleteBtn>
                                 </div>
                             )}
                         </div>
