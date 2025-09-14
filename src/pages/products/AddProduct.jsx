@@ -5,6 +5,7 @@ import BackIcon from "../icons/BackIcon";
 import MainDetaForPr from "./FormForAddPr";
 import ProductForm from "./ProductForm";
 import MainImgProduct from "./MainImgProduct";
+import ProductDetailImages from "./ProductDetailImages";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -34,6 +35,9 @@ const AddProduct = () => {
         <Editor />
 
         <MainImgProduct></MainImgProduct>
+
+
+        <ProductDetailImages></ProductDetailImages>
         
         <button
           type="submit"
