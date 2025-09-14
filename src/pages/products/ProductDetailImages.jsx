@@ -1,54 +1,90 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
 
 const ImageSkeleton = () => (
-    <div className="add-pr-image-preview" style={{ background: "#eee" }} />
+    <div className="add-pr-pr-image-skeleton" style={{ background: "#eee", height: "50px", borderRadius: "6px" }} />
 );
 
-const ProductImageUploader = ({ colorsApi }) => {
-    const [images, setImages] = useState([]); 
-    const [colorList, setColorList] = useState([]);
-    const [searchColor, setSearchColor] = useState("");
-    const [loadingColors, setLoadingColors] = useState(false);
-
+const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1/color/" }) => {
+    const [images, setImages] = useState([]);
     const fileInputRef = useRef();
-
-    const fetchColors = async (query) => {
-        setLoadingColors(true);
-        try {
-            const res = await fetch(colorsApi);
-            const data = await res.json();
-            const filtered = data.filter((c) =>
-                c.title.toLowerCase().includes(query.toLowerCase())
-            );
-            setColorList(filtered);
-        } catch (err) {
-            console.error(err);
-        }
-        setLoadingColors(false);
-    };
 
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
         const newImages = files.map((file) => ({
             file,
             preview: URL.createObjectURL(file),
-            colorId: null,
-            colorTitle: "",
-            selected: false,
+            color: "",
+            colorList: [],
+            loadingColors: false,
+            dropdownOpen: false,
+            activeIndex: -1,
         }));
         setImages((prev) => [...prev, ...newImages]);
     };
 
-    const handleColorSelect = (index, color) => {
+    const handleSearchColor = async (index, value) => {
         setImages((prev) =>
             prev.map((img, i) =>
-                i === index
-                    ? { ...img, colorId: color.id, colorTitle: color.title }
-                    : img
+                i === index ? { ...img, color: value, loadingColors: true, dropdownOpen: true } : img
             )
         );
-        setColorList([]);
-        setSearchColor("");
+
+        try {
+            const res = await axios.get(colorsApi);
+            const filtered = res.data.filter((c) =>
+                c.title.toLowerCase().includes(value.toLowerCase())
+            );
+
+            setImages((prev) =>
+                prev.map((img, i) =>
+                    i === index ? { ...img, colorList: filtered, loadingColors: false } : img
+                )
+            );
+        } catch (err) {
+            console.error(err);
+            setImages((prev) =>
+                prev.map((img, i) =>
+                    i === index ? { ...img, colorList: [], loadingColors: false } : img
+                )
+            );
+        }
+    };
+
+    const handleSelectColor = (index, color) => {
+        setImages((prev) =>
+            prev.map((img, i) =>
+                i === index ? { ...img, color: color.title, dropdownOpen: false } : img
+            )
+        );
+    };
+
+    const handleKeyDown = (e, index) => {
+        const img = images[index];
+        if (!img.dropdownOpen || img.colorList.length === 0) return;
+
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            setImages((prev) =>
+                prev.map((item, i) =>
+                    i === index
+                        ? { ...item, activeIndex: (item.activeIndex + 1) % item.colorList.length }
+                        : item
+                )
+            );
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            setImages((prev) =>
+                prev.map((item, i) =>
+                    i === index
+                        ? { ...item, activeIndex: (item.activeIndex - 1 + item.colorList.length) % item.colorList.length }
+                        : item
+                )
+            );
+        } else if (e.key === "Enter") {
+            e.preventDefault();
+            if (img.activeIndex >= 0) handleSelectColor(index, img.colorList[img.activeIndex]);
+        }
     };
 
     const toggleSelect = (index) => {
@@ -64,10 +100,10 @@ const ProductImageUploader = ({ colorsApi }) => {
     };
 
     return (
-        <div className="add-pr-autocomplete d-flex align-items-center flex-column gap-3">
+        <div className="add-pr-pr-container d-flex flex-column gap-3">
             <button
                 type="button"
-                className="edit-btn border-none rounded-2 cs-fs-14 py-2 my-3"
+                className="add-pr-pr-btn btn btn-primary w-25"
                 onClick={() => fileInputRef.current.click()}
             >
                 افزودن عکس
@@ -84,87 +120,56 @@ const ProductImageUploader = ({ colorsApi }) => {
             {images.some((img) => img.selected) && (
                 <button
                     type="button"
-                    className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 mx-3"
-                    style={{ marginBottom: "15px" }}
+                    className="add-pr-pr-btn btn btn-danger w-25"
                     onClick={deleteSelected}
                 >
                     حذف انتخاب‌شده‌ها
                 </button>
             )}
 
-            <div className="adm-story-list">
+            <div className="row add-pr-pr-images-grid">
                 {images.map((img, index) => (
-                    <div
-                        className="adm-story-card"
-                        key={index}
-                        style={{ width: "150px", height: "180px" }}
-                    >
+                    <div key={index} className="col-md-3 mb-3">
                         <div
-                            className="box-d-img"
+                            className="add-pr-pr-image-card position-relative"
                             onClick={() => toggleSelect(index)}
-                            style={{ position: "relative" }}
                         >
                             <img
                                 src={img.preview}
                                 alt="product"
-                                className="add-pr-image-preview width-for-main-product"
+                                className="img-fluid rounded add-pr-pr-image"
                             />
                             {img.selected && (
-                                <div
-                                    style={{
-                                        position: "absolute",
-                                        top: "5px",
-                                        right: "5px",
-                                        width: "20px",
-                                        height: "20px",
-                                        borderRadius: "50%",
-                                        background: "#ff4f29",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        color: "#fff",
-                                        fontSize: "14px",
-                                    }}
-                                >
+                                <div className="position-absolute top-0 end-0 p-1 bg-danger text-white rounded-circle">
                                     ✓
                                 </div>
                             )}
                         </div>
 
-                        <div className="add-pr-autocomplete" style={{ marginTop: "5px" }}>
+                        <div className="add-pr-autocomplete position-relative mt-2">
                             <input
                                 type="text"
-                                value={img.colorTitle || searchColor}
+                                className="form-control add-pr-pr-color-input"
                                 placeholder="انتخاب رنگ"
-                                className="add-pr-input"
-                                onChange={(e) => {
-                                    setSearchColor(e.target.value);
-                                    fetchColors(e.target.value);
-                                }}
+                                value={img.color}
+                                onChange={(e) => handleSearchColor(index, e.target.value)}
+                                onKeyDown={(e) => handleKeyDown(e, index)}
                             />
-                            {colorList.length > 0 && (
-                                <ul className="add-pr-suggestions">
-                                    {colorList.map((color) => (
+                            {img.dropdownOpen && img.colorList.length > 0 && (
+                                <ul className="add-pr-suggestions position-absolute w-100 bg-white border rounded z-index-10">
+                                    {img.colorList.map((c, idx) => (
                                         <li
-                                            key={color.id}
-                                            onClick={() => handleColorSelect(index, color)}
+                                            key={c.id}
+                                            className={`px-2 py-1 ${img.activeIndex === idx ? "bg-primary text-white" : ""}`}
+                                            onMouseDown={() => handleSelectColor(index, c)}
                                         >
-                                            {color.title}
+                                            {c.title}
                                         </li>
                                     ))}
                                 </ul>
                             )}
-                            {loadingColors && <ImageSkeleton />}
+                            {img.loadingColors && <ImageSkeleton />}
                         </div>
-
-                        {img.colorTitle && (
-                            <p
-                                className="product-name"
-                                style={{ fontSize: "12px", textAlign: "center" }}
-                            >
-                                {img.colorTitle}
-                            </p>
-                        )}
                     </div>
                 ))}
             </div>
