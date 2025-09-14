@@ -19,7 +19,7 @@ const AddProduct = () => {
   return (
     <>
 
-    <ProductForm></ProductForm>
+      <ProductForm></ProductForm>
       <button
         onClick={() => navigate(-1)}
         className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr "
@@ -34,11 +34,17 @@ const AddProduct = () => {
 
         <Editor />
 
-        <MainImgProduct></MainImgProduct>
+
+        <div className="d-flex justify-content-between">
+
+          <MainImgProduct></MainImgProduct>
+          <ProductDetailImages></ProductDetailImages>
+
+        </div>
 
 
-        <ProductDetailImages></ProductDetailImages>
-        
+
+
         <button
           type="submit"
           className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"

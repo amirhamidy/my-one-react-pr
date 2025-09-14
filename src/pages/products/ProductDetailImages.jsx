@@ -64,10 +64,10 @@ const ProductImageUploader = ({ colorsApi }) => {
     };
 
     return (
-        <div className="add-pr-container">
+        <div className="add-pr-autocomplete d-flex align-items-center flex-column gap-3">
             <button
                 type="button"
-                className="add-pr-image-btn"
+                className="edit-btn border-none rounded-2 cs-fs-14 py-2 my-3"
                 onClick={() => fileInputRef.current.click()}
             >
                 افزودن عکس
@@ -84,7 +84,7 @@ const ProductImageUploader = ({ colorsApi }) => {
             {images.some((img) => img.selected) && (
                 <button
                     type="button"
-                    className="add-pr-btn"
+                    className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 mx-3"
                     style={{ marginBottom: "15px" }}
                     onClick={deleteSelected}
                 >
