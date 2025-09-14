@@ -1,6 +1,7 @@
 
 
 import { useState, useRef, useEffect } from "react";
+import EditBtn from "../BTN/EdtiBtn";
 
 const commentsData = [
   {
@@ -117,9 +118,7 @@ export default function CommentsGrid() {
                 className="product-actions"
                 onClick={(e) => e.stopPropagation()}
               >
-                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                  ویرایش
-                </button>
+                <EditBtn></EditBtn>
               </div>
             )}
           </div>

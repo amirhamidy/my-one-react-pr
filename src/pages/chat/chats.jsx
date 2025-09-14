@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
 import ChatForm from "./ChatForm";
+import SeenBtn from "../BTN/SeenBtn";
+import ReplayBtn from "../BTN/ReplayBtn";
 
 const chatsData = [
   {
@@ -122,12 +124,8 @@ const Chats = () => {
 
             {activeChat === chat.id && (
               <div className="product-actions" style={{ msFlexDirection: "column", position: "absolute", top: "15%", left: "15%", flexDirection: "column", display: "flex", gap: "0.1rem", transition: "0.3s", animation: "fadeIn 0.3s ease forwards", }} >
-                <Link to="singleChat" className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                  مشاهده گفتگو
-                </Link>
-                <Link to="" className="edit-btn border-none rounded-2 text-center cs-fs-14 px-2 py-2">
-                  پاسخ
-                </Link>
+                <SeenBtn></SeenBtn>
+                <ReplayBtn></ReplayBtn>
               </div>
             )}
           </div>

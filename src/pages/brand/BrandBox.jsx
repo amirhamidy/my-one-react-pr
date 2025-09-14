@@ -6,12 +6,10 @@ const BrandBox = forwardRef(({ brand, isActive, onClick, onActionClick }, ref) =
     return (
         <div
             ref={ref}
-            className={`product-card mx-3 my-2 ${isActive ? "active" : ""} ${brand.image ? "" : "d-none"}`}
-        >
+            className={`product-card mx-3 my-2 ${isActive ? "active" : ""} ${brand.image ? "" : "d-none"}`}>
             <div
                 className="product-content d-flex flex-column align-items-center justify-content-center"
-                onClick={onClick}
-            >
+                onClick={onClick} >
                 <img
                     src={brand.image || "/fallback-brand.png"}
                     alt={brand.title}

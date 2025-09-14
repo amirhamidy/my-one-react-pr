@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ColorForm from "./colorForm";
+import EditBtn from "../BTN/EdtiBtn";
+import GoToColor from "../BTN/GoToColor";
+import SeenToSite from "../BTN/SeenToSite";
 
 const sampleProducts = [
     { code: "P001",ProductCTA : "موبایل" , name: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال", status: "published" },
@@ -56,15 +59,9 @@ export default function ColoForProduct({ products = sampleProducts }) {
 
                         {activeIndex === index && (
                             <div className="product-actions" onClick={(e) => e.stopPropagation()}>
-                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                                    ویرایش
-                                </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                                    رفتن به رنگ
-                                </button>
-                                <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
-                                    نمایش در سایت
-                                </button>
+                                <EditBtn></EditBtn>
+                                <GoToColor></GoToColor>
+                                <SeenToSite></SeenToSite>
                                 <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">
                                     نمایش برای ادمین
                                 </button>
