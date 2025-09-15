@@ -2,7 +2,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import UserForm from "./userForm";
 import axios from "axios";
-import Loader from "../loader";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const UserDetails = () => {
     const { id } = useParams();
@@ -22,7 +23,40 @@ const UserDetails = () => {
             });
     }, [id]);
 
-    if (loading) return <Loader />;
+    if (loading) {
+        return (
+            <>
+                <UserForm />
+
+                <button className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr">
+                    بازگشت
+                </button>
+
+                <div className="cs-h-for-pr w-100 px-3 py-3">
+                    <div className="p-3">
+                        <div className="d-flex align-items-center mb-3 w-100 bg-white py-2 px-3 cs-fs-14 rounded-2 list-group-item w-25">
+                            <div style={{ width: "50px", height: "50px", marginRight: "1rem" }}>
+                                <Skeleton circle height={50} width={50} />
+                            </div>
+                            <div style={{ flex: 1 }}>
+                                <Skeleton height={20} width="80%" className="mb-1" />
+                                <Skeleton height={16} width="60%" />
+                            </div>
+                        </div>
+
+                        <ul className="list-group list-group-flush d-flex justify-content-center align-items-center w-100">
+                            {Array.from({ length: 3 }).map((_, i) => (
+                                <li key={i} className="py-3 cs-fs-14 px-5 w-100 d-flex justify-content-center align-items-center">
+                                    <Skeleton height={50} width={200} className="mx-4 rounded-2" />
+                                    <Skeleton height={50} width={200} className="mx-4 rounded-2" />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </>
+        );
+    }
 
     if (!user) return <h4>کاربری یافت نشد</h4>;
 
@@ -31,9 +65,6 @@ const UserDetails = () => {
             <UserForm />
 
             <button onClick={() => navigate(-1)} className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.2em" height="1.2em">
-                    <path fill="none" stroke="currentColor" strokeWidth="2" d="M6 12.4h12M12.6 7l5.4 5.4l-5.4 5.4"></path>
-                </svg>
                 بازگشت
             </button>
 

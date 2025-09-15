@@ -22,7 +22,6 @@ const Users = () => {
     }, []);
 
     const skeletonArray = Array(6).fill(0);
-    const colors = ["#eeeeee", "#dddddd", "#cccccc", "#bbbbbb"];
 
     return (
         <>
@@ -33,59 +32,43 @@ const Users = () => {
                     skeletonArray.map((_, index) => (
                         <div
                             key={index}
-                            className="user-card d-flex flex-wrap justify-content-center align-items-center product-card mx-2 px-3 py-3 my-2"
+                            className="user-card product-card mx-2 px-3 py-3 my-2"
                             style={{
-                                background: colors[0],
-                                borderRadius: '8px',
-                                boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
-                                boxSizing: 'border-box'
+                                display: "flex",
+                                flexWrap: "wrap",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                boxSizing: "border-box"
                             }}
                         >
-                            <div className="mx-3 box-img-story">
-                                <Skeleton
-                                    circle
-                                    height={80}
-                                    width={80}
-                                    baseColor={colors[0]}
-                                    highlightColor={colors[1]}
-                                    duration={0.8}
-                                />
+                            <div className="mx-3" style={{ width: 80, height: 80 }}>
+                                <Skeleton width={80} height={80} style={{ borderRadius: 0, display: "block" }} />
                             </div>
 
                             <div className="user-info w-100 text-center mt-2">
                                 <p className="my-1 one-line">
-                                    <Skeleton width="80%" height={14} baseColor={colors[1]} highlightColor={colors[2]} />
+                                    <Skeleton width="80%" height={14} />
                                 </p>
                                 <p className="my-1 one-line">
-                                    <Skeleton width="60%" height={14} baseColor={colors[1]} highlightColor={colors[2]} />
+                                    <Skeleton width="60%" height={14} />
                                 </p>
                                 <p className="my-1 one-line">
-                                    <Skeleton width="90%" height={14} baseColor={colors[2]} highlightColor={colors[3]} />
+                                    <Skeleton width="90%" height={14} />
                                 </p>
                                 <p className="my-1 one-line">
-                                    <Skeleton width="70%" height={14} baseColor={colors[2]} highlightColor={colors[3]} />
+                                    <Skeleton width="70%" height={14} />
                                 </p>
-                            </div>
-
-                            <div className="edit-btn mt-3">
-                                <Skeleton
-                                    width={150}
-                                    height={30}
-                                    baseColor={colors[1]}
-                                    highlightColor={colors[2]}
-                                    duration={0.8}
-                                />
                             </div>
                         </div>
                     ))
                 ) : UsersData.length ? (
                     UsersData.map((user) => (
-                        <div key={user.id} className="user-card d-flex flex-wrap justify-content-center align-items-center product-card mx-2 px-3 py-3 my-2">
-                            <div className="mx-3 box-img-story">
-                                <img src={user.avatar_url} className="img-story" />
+                        <div key={user.id} className="user-card product-card mx-2 px-3 py-3 my-2 d-flex flex-wrap justify-content-center align-items-center">
+                            <div className="mx-3" style={{ width: 80, height: 80 }}>
+                                <img src={user.avatar_url} alt={user.login} style={{ width: "100%", height: "100%", objectFit: "cover" , borderRadius : "50%" }} />
                             </div>
 
-                            <div className="user-info w-100 text-center">
+                            <div className="user-info w-100 text-center mt-2">
                                 <p className="my-2 one-line"><strong>کد کاربر:</strong> {user.node_id}</p>
                                 <p className="my-2 one-line"><strong>ایمیل:</strong> {user.type}</p>
                                 <p className="my-2 one-line"><strong>نام:</strong> {user.login}</p>
