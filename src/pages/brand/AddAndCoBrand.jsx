@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import BrandForm from "./BrandForm";
 import PlusIcon from "../icons/PlusIcon";
+import BrandBox from "./BrandBox";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import BrandBox from "./BrandBox";
 
-export default function BrandsGrid() {
+const BrandsGrid  =()=> {
     const [brandsData, setBrandsData] = useState([]);
     const [activeIndex, setActiveIndex] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -63,26 +63,30 @@ export default function BrandsGrid() {
             </Link>
 
             <div className="d-flex justify-content-center flex-wrap cs-h-for-pr py-4">
-                {brandsData.map((brand, index) => (
-                    <BrandBox 
-                        key={brand.id}
-                        ref={(el) => (brandRefs.current[index] = el)}
-                        brand={brand}
-                        isActive={activeIndex === index}
-                        onClick={() => handleClick(index)}
-                        onActionClick={handleActionClick}
-                    />
-                ))}
-
-                {loading && skeletonArray.map((_, index) => (
-                    <div key={`skeleton-${index}`} className="product-card mx-3 my-2">
-                        <div className="product-content">
-                            <Skeleton height={150} />
-                            <p className="product-name cs-fs-14"><Skeleton width={120} /></p>
+                {loading
+                    ? skeletonArray.map((_, index) => (
+                        <div key={`skeleton-${index}`} className="product-card mx-3 my-2">
+                            <div className="product-content d-flex flex-column align-items-center justify-content-center">
+                                <Skeleton circle={true} height={60} width={60} />
+                                <p className="product-name mt-2"><Skeleton width={80} /></p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                    : brandsData.map((brand, index) => (
+                        <BrandBox
+                            key={brand.id}
+                            ref={(el) => (brandRefs.current[index] = el)}
+                            brand={brand}
+                            isActive={activeIndex === index}
+                            onClick={() => handleClick(index)}
+                            onActionClick={handleActionClick}
+                        />
+                    ))
+                }
             </div>
         </>
     );
 }
+
+
+export default BrandsGrid
