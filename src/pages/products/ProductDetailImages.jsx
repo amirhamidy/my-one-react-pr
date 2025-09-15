@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import TickIcon from "../icons/TickIcon";
+import SelectIcon from "../icons/SelectIcon";
 
 const ImageSkeleton = () => (
     <div className="add-pr-pr-image-skeleton" style={{ background: "#eee", height: "50px", borderRadius: "6px" }} />
@@ -101,15 +102,15 @@ const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1
     };
 
     return (
-        <div className="add-pr-pr-container row gap-3">
+        <div className="add-pr-pr-container row gap-3 my-1 col-md-12 w-100 fts-bg-white">
 
-            <div className="w-100 d-flex col-md-12">
+            <div className="w-100 d-flex col-md-12 ">
                 <button
                     type="button"
                     className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
                     onClick={() => fileInputRef.current.click()}
                 >
-                    افزودن تصاویر جزئی
+                    اضافه کردن تصاویر دیگر و انتخاب رنگ 
                 </button>
                 <input type="file" multiple accept="image/*" ref={fileInputRef} style={{ visibility: "hidden" }} onChange={handleFileChange} />
 
@@ -127,7 +128,7 @@ const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1
 
             <div className="row col-md-12 add-pr-pr-images-grid w-100">
                 {images.map((img, index) => (
-                    <div key={index} className="col-md-4 mb-3 text-center">
+                    <div key={index} className="col-md-2 mb-3 text-center">
                         <div
                             className="add-pr-pr-image-card"
                             onClick={() => toggleSelect(index)}
@@ -138,8 +139,8 @@ const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1
                                 className="img-fluid rounded add-pr-pr-image"
                             />
                             {img.selected && (
-                                <div className="tick-for-delete bg-danger text-white">
-                                    <TickIcon></TickIcon>
+                                <div className="tick-for-delete theme-bg-color text-white">
+                                    <SelectIcon></SelectIcon>
                                 </div>
                             )}
                         </div>

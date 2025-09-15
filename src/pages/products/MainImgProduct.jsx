@@ -22,10 +22,10 @@ const MainImgProduct = () => {
 
     return (
 
-        <div className="col-md-6 add-pr-autocomplete d-flex align-items-center justify-content-start flex-column gap-3">
+        <div className="add-pr-pr-container row d-flex justify-content-start align-items-start flex-column gap-3 my-1 col-md-12 fts-bg-white">
             <label
                 htmlFor="productImage"
-                className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+                className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3 w-auto"
                 style={{ cursor: "pointer" }}
             >
                 اضافه کردن تصویر اصلی محصول
@@ -42,7 +42,7 @@ const MainImgProduct = () => {
                 <img
                     src={imagePreview}
                     alt="preview"
-                    className="editor-image size-50 align-left"
+                    className="editor-image w-25 "
                 />
             )}
         </div>

@@ -35,14 +35,12 @@ const AddProduct = () => {
         <Editor />
 
 
-        <div className="d-flex justify-content-between align-items-start">
+        <div className="row align-items-start">
 
           <MainImgProduct></MainImgProduct>
           <ProductDetailImages></ProductDetailImages>
 
         </div>
-
-
 
 
         <button
