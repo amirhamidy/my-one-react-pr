@@ -3,8 +3,24 @@ import EditBtn from "../BTN/EdtiBtn";
 import SeenBtn from "../BTN/SeenBtn";
 import InfoBtn from "../BTN/InfoBtn";
 import ColorPriceBtn from "../BTN/ColorPriceBtn";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const ProductBox = forwardRef(({ product, isActive, onClick, onActionClick }, ref) => {
+const ProductBox = forwardRef(({ product, isActive, onClick, onActionClick, loading }, ref) => {
+    if (loading) {
+        return (
+            <div className="product-card mx-3 my-2">
+                <div className="product-content">
+                    <Skeleton height={150} />
+                    <p className="product-code cs-fs-14"><Skeleton width={80} /></p>
+                    <p className="product-name cs-fs-14"><Skeleton width={120} /></p>
+                    <p className="product-category cs-fs-14"><Skeleton width={100} /></p>
+                    <p className="product-status cs-fs-14"><Skeleton width={90} /></p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div
             ref={ref}

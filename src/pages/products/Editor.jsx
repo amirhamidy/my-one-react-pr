@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { TextStyle } from "@tiptap/extension-text-style";
@@ -10,6 +10,8 @@ import { TextAlign } from "@tiptap/extension-text-align";
 import { Color } from "@tiptap/extension-color";
 import { Bold, Italic, Underline as UnderlineIcon, Image as ImageIcon, Link as LinkIcon, AlignLeft, AlignCenter, AlignRight, X, RotateCcw, RotateCw } from "lucide-react";
 import Swal from "sweetalert2";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const FontSize = TextStyle.extend({
   addAttributes() {
@@ -24,6 +26,13 @@ const FontSize = TextStyle.extend({
 });
 
 export default function Editor() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const extensions = useMemo(() => [
     StarterKit.configure({ underline: false }),
     Underline,
@@ -48,7 +57,6 @@ export default function Editor() {
   }, [editor]);
 
   const unsetLink = useCallback(() => { if (editor) editor.chain().focus().unsetLink().run(); }, [editor]);
-
   const addImage = useCallback(() => {
     if (!editor) return;
     const input = document.createElement("input");
@@ -88,6 +96,10 @@ export default function Editor() {
   const setColor = useCallback(color => { if (editor) editor.chain().focus().setColor(color).run(); }, [editor]);
   const undo = useCallback(() => { if (editor) editor.chain().focus().undo().run(); }, [editor]);
   const redo = useCallback(() => { if (editor) editor.chain().focus().redo().run(); }, [editor]);
+
+  if (loading) {
+    return <Skeleton count={5} height={40} style={{ marginBottom: "10px" }} />;
+  }
 
   if (!editor) return null;
 

@@ -1,5 +1,6 @@
-
 import React, { useState, useEffect, useRef } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const categoriesMock = [
     { id: 1, name: "لوازم خانگی" },
@@ -26,6 +27,13 @@ const brandsMock = [
 ];
 
 const MainDetaForPr = ({ onSubmit }) => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
     const [form, setForm] = useState({
         name: "",
         slug: "",
@@ -127,6 +135,18 @@ const MainDetaForPr = ({ onSubmit }) => {
         }
     };
 
+    if (loading) {
+        return (
+            <div className="row add-pr-row">
+                {Array.from({ length: 10 }).map((_, idx) => (
+                    <div key={idx} className="col-md-6 mb-3">
+                        <Skeleton height={40} />
+                    </div>
+                ))}
+            </div>
+        );
+    }
+
     return (
         <form onSubmit={handleSubmit}>
             <div className="row add-pr-row">
@@ -141,7 +161,6 @@ const MainDetaForPr = ({ onSubmit }) => {
                         onChange={handleChange}
                     />
                 </div>
-
                 <div className="col-md-6">
                     <input
                         type="text"
@@ -153,7 +172,6 @@ const MainDetaForPr = ({ onSubmit }) => {
                         onChange={handleChange}
                     />
                 </div>
-
                 <div className="col-md-6 add-pr-autocomplete">
                     <input
                         type="text"
@@ -185,7 +203,6 @@ const MainDetaForPr = ({ onSubmit }) => {
                         </ul>
                     )}
                 </div>
-
                 <div className="col-md-6 add-pr-autocomplete" ref={categoryRef}>
                     <input
                         type="text"
@@ -211,7 +228,6 @@ const MainDetaForPr = ({ onSubmit }) => {
                         </ul>
                     )}
                 </div>
-
                 <div className="col-md-6 add-pr-autocomplete" ref={brandRef}>
                     <input
                         type="text"
@@ -236,7 +252,6 @@ const MainDetaForPr = ({ onSubmit }) => {
                         </ul>
                     )}
                 </div>
-
                 <div className="col-md-6">
                     <input
                         type="text"
@@ -248,7 +263,6 @@ const MainDetaForPr = ({ onSubmit }) => {
                         onChange={handleChange}
                     />
                 </div>
-
                 <div className="col-md-6">
                     <input
                         type="text"
@@ -260,7 +274,6 @@ const MainDetaForPr = ({ onSubmit }) => {
                         onChange={handleChange}
                     />
                 </div>
-
                 <div className="col-md-6">
                     <input
                         type="text"
@@ -271,7 +284,6 @@ const MainDetaForPr = ({ onSubmit }) => {
                         onChange={handleChange}
                     />
                 </div>
-
                 <div className="col-md-6">
                     <input
                         type="text"

@@ -1,15 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import TickIcon from "../icons/TickIcon";
 import SelectIcon from "../icons/SelectIcon";
-
-const ImageSkeleton = () => (
-    <div className="add-pr-pr-image-skeleton" style={{ background: "#eee", height: "50px", borderRadius: "6px" }} />
-);
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1/color/" }) => {
     const [images, setImages] = useState([]);
+    const [loading, setLoading] = useState(true);
     const fileInputRef = useRef();
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
@@ -101,19 +104,21 @@ const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1
         setImages((prev) => prev.filter((img) => !img.selected));
     };
 
+    if (loading) {
+        return <Skeleton height={150} count={3} />;
+    }
+
     return (
         <div className="add-pr-pr-container row gap-3 my-1 col-md-12 w-100 fts-bg-white">
-
             <div className="w-100 d-flex col-md-12 ">
                 <button
                     type="button"
                     className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
                     onClick={() => fileInputRef.current.click()}
                 >
-                    اضافه کردن تصاویر دیگر و انتخاب رنگ 
+                    اضافه کردن تصاویر دیگر و انتخاب رنگ
                 </button>
                 <input type="file" multiple accept="image/*" ref={fileInputRef} style={{ visibility: "hidden" }} onChange={handleFileChange} />
-
                 {images.some((img) => img.selected) && (
                     <button
                         type="button"
@@ -124,8 +129,6 @@ const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1
                     </button>
                 )}
             </div>
-
-
             <div className="row col-md-12 add-pr-pr-images-grid w-100">
                 {images.map((img, index) => (
                     <div key={index} className="col-md-2 mb-3 text-center">
@@ -144,7 +147,6 @@ const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1
                                 </div>
                             )}
                         </div>
-
                         <div className="add-pr-autocomplete position-relative mt-2">
                             <input
                                 type="text"
@@ -167,7 +169,7 @@ const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1
                                     ))}
                                 </ul>
                             )}
-                            {img.loadingColors && <ImageSkeleton />}
+                            {img.loadingColors && <Skeleton count={3} height={20} style={{ margin: "5px 0" }} />}
                         </div>
                     </div>
                 ))}

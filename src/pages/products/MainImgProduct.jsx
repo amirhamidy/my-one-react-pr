@@ -1,11 +1,16 @@
-
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const MainImgProduct = () => {
-
-
     const [imagePreview, setImagePreview] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file && file.type.startsWith("image/")) {
@@ -19,9 +24,11 @@ const MainImgProduct = () => {
         }
     };
 
+    if (loading) {
+        return <Skeleton height={150} width={200} />;
+    }
 
     return (
-
         <div className="add-pr-pr-container row d-flex justify-content-start align-items-start flex-column gap-3 my-1 col-md-12 fts-bg-white">
             <label
                 htmlFor="productImage"
@@ -42,12 +49,11 @@ const MainImgProduct = () => {
                 <img
                     src={imagePreview}
                     alt="preview"
-                    className="editor-image w-25 "
+                    className="editor-image w-25"
                 />
             )}
         </div>
-    )
-}
+    );
+};
 
-
-export default MainImgProduct
+export default MainImgProduct;
