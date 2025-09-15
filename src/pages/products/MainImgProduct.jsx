@@ -22,7 +22,7 @@ const MainImgProduct = () => {
 
     return (
 
-        <div className="col-md-6 add-pr-autocomplete d-flex align-items-center flex-column gap-3">
+        <div className="col-md-6 add-pr-autocomplete d-flex align-items-center justify-content-start flex-column gap-3">
             <label
                 htmlFor="productImage"
                 className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
@@ -42,7 +42,7 @@ const MainImgProduct = () => {
                 <img
                     src={imagePreview}
                     alt="preview"
-                    className="editor-image size-25 align-left"
+                    className="editor-image size-50 align-left"
                 />
             )}
         </div>

@@ -1411,3 +1411,21 @@ ul {
   border-radius: 6px;
   margin-top: 4px;
 }
+
+.add-pr-pr-image-card{
+  position: relative !important;
+}
+
+
+.add-pr-pr-image-card img{
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+
+.tick-for-delete{
+  position: absolute !important;
+  top: 0;
+  left: 0;
+}

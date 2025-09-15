@@ -35,7 +35,7 @@ const AddProduct = () => {
         <Editor />
 
 
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between align-items-start">
 
           <MainImgProduct></MainImgProduct>
           <ProductDetailImages></ProductDetailImages>

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import TickIcon from "../icons/TickIcon";
 
 const ImageSkeleton = () => (
     <div className="add-pr-pr-image-skeleton" style={{ background: "#eee", height: "50px", borderRadius: "6px" }} />
@@ -100,38 +101,35 @@ const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1
     };
 
     return (
-        <div className="add-pr-pr-container d-flex flex-column gap-3">
-            <button
-                type="button"
-                className="add-pr-pr-btn btn btn-primary w-25"
-                onClick={() => fileInputRef.current.click()}
-            >
-                افزودن عکس
-            </button>
-            <input
-                type="file"
-                multiple
-                accept="image/*"
-                ref={fileInputRef}
-                style={{ display: "none" }}
-                onChange={handleFileChange}
-            />
+        <div className="add-pr-pr-container row gap-3">
 
-            {images.some((img) => img.selected) && (
+            <div className="w-100 d-flex col-md-12">
                 <button
                     type="button"
-                    className="add-pr-pr-btn btn btn-danger w-25"
-                    onClick={deleteSelected}
+                    className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+                    onClick={() => fileInputRef.current.click()}
                 >
-                    حذف انتخاب‌شده‌ها
+                    افزودن تصاویر جزئی
                 </button>
-            )}
+                <input type="file" multiple accept="image/*" ref={fileInputRef} style={{ visibility: "hidden" }} onChange={handleFileChange} />
 
-            <div className="row add-pr-pr-images-grid">
+                {images.some((img) => img.selected) && (
+                    <button
+                        type="button"
+                        className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2 my-3"
+                        onClick={deleteSelected}
+                    >
+                        حذف انتخاب‌شده‌ها
+                    </button>
+                )}
+            </div>
+
+
+            <div className="row col-md-12 add-pr-pr-images-grid w-100">
                 {images.map((img, index) => (
-                    <div key={index} className="col-md-3 mb-3">
+                    <div key={index} className="col-md-4 mb-3 text-center">
                         <div
-                            className="add-pr-pr-image-card position-relative"
+                            className="add-pr-pr-image-card"
                             onClick={() => toggleSelect(index)}
                         >
                             <img
@@ -140,8 +138,8 @@ const ProductImageUploader = ({ colorsApi = "https://manmarket.ir/product/api/v1
                                 className="img-fluid rounded add-pr-pr-image"
                             />
                             {img.selected && (
-                                <div className="position-absolute top-0 end-0 p-1 bg-danger text-white rounded-circle">
-                                    ✓
+                                <div className="tick-for-delete bg-danger text-white">
+                                    <TickIcon></TickIcon>
                                 </div>
                             )}
                         </div>
