@@ -14,7 +14,6 @@ export default function CategoriesGrid() {
     const [loading, setLoading] = useState(true);
     const boxRefs = useRef([]);
 
-    // Fetch categories once
     useEffect(() => {
         setLoading(true);
         axios
@@ -43,16 +42,15 @@ export default function CategoriesGrid() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [activeIndex]);
 
-    const toggleBox = useCallback((index) => {
-        setActiveIndex((prev) => (prev === index ? null : index));
-    }, []);
+    const toggleBox = useCallback(
+        (index) => setActiveIndex((prev) => (prev === index ? null : index)),
+        []
+    );
 
     const skeletonArray = Array.from({ length: 6 });
 
     return (
         <>
-
-
             <CTAForm />
             <Link
                 to="/AddCategory/add"
@@ -63,45 +61,43 @@ export default function CategoriesGrid() {
             </Link>
 
             <div className="d-flex justify-content-center flex-wrap w-100 cs-h-for-pr py-4">
-                {loading
-                    ? skeletonArray.map((_, index) => (
-                        <div
-                            key={`skeleton-${index}`}
-                            className="product-card mx-2 px-3 py-3 my-2"
-                        >
-                            <Skeleton height={70} width={70} />
-                            <Skeleton width={100} style={{ marginTop: 10 }} />
-                        </div>
-                    ))
-                    : categories.map((cat, index) => (
-                        <div
-                            key={cat.id}
-                            ref={(el) => (boxRefs.current[index] = el)}
-                            className={`product-card mx-2 px-3 py-3 my-2 ${activeIndex === index ? "active" : ""
-                                } ${cat.image ? "" : "d-none"}`}
-                            onClick={() => toggleBox(index)}
-                        >
-                            <div className="d-flex align-items-center gap-2">
+                {(loading ? skeletonArray : categories).map((cat, index) => (
+                    <div
+                        key={loading ? index : cat.id}
+                        ref={(el) => (boxRefs.current[index] = el)}
+                        className={`product-card mx-2 px-3 py-3 my-2 ${!loading && activeIndex === index ? "active" : ""} ${!loading && !cat.image ? "d-none" : ""
+                            }`}
+                        onClick={() => !loading && toggleBox(index)}
+                        style={{ width: "38%", minHeight: "120px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}
+                    >
+                        {loading ? (
+                            <>
+                                <Skeleton circle height={70} width={70} style={{ marginBottom: 10 }} />
+                                <Skeleton width="60%" height={20} style={{ borderRadius: "0.5rem" }} />
+                            </>
+                        ) : (
+                            <>
                                 <img
                                     src={cat.image}
                                     alt={cat.title}
-                                    style={{ width: 70, height: 70, borderRadius: 5 }}
+                                    style={{ width: 70, height: 70, borderRadius: 5, marginBottom: 10 }}
                                 />
                                 <span className="cs-fs-14 fw-bold">{cat.title}</span>
-                            </div>
+                            </>
+                        )}
 
-                            {activeIndex === index && (
-                                <div
-                                    style={{ top: "0", left: "18%" }}
-                                    className="d-flex gap-2 mt-3 action-buttons"
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    <EditBtn></EditBtn>
-                                    <DeleteBtn></DeleteBtn>
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                        {!loading && activeIndex === index && (
+                            <div
+                                className="d-flex gap-2 mt-3 action-buttons"
+                                style={{ position: "absolute", top: "10%", left: "10%", flexDirection: "column" }}
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <EditBtn />
+                                <DeleteBtn />
+                            </div>
+                        )}
+                    </div>
+                ))}
             </div>
         </>
     );

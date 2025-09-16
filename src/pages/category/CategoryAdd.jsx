@@ -36,12 +36,31 @@ const AdmCategoryPanel = () => {
         console.log("Category Data:", form);
     };
 
+    const skeletonStyle = {
+        borderRadius: "0.5rem",
+        backgroundColor: "#e0e0e0",
+        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+        marginBottom: "10px",
+        width: "100%",
+        height: "40px",
+    };
+
+    const skeletonImageStyle = {
+        borderRadius: "8px",
+        backgroundColor: "#e0e0e0",
+        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+        width: "100%",
+        height: "50px",
+        marginBottom: "10px",
+    };
+
     return (
         <>
             <CTAForm />
+
             <button
                 onClick={() => navigate(-1)}
-                className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr "
+                className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr"
             >
                 <BackIcon />
                 بازگشت
@@ -53,16 +72,16 @@ const AdmCategoryPanel = () => {
                 {loading ? (
                     <div className="row add-pr-row">
                         <div className="col-md-6">
-                            <Skeleton height={40} style={{ marginBottom: "10px" }} />
+                            <Skeleton style={skeletonStyle} />
                         </div>
                         <div className="col-md-6">
-                            <Skeleton height={40} style={{ marginBottom: "10px" }} />
+                            <Skeleton style={skeletonStyle} />
                         </div>
                         <div className="col-md-6">
-                            <Skeleton height={50} style={{ marginBottom: "10px" }} />
+                            <Skeleton style={skeletonImageStyle} />
                         </div>
                         <div className="col-12">
-                            <Skeleton height={40} style={{ marginBottom: "10px" }} />
+                            <Skeleton style={skeletonStyle} />
                         </div>
                     </div>
                 ) : (

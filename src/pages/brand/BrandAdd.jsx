@@ -6,7 +6,11 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const AdmBrandPanel = () => {
-  const [form, setForm] = useState({ name: "", slug: "", logo: null });
+  const [form, setForm] = useState({
+    name: "",
+    slug: "",
+    logo: null,
+  });
   const [logoPreview, setLogoPreview] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -31,17 +35,21 @@ const AdmBrandPanel = () => {
     console.log("Brand Data:", form);
   };
 
-  const skeletonStyle = { borderRadius: "0.5rem", marginBottom: "12px" };
+  const skeletonStyle = {
+    backgroundColor: "#e0e0e0",
+    borderRadius: "0.5rem",
+    boxShadow: "2px 2px 4px rgba(0,0,0,0.1)",
+  };
 
   return (
     <>
       <BrandForm />
+
       <button
         onClick={() => navigate(-1)}
-        className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr"
+        className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr "
       >
-        <BackIcon />
-        بازگشت
+        <BackIcon /> بازگشت
       </button>
 
       <div className="add-pr-container container px-5">
@@ -80,7 +88,7 @@ const AdmBrandPanel = () => {
 
             <div className="col-md-6">
               {loading ? (
-                <Skeleton height={50} style={skeletonStyle} />
+                <Skeleton height={40} style={skeletonStyle} />
               ) : (
                 <>
                   <div

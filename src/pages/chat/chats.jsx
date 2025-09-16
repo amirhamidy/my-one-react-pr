@@ -7,34 +7,14 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
 
 const chatsData = [
-  {
-    id: 1,
-    name: "علی رضایی",
-    email: "ali@example.com",
-    date: "2025-08-21 14:35",
-    userType: "کاربر عادی",
-  },
-  {
-    id: 2,
-    name: "سارا محمدی",
-    email: "sara@example.com",
-    date: "2025-08-20 09:20",
-    userType: "سوپر یوزر",
-  },
-  {
-    id: 3,
-    name: "محمد احمدی",
-    email: "mohammad@example.com",
-    date: "2025-08-19 12:10",
-    userType: "ادمین",
-  },
-  {
-    id: 4,
-    name: "فاطمه نادری",
-    email: "fateme@example.com",
-    date: "2025-08-18 18:50",
-    userType: "کاربر عادی",
-  },
+  { id: 1, name: "علی رضایی", email: "ali@example.com", date: "2025-08-21 14:35", userType: "کاربر عادی" },
+  { id: 2, name: "سارا محمدی", email: "sara@example.com", date: "2025-08-20 09:20", userType: "سوپر یوزر" },
+  { id: 3, name: "محمد احمدی", email: "mohammad@example.com", date: "2025-08-19 12:10", userType: "ادمین" },
+  { id: 4, name: "فاطمه نادری", email: "fateme@example.com", date: "2025-08-18 18:50", userType: "کاربر عادی" },
+  { id: 5, name: "علی رضایی", email: "ali@example.com", date: "2025-08-21 14:35", userType: "کاربر عادی" },
+  { id: 6, name: "سارا محمدی", email: "sara@example.com", date: "2025-08-20 09:20", userType: "سوپر یوزر" },
+  { id: 7, name: "محمد احمدی", email: "mohammad@example.com", date: "2025-08-19 12:10", userType: "ادمین" },
+  { id: 8, name: "فاطمه نادری", email: "fateme@example.com", date: "2025-08-18 18:50", userType: "کاربر عادی" },
 ];
 
 const Chats = () => {
@@ -42,14 +22,8 @@ const Chats = () => {
   const [loading, setLoading] = useState(true);
   const chatRefs = useRef([]);
 
-  const toggleActiveChat = (id) => {
-    setActiveChat((prev) => (prev === id ? null : id));
-  };
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -67,6 +41,10 @@ const Chats = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [activeChat]);
 
+  const toggleActiveChat = (id) => setActiveChat((prev) => (prev === id ? null : id));
+
+  const skeletonStyle = { borderRadius: "0.5rem", height: 10, background: "#e0e0e0" };
+
   return (
     <>
       <ChatForm />
@@ -75,32 +53,25 @@ const Chats = () => {
           <div
             key={loading ? index : chat.id}
             ref={(el) => (chatRefs.current[index] = el)}
-            className={`d-flex flex-wrap justify-content-center align-items-center product-card mx-2 px-3 py-3 my-2 ${!loading && activeChat === chat.id ? "active" : ""
-              }`}
+            className={`d-flex flex-wrap justify-content-center align-items-center product-card mx-2 px-3 py-3 my-2 ${!loading && activeChat === chat.id ? "active" : ""}`}
             onClick={() => !loading && toggleActiveChat(chat.id)}
+            style={{ minWidth: "38%", position: "relative" }}
           >
-            <div className="chat-info d-flex flex-column gap-1">
+            <div className="chat-info d-flex flex-column gap-1 w-100">
               <span className="chat-id cs-fs-13 theme-color">
-                {loading ? <Skeleton width={100} /> : `شماره چت: ${chat.id}`}
+                {loading ? <Skeleton style={{ ...skeletonStyle, width: 100 }} /> : `شماره چت: ${chat.id}`}
               </span>
               <span className="chat-name cs-fs-15">
-                {loading ? <Skeleton width={120} /> : chat.name}
+                {loading ? <Skeleton style={{ ...skeletonStyle, width: 120 }} /> : chat.name}
               </span>
               <span className="chat-email cs-fs-13 cs-li-color">
-                {loading ? <Skeleton width={150} /> : chat.email}
+                {loading ? <Skeleton style={{ ...skeletonStyle, width: 150 }} /> : chat.email}
               </span>
               <span className="chat-date cs-fs-13 cs-li-color">
-                {loading ? <Skeleton width={90} /> : chat.date}
+                {loading ? <Skeleton style={{ ...skeletonStyle, width: 90 }} /> : chat.date}
               </span>
-              <span
-                className={`chat-type cs-fs-13 ${!loading && chat.userType === "ادمین"
-                  ? "theme-color"
-                  : !loading && chat.userType === "سوپر یوزر"
-                    ? "cs-fs-14 theme-color"
-                    : "cs-li-color"
-                  }`}
-              >
-                {loading ? <Skeleton width={80} /> : `نوع کاربر: ${chat.userType}`}
+              <span className={`chat-type cs-fs-13 ${!loading && chat.userType === "ادمین" ? "theme-color" : !loading && chat.userType === "سوپر یوزر" ? "cs-fs-14 theme-color" : "cs-li-color"}`}>
+                {loading ? <Skeleton style={{ ...skeletonStyle, width: 80 }} /> : `نوع کاربر: ${chat.userType}`}
               </span>
             </div>
 
@@ -108,7 +79,6 @@ const Chats = () => {
               <div
                 className="product-actions"
                 style={{
-                  msFlexDirection: "column",
                   position: "absolute",
                   top: "15%",
                   left: "15%",
