@@ -6,12 +6,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const AdmBrandPanel = () => {
-  const [form, setForm] = useState({
-    name: "",
-    slug: "",
-    logo: null,
-  });
-
+  const [form, setForm] = useState({ name: "", slug: "", logo: null });
   const [logoPreview, setLogoPreview] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -36,14 +31,16 @@ const AdmBrandPanel = () => {
     console.log("Brand Data:", form);
   };
 
+  const skeletonStyle = { borderRadius: "0.5rem", marginBottom: "12px" };
+
   return (
     <>
-      <BrandForm></BrandForm>
+      <BrandForm />
       <button
         onClick={() => navigate(-1)}
-        className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr "
+        className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr"
       >
-        <BackIcon></BackIcon>
+        <BackIcon />
         بازگشت
       </button>
 
@@ -53,7 +50,7 @@ const AdmBrandPanel = () => {
           <div className="row add-pr-row">
             <div className="col-md-6">
               {loading ? (
-                <Skeleton height={40} />
+                <Skeleton height={40} style={skeletonStyle} />
               ) : (
                 <input
                   type="text"
@@ -68,7 +65,7 @@ const AdmBrandPanel = () => {
 
             <div className="col-md-6">
               {loading ? (
-                <Skeleton height={40} />
+                <Skeleton height={40} style={skeletonStyle} />
               ) : (
                 <input
                   type="text"
@@ -83,7 +80,7 @@ const AdmBrandPanel = () => {
 
             <div className="col-md-6">
               {loading ? (
-                <Skeleton height={40} />
+                <Skeleton height={50} style={skeletonStyle} />
               ) : (
                 <>
                   <div
@@ -114,7 +111,7 @@ const AdmBrandPanel = () => {
 
             <div className="col-12">
               {loading ? (
-                <Skeleton height={40} />
+                <Skeleton height={40} style={skeletonStyle} />
               ) : (
                 <button
                   type="submit"
