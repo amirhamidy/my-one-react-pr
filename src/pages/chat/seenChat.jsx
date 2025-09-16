@@ -1,8 +1,10 @@
-import { Space } from "lucide-react";
-import React from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 import ChatForm from "./ChatForm";
 import BackIcon from "../icons/BackIcon";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const chatData = {
     productName: "گوشی موبایل شیائومی مدل Redmi Note 13 Pro 5G دو سیم‌کارت ظرفیت 512 گیگابایت و رم 12 گیگابایت - گلوبال",
@@ -14,45 +16,59 @@ const chatData = {
 
 const ChatDetail = ({ chat = chatData, onBack }) => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <>
-            <ChatForm></ChatForm>
+            <ChatForm />
             <button
                 onClick={() => navigate(-1)}
                 className="text-light py-2 px-2 border-0 cs-fs-14 rounded-2 add-pr-mr "
             >
-                <BackIcon></BackIcon>
+                <BackIcon />
                 بازگشت
             </button>
             <div className="cs-h-for-pr w-100 px-3 py-3">
-                <div className=" px-3 py-3 rounded-1 w-100">
+                <div className="px-3 py-3 rounded-1 w-100">
                     <div className="d-flex justify-content-between align-items-center mb-4">
-                        <h5 className="fw-bold"> موضوع پیام:
-                            <span className="text-muted mx-1 ">
-                                {chat.productName}
+                        <h5 className="fw-bold">
+                            موضوع پیام:
+                            <span className="text-muted mx-1">
+                                {loading ? <Skeleton width={400} /> : chat.productName}
                             </span>
                         </h5>
                     </div>
 
                     <div className="user-card rounded-2 mb-3 p-3 shadow-sm">
-                        <p className="cs-fs-12 text-end "> نام کاربر :
-                            <span className="text-muted mx-1 ">
-                                {chat.userName}
+                        <p className="cs-fs-12 text-end">
+                            نام کاربر :
+                            <span className="text-muted mx-1">
+                                {loading ? <Skeleton width={150} /> : chat.userName}
                             </span>
                         </p>
-                        <p className="cs-fs-12 text-end "> ایمیل کاربر :
-                            <span className="text-muted mx-1 ">
-                                {chat.userEmail}
+                        <p className="cs-fs-12 text-end">
+                            ایمیل کاربر :
+                            <span className="text-muted mx-1">
+                                {loading ? <Skeleton width={200} /> : chat.userEmail}
                             </span>
                         </p>
-                        <p className="cs-fs-12 text-end "> پیام :
-                            <span className="text-muted mx-1 ">
-                                {chat.message}
+                        <p className="cs-fs-12 text-end">
+                            پیام :
+                            <span className="text-muted mx-1">
+                                {loading ? <Skeleton count={3} /> : chat.message}
                             </span>
-                        </p>                        <p className="cs-fs-12 text-end "> تاریخ ارسال پیام :
-                            <span className="text-muted mx-1 ">
-                                {chat.date}
+                        </p>
+                        <p className="cs-fs-12 text-end">
+                            تاریخ ارسال پیام :
+                            <span className="text-muted mx-1">
+                                {loading ? <Skeleton width={100} /> : chat.date}
                             </span>
                         </p>
                     </div>
@@ -62,10 +78,7 @@ const ChatDetail = ({ chat = chatData, onBack }) => {
                         <button className="edit-btn border-none rounded-2 cs-fs-14 px-2 py-2">پاسخ</button>
                     </div>
                 </div>
-
             </div>
-
-
         </>
     );
 };
