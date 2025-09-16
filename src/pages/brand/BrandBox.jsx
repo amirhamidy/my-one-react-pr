@@ -12,25 +12,54 @@ const BrandBox = forwardRef(({ brand, isActive, onClick, onActionClick }, ref) =
         return () => clearTimeout(timer);
     }, []);
 
+    if (!brand.image) return null; // عدم نمایش باکس بدون عکس
+
+    const BOX_SIZE = 60;
+    const PADDING = 12;
+    const TEXT_HEIGHT = 20;
+
     return (
         <div
             ref={ref}
-            className={`product-card mx-3 my-2 ${isActive ? "active" : ""} ${brand.image ? "" : "d-none"}`}>
+            className={`product-card mx-3 my-2 ${isActive ? "active" : ""}`}
+            style={{
+                position: "relative",
+                padding: PADDING,
+                boxSizing: "border-box",
+                minWidth: BOX_SIZE + PADDING * 2,
+                minHeight: BOX_SIZE + TEXT_HEIGHT + PADDING * 2,
+            }}
+        >
             {loading ? (
-                <div className="product-content d-flex flex-column align-items-center justify-content-center">
-                    <Skeleton circle={true} height={60} width={60} />
-                    <Skeleton width={80} height={20} style={{ marginTop: 8 }} />
+                <div
+                    className="product-content d-flex flex-column align-items-center justify-content-center"
+                    style={{
+                        width: BOX_SIZE,
+                        height: BOX_SIZE + TEXT_HEIGHT,
+                        boxSizing: "border-box",
+                        padding: PADDING,
+                    }}
+                >
+                    <Skeleton circle height={BOX_SIZE} width={BOX_SIZE} />
+                    <Skeleton width={BOX_SIZE} height={TEXT_HEIGHT} style={{ marginTop: 8 }} />
                 </div>
             ) : (
                 <div
                     className="product-content d-flex flex-column align-items-center justify-content-center"
-                    onClick={onClick} >
+                    onClick={onClick}
+                    style={{ width: BOX_SIZE, boxSizing: "border-box" }}
+                >
                     <img
-                        src={brand.image || "/fallback-brand.png"}
+                        src={brand.image}
                         alt={brand.title}
-                        style={{ width: "60px", height: "60px", borderRadius: "8px", objectFit: "contain" }}
+                        style={{
+                            width: BOX_SIZE,
+                            height: BOX_SIZE,
+                            borderRadius: "8px",
+                            objectFit: "contain",
+                        }}
                     />
-                    <p className="product-name mt-2">{brand.title}</p>
+                    <p className="product-name mt-2" style={{ textAlign: "center" }}>{brand.title}</p>
                 </div>
             )}
 
@@ -48,8 +77,8 @@ const BrandBox = forwardRef(({ brand, isActive, onClick, onActionClick }, ref) =
                         animation: "fadeIn 0.3s ease forwards",
                     }}
                 >
-                    <EditBtn onClick={() => onActionClick("edit", brand)}></EditBtn>
-                    <DeleteBtn onClick={() => onActionClick("delete", brand)}></DeleteBtn>
+                    <EditBtn onClick={() => onActionClick("edit", brand)} />
+                    <DeleteBtn onClick={() => onActionClick("delete", brand)} />
                 </div>
             )}
         </div>
