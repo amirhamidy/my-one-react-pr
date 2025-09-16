@@ -18,7 +18,7 @@ const Story = () => {
     const storyRefs = useRef([]);
 
     useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 1500);
+        const timer = setTimeout(() => setLoading(false), 500);
         return () => clearTimeout(timer);
     }, []);
 

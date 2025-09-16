@@ -8,11 +8,11 @@ const BrandBox = forwardRef(({ brand, isActive, onClick, onActionClick }, ref) =
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 800);
+        const timer = setTimeout(() => setLoading(false), 500);
         return () => clearTimeout(timer);
     }, []);
 
-    if (!brand.image) return null; // عدم نمایش باکس بدون عکس
+    if (!brand.image) return null;
 
     const BOX_SIZE = 60;
     const PADDING = 12;
