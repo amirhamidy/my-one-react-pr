@@ -155,9 +155,9 @@ const SideBarMenu = () => {
     ];
 
     return (
-        <div className="main-box-sidebar col-12 py-2 px-1 col-md-2 align-items-center w-center px-3">
-            <span className="w-100 py-5" >
-                <img alt="" className="w-25" src="../vite.svg" />
+        <div className="main-box-sidebar col-12 py-3 px-1 col-md-2 align-items-center w-center px-3">
+            <span className="profile-box align-items-center" >
+                <img alt="" className="" src="../vite.svg" />
             </span>
             <div className="d-flex justify-content-start flex-column text-right list-box-sidebar mx-1 px-1 mt-4">
                 {menuItems.map((item) => (

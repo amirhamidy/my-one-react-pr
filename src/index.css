@@ -1452,3 +1452,23 @@ ul {
   transition: 0.3s;
   white-space: pre-wrap;
 }
+
+.profile-box {
+  border-radius:50%;
+  height: 80px;
+  width: 80px;
+  border: 1px ridge lightgray;
+  padding: 10px 10px;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15%;
+  margin: auto auto;
+}
+
+.profile-box img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
